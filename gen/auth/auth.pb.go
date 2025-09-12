@@ -75,7 +75,7 @@ func (x *SignUpRequest) GetPassword() string {
 
 type SignUpResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserUuid      int32                  `protobuf:"varint,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	UserUuid      string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,11 +110,11 @@ func (*SignUpResponse) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SignUpResponse) GetUserUuid() int32 {
+func (x *SignUpResponse) GetUserUuid() string {
 	if x != nil {
 		return x.UserUuid
 	}
-	return 0
+	return ""
 }
 
 type SignInRequest struct {
@@ -231,7 +231,7 @@ const file_auth_proto_rawDesc = "" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"-\n" +
 	"\x0eSignUpResponse\x12\x1b\n" +
-	"\tuser_uuid\x18\x01 \x01(\x05R\buserUuid\"X\n" +
+	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\"X\n" +
 	"\rSignInRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x15\n" +
