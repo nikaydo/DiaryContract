@@ -15,7 +15,7 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
-  int32 user_uuid = 1;
+  string user_uuid = 1;
 }
 
 message SignInRequest {
