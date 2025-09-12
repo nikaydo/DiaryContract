@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_SignUp_FullMethodName = "/auth.Auth/SignUp"
-	Auth_SignIn_FullMethodName = "/auth.Auth/SignIn"
+	Auth_SignUp_FullMethodName           = "/auth.Auth/SignUp"
+	Auth_SignIn_FullMethodName           = "/auth.Auth/SignIn"
+	Auth_ValidateJwtToken_FullMethodName = "/auth.Auth/ValidateJwtToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -29,6 +30,7 @@ const (
 type AuthClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
+	ValidateJwtToken(ctx context.Context, in *ValidateJwtTokenRequest, opts ...grpc.CallOption) (*ValidateJwtTokenResponse, error)
 }
 
 type authClient struct {
@@ -59,12 +61,23 @@ func (c *authClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc
 	return out, nil
 }
 
+func (c *authClient) ValidateJwtToken(ctx context.Context, in *ValidateJwtTokenRequest, opts ...grpc.CallOption) (*ValidateJwtTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ValidateJwtTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_ValidateJwtToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
 type AuthServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
+	ValidateJwtToken(context.Context, *ValidateJwtTokenRequest) (*ValidateJwtTokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedAuthServer) SignUp(context.Context, *SignUpRequest) (*SignUpR
 }
 func (UnimplementedAuthServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
+}
+func (UnimplementedAuthServer) ValidateJwtToken(context.Context, *ValidateJwtTokenRequest) (*ValidateJwtTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateJwtToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -138,6 +154,24 @@ func _Auth_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_ValidateJwtToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateJwtTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ValidateJwtToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ValidateJwtToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ValidateJwtToken(ctx, req.(*ValidateJwtTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignIn",
 			Handler:    _Auth_SignIn_Handler,
+		},
+		{
+			MethodName: "ValidateJwtToken",
+			Handler:    _Auth_ValidateJwtToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -7,6 +7,9 @@ option go_package = "github.com/nikaydo/DiaryAuth;auth";
 service Auth{
     rpc SignUp (SignUpRequest) returns (SignUpResponse);
     rpc SignIn (SignInRequest) returns (SignInResponse);
+
+    rpc ValidateJwtToken (ValidateJwtTokenRequest) returns (ValidateJwtTokenResponse);
+
 } 
 
 message SignUpRequest {
@@ -15,15 +18,34 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
+  //uuid user
   string user_uuid = 1;
+  //jwt token
+  string jwtToken = 2;
 }
 
 message SignInRequest {
   string login = 1; 
   string password = 2; 
-  int32 app_id = 3; 
 }
 
 message SignInResponse {
-  string token = 1;
+  //uuid user
+  string user_uuid = 1;
+  //jwt token
+  string jwtToken = 2;
+}
+
+message ValidateJwtTokenRequest {
+  //uuid user
+  string uuid = 1;
+  //jwt token
+  string jwtToken = 2;
+}
+
+message ValidateJwtTokenResponse {
+  //retrunring jwt token if token in requests valid
+  string jwtToken = 1;
+  //if token in requests valid returning true but is token not valid(example expaired) return false
+  bool Valid = 2;
 }

@@ -74,8 +74,11 @@ func (x *SignUpRequest) GetPassword() string {
 }
 
 type SignUpResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserUuid      string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// uuid user
+	UserUuid string `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	// jwt token
+	JwtToken      string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,11 +120,17 @@ func (x *SignUpResponse) GetUserUuid() string {
 	return ""
 }
 
+func (x *SignUpResponse) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
+}
+
 type SignInRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -170,16 +179,12 @@ func (x *SignInRequest) GetPassword() string {
 	return ""
 }
 
-func (x *SignInRequest) GetAppId() int32 {
-	if x != nil {
-		return x.AppId
-	}
-	return 0
-}
-
 type SignInResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// uuid user
+	UserUuid string `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	// jwt token
+	JwtToken      string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,11 +219,126 @@ func (*SignInResponse) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *SignInResponse) GetToken() string {
+func (x *SignInResponse) GetUserUuid() string {
 	if x != nil {
-		return x.Token
+		return x.UserUuid
 	}
 	return ""
+}
+
+func (x *SignInResponse) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
+}
+
+type ValidateJwtTokenRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// uuid user
+	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// jwt token
+	JwtToken      string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateJwtTokenRequest) Reset() {
+	*x = ValidateJwtTokenRequest{}
+	mi := &file_auth_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateJwtTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateJwtTokenRequest) ProtoMessage() {}
+
+func (x *ValidateJwtTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateJwtTokenRequest.ProtoReflect.Descriptor instead.
+func (*ValidateJwtTokenRequest) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ValidateJwtTokenRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *ValidateJwtTokenRequest) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
+}
+
+type ValidateJwtTokenResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// retrunring jwt token if token in requests valid
+	JwtToken string `protobuf:"bytes,1,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	// if token in requests valid returning true but is token not valid(example expaired) return false
+	Valid         bool `protobuf:"varint,2,opt,name=Valid,proto3" json:"Valid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateJwtTokenResponse) Reset() {
+	*x = ValidateJwtTokenResponse{}
+	mi := &file_auth_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateJwtTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateJwtTokenResponse) ProtoMessage() {}
+
+func (x *ValidateJwtTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateJwtTokenResponse.ProtoReflect.Descriptor instead.
+func (*ValidateJwtTokenResponse) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ValidateJwtTokenResponse) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
+}
+
+func (x *ValidateJwtTokenResponse) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
 }
 
 var File_auth_proto protoreflect.FileDescriptor
@@ -229,18 +349,26 @@ const file_auth_proto_rawDesc = "" +
 	"auth.proto\x12\x04auth\"A\n" +
 	"\rSignUpRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"-\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"I\n" +
 	"\x0eSignUpResponse\x12\x1b\n" +
-	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\"X\n" +
+	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1a\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"A\n" +
 	"\rSignInRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
-	"\x0eSignInResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2p\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"I\n" +
+	"\x0eSignInResponse\x12\x1b\n" +
+	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1a\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"I\n" +
+	"\x17ValidateJwtTokenRequest\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"L\n" +
+	"\x18ValidateJwtTokenResponse\x12\x1a\n" +
+	"\bjwtToken\x18\x01 \x01(\tR\bjwtToken\x12\x14\n" +
+	"\x05Valid\x18\x02 \x01(\bR\x05Valid2\xc3\x01\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
-	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponseB#Z!github.com/nikaydo/DiaryAuth;authb\x06proto3"
+	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12Q\n" +
+	"\x10ValidateJwtToken\x12\x1d.auth.ValidateJwtTokenRequest\x1a\x1e.auth.ValidateJwtTokenResponseB#Z!github.com/nikaydo/DiaryAuth;authb\x06proto3"
 
 var (
 	file_auth_proto_rawDescOnce sync.Once
@@ -254,20 +382,24 @@ func file_auth_proto_rawDescGZIP() []byte {
 	return file_auth_proto_rawDescData
 }
 
-var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_auth_proto_goTypes = []any{
-	(*SignUpRequest)(nil),  // 0: auth.SignUpRequest
-	(*SignUpResponse)(nil), // 1: auth.SignUpResponse
-	(*SignInRequest)(nil),  // 2: auth.SignInRequest
-	(*SignInResponse)(nil), // 3: auth.SignInResponse
+	(*SignUpRequest)(nil),            // 0: auth.SignUpRequest
+	(*SignUpResponse)(nil),           // 1: auth.SignUpResponse
+	(*SignInRequest)(nil),            // 2: auth.SignInRequest
+	(*SignInResponse)(nil),           // 3: auth.SignInResponse
+	(*ValidateJwtTokenRequest)(nil),  // 4: auth.ValidateJwtTokenRequest
+	(*ValidateJwtTokenResponse)(nil), // 5: auth.ValidateJwtTokenResponse
 }
 var file_auth_proto_depIdxs = []int32{
 	0, // 0: auth.Auth.SignUp:input_type -> auth.SignUpRequest
 	2, // 1: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	1, // 2: auth.Auth.SignUp:output_type -> auth.SignUpResponse
-	3, // 3: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: auth.Auth.ValidateJwtToken:input_type -> auth.ValidateJwtTokenRequest
+	1, // 3: auth.Auth.SignUp:output_type -> auth.SignUpResponse
+	3, // 4: auth.Auth.SignIn:output_type -> auth.SignInResponse
+	5, // 5: auth.Auth.ValidateJwtToken:output_type -> auth.ValidateJwtTokenResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -284,7 +416,7 @@ func file_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_proto_rawDesc), len(file_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
