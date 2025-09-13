@@ -44,8 +44,10 @@ message ValidateJwtTokenRequest {
 }
 
 message ValidateJwtTokenResponse {
+  //Jwt token in have write uuid if token valid return uuid 
+  string uuid = 1;
   //retrunring jwt token if token in requests valid
-  string jwtToken = 1;
+  string jwtToken = 2; 
   //if token in requests valid returning true but is token not valid(example expaired) return false
-  bool Valid = 2;
+  bool Valid = 3;
 }
