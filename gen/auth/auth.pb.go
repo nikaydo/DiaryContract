@@ -293,8 +293,8 @@ type ValidateJwtTokenResponse struct {
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	// retrunring jwt token if token in requests valid
 	JwtToken string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
-	// if token in requests valid returning true but is token not valid(example expaired) return false
-	Valid         bool `protobuf:"varint,3,opt,name=Valid,proto3" json:"Valid,omitempty"`
+	// if token expaired return jwt token and true
+	IsExpaired    bool `protobuf:"varint,3,opt,name=isExpaired,proto3" json:"isExpaired,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -343,9 +343,9 @@ func (x *ValidateJwtTokenResponse) GetJwtToken() string {
 	return ""
 }
 
-func (x *ValidateJwtTokenResponse) GetValid() bool {
+func (x *ValidateJwtTokenResponse) GetIsExpaired() bool {
 	if x != nil {
-		return x.Valid
+		return x.IsExpaired
 	}
 	return false
 }
@@ -370,11 +370,13 @@ const file_auth_proto_rawDesc = "" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"I\n" +
 	"\x17ValidateJwtTokenRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"`\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"j\n" +
 	"\x18ValidateJwtTokenResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x14\n" +
-	"\x05Valid\x18\x03 \x01(\bR\x05Valid2\xc3\x01\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x1e\n" +
+	"\n" +
+	"isExpaired\x18\x03 \x01(\bR\n" +
+	"isExpaired2\xc3\x01\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
 	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12Q\n" +
