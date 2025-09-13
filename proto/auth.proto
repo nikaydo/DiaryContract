@@ -8,7 +8,7 @@ service Auth{
     rpc SignUp (SignUpRequest) returns (SignUpResponse);
     rpc SignIn (SignInRequest) returns (SignInResponse);
 
-    rpc ValidateJwtToken (ValidateJwtTokenRequest) returns (ValidateJwtTokenResponse);
+    rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
 
 } 
 
@@ -36,14 +36,14 @@ message SignInResponse {
   string jwtToken = 2;
 }
 
-message ValidateJwtTokenRequest {
+message ValidateTokenRequest {
   //uuid user
   string uuid = 1;
   //jwt token
   string jwtToken = 2;
 }
 
-message ValidateJwtTokenResponse {
+message ValidateTokenResponse {
   //Jwt token in have write uuid if token valid return uuid 
   string uuid = 1;
   //retrunring jwt token if token in requests valid

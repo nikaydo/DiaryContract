@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_SignUp_FullMethodName           = "/auth.Auth/SignUp"
-	Auth_SignIn_FullMethodName           = "/auth.Auth/SignIn"
-	Auth_ValidateJwtToken_FullMethodName = "/auth.Auth/ValidateJwtToken"
+	Auth_SignUp_FullMethodName        = "/auth.Auth/SignUp"
+	Auth_SignIn_FullMethodName        = "/auth.Auth/SignIn"
+	Auth_ValidateToken_FullMethodName = "/auth.Auth/ValidateToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -30,7 +30,7 @@ const (
 type AuthClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
-	ValidateJwtToken(ctx context.Context, in *ValidateJwtTokenRequest, opts ...grpc.CallOption) (*ValidateJwtTokenResponse, error)
+	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 }
 
 type authClient struct {
@@ -61,10 +61,10 @@ func (c *authClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *authClient) ValidateJwtToken(ctx context.Context, in *ValidateJwtTokenRequest, opts ...grpc.CallOption) (*ValidateJwtTokenResponse, error) {
+func (c *authClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ValidateJwtTokenResponse)
-	err := c.cc.Invoke(ctx, Auth_ValidateJwtToken_FullMethodName, in, out, cOpts...)
+	out := new(ValidateTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_ValidateToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *authClient) ValidateJwtToken(ctx context.Context, in *ValidateJwtTokenR
 type AuthServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
-	ValidateJwtToken(context.Context, *ValidateJwtTokenRequest) (*ValidateJwtTokenResponse, error)
+	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -94,8 +94,8 @@ func (UnimplementedAuthServer) SignUp(context.Context, *SignUpRequest) (*SignUpR
 func (UnimplementedAuthServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
-func (UnimplementedAuthServer) ValidateJwtToken(context.Context, *ValidateJwtTokenRequest) (*ValidateJwtTokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ValidateJwtToken not implemented")
+func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -154,20 +154,20 @@ func _Auth_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_ValidateJwtToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateJwtTokenRequest)
+func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).ValidateJwtToken(ctx, in)
+		return srv.(AuthServer).ValidateToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_ValidateJwtToken_FullMethodName,
+		FullMethod: Auth_ValidateToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ValidateJwtToken(ctx, req.(*ValidateJwtTokenRequest))
+		return srv.(AuthServer).ValidateToken(ctx, req.(*ValidateTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -188,8 +188,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_SignIn_Handler,
 		},
 		{
-			MethodName: "ValidateJwtToken",
-			Handler:    _Auth_ValidateJwtToken_Handler,
+			MethodName: "ValidateToken",
+			Handler:    _Auth_ValidateToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

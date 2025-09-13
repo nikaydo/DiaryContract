@@ -233,7 +233,7 @@ func (x *SignInResponse) GetJwtToken() string {
 	return ""
 }
 
-type ValidateJwtTokenRequest struct {
+type ValidateTokenRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// uuid user
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -243,20 +243,20 @@ type ValidateJwtTokenRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ValidateJwtTokenRequest) Reset() {
-	*x = ValidateJwtTokenRequest{}
+func (x *ValidateTokenRequest) Reset() {
+	*x = ValidateTokenRequest{}
 	mi := &file_auth_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ValidateJwtTokenRequest) String() string {
+func (x *ValidateTokenRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ValidateJwtTokenRequest) ProtoMessage() {}
+func (*ValidateTokenRequest) ProtoMessage() {}
 
-func (x *ValidateJwtTokenRequest) ProtoReflect() protoreflect.Message {
+func (x *ValidateTokenRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,26 +268,26 @@ func (x *ValidateJwtTokenRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ValidateJwtTokenRequest.ProtoReflect.Descriptor instead.
-func (*ValidateJwtTokenRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidateTokenRequest.ProtoReflect.Descriptor instead.
+func (*ValidateTokenRequest) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ValidateJwtTokenRequest) GetUuid() string {
+func (x *ValidateTokenRequest) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *ValidateJwtTokenRequest) GetJwtToken() string {
+func (x *ValidateTokenRequest) GetJwtToken() string {
 	if x != nil {
 		return x.JwtToken
 	}
 	return ""
 }
 
-type ValidateJwtTokenResponse struct {
+type ValidateTokenResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Jwt token in have write uuid if token valid return uuid
 	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -299,20 +299,20 @@ type ValidateJwtTokenResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ValidateJwtTokenResponse) Reset() {
-	*x = ValidateJwtTokenResponse{}
+func (x *ValidateTokenResponse) Reset() {
+	*x = ValidateTokenResponse{}
 	mi := &file_auth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ValidateJwtTokenResponse) String() string {
+func (x *ValidateTokenResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ValidateJwtTokenResponse) ProtoMessage() {}
+func (*ValidateTokenResponse) ProtoMessage() {}
 
-func (x *ValidateJwtTokenResponse) ProtoReflect() protoreflect.Message {
+func (x *ValidateTokenResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -324,26 +324,26 @@ func (x *ValidateJwtTokenResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ValidateJwtTokenResponse.ProtoReflect.Descriptor instead.
-func (*ValidateJwtTokenResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ValidateTokenResponse.ProtoReflect.Descriptor instead.
+func (*ValidateTokenResponse) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ValidateJwtTokenResponse) GetUuid() string {
+func (x *ValidateTokenResponse) GetUuid() string {
 	if x != nil {
 		return x.Uuid
 	}
 	return ""
 }
 
-func (x *ValidateJwtTokenResponse) GetJwtToken() string {
+func (x *ValidateTokenResponse) GetJwtToken() string {
 	if x != nil {
 		return x.JwtToken
 	}
 	return ""
 }
 
-func (x *ValidateJwtTokenResponse) GetIsExpaired() bool {
+func (x *ValidateTokenResponse) GetIsExpaired() bool {
 	if x != nil {
 		return x.IsExpaired
 	}
@@ -367,20 +367,20 @@ const file_auth_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"I\n" +
 	"\x0eSignInResponse\x12\x1b\n" +
 	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"I\n" +
-	"\x17ValidateJwtTokenRequest\x12\x12\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"F\n" +
+	"\x14ValidateTokenRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"j\n" +
-	"\x18ValidateJwtTokenResponse\x12\x12\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"g\n" +
+	"\x15ValidateTokenResponse\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x1e\n" +
 	"\n" +
 	"isExpaired\x18\x03 \x01(\bR\n" +
-	"isExpaired2\xc3\x01\n" +
+	"isExpaired2\xba\x01\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
-	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12Q\n" +
-	"\x10ValidateJwtToken\x12\x1d.auth.ValidateJwtTokenRequest\x1a\x1e.auth.ValidateJwtTokenResponseB#Z!github.com/nikaydo/DiaryAuth;authb\x06proto3"
+	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12H\n" +
+	"\rValidateToken\x12\x1a.auth.ValidateTokenRequest\x1a\x1b.auth.ValidateTokenResponseB#Z!github.com/nikaydo/DiaryAuth;authb\x06proto3"
 
 var (
 	file_auth_proto_rawDescOnce sync.Once
@@ -396,20 +396,20 @@ func file_auth_proto_rawDescGZIP() []byte {
 
 var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_auth_proto_goTypes = []any{
-	(*SignUpRequest)(nil),            // 0: auth.SignUpRequest
-	(*SignUpResponse)(nil),           // 1: auth.SignUpResponse
-	(*SignInRequest)(nil),            // 2: auth.SignInRequest
-	(*SignInResponse)(nil),           // 3: auth.SignInResponse
-	(*ValidateJwtTokenRequest)(nil),  // 4: auth.ValidateJwtTokenRequest
-	(*ValidateJwtTokenResponse)(nil), // 5: auth.ValidateJwtTokenResponse
+	(*SignUpRequest)(nil),         // 0: auth.SignUpRequest
+	(*SignUpResponse)(nil),        // 1: auth.SignUpResponse
+	(*SignInRequest)(nil),         // 2: auth.SignInRequest
+	(*SignInResponse)(nil),        // 3: auth.SignInResponse
+	(*ValidateTokenRequest)(nil),  // 4: auth.ValidateTokenRequest
+	(*ValidateTokenResponse)(nil), // 5: auth.ValidateTokenResponse
 }
 var file_auth_proto_depIdxs = []int32{
 	0, // 0: auth.Auth.SignUp:input_type -> auth.SignUpRequest
 	2, // 1: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	4, // 2: auth.Auth.ValidateJwtToken:input_type -> auth.ValidateJwtTokenRequest
+	4, // 2: auth.Auth.ValidateToken:input_type -> auth.ValidateTokenRequest
 	1, // 3: auth.Auth.SignUp:output_type -> auth.SignUpResponse
 	3, // 4: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	5, // 5: auth.Auth.ValidateJwtToken:output_type -> auth.ValidateJwtTokenResponse
+	5, // 5: auth.Auth.ValidateToken:output_type -> auth.ValidateTokenResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
