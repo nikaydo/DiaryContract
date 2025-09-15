@@ -61,8 +61,8 @@ message Diaryies {
 
 message Element {
   string id = 1;
-  int32 x = 2;
-  int32 y = 3;
+  float x = 2;
+  float y = 3;
   string type = 4;
   int32 width = 5;
   int32 height = 6;
