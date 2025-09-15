@@ -21,21 +21,24 @@ message DiaryDeleteRequest {
   string uuidDiaryes = 1; 
   string uuidUser = 2; 
 }
+
 message DiaryDeleteResponse {
   string status = 1; 
 }
 
 message DiaryUpdateRequest {
-  string uuidUser = 1; 
-  Diaryies Diary = 2; 
+  string uuidDiaryes = 1; 
+  string uuidUser = 2; 
+  Diaries Diary = 3; 
 }
+
 message DiaryUpdateResponse {
   string status = 1; 
 }
 
 message DiaryWriteRequest {
   string uuidUser = 1; 
-  Diaryies Diary = 2; 
+  Diaries Diary = 2; 
 }
 
 message DiaryWriteResponse {
@@ -48,10 +51,10 @@ message DiaryReadRequest {
 }
 
 message DiaryReadResponse {
-  repeated Diaryies Diary = 1;
+  repeated Diaries Diary = 1;
 }
 
-message Diaryies {
+message Diaries {
   string id = 1;
   string title = 2;
   google.protobuf.Timestamp date = 3;
@@ -63,24 +66,53 @@ message Element {
   string id = 1;
   float x = 2;
   float y = 3;
-  string type = 4;
-  int32 width = 5;
-  int32 height = 6;
-  string interactive_type = 7;
-  string content = 8;
-  Style style = 9;
+  string type = 4;  // text, decoration, shape, interactive, image, emoji, divider, line
+  optional int32 width = 5;
+  optional int32 height = 6;
+  
+  // Content fields
+  optional string content = 7;  // HTML content for text/interactive elements
+  optional string emoji_content = 8;  // Emoji character
+  
+  // Type-specific fields
+  optional string decoration_type = 9;  // flower, leaf, border, heart, star, frame, sparkles, ribbon
+  optional string shape_type = 10;     // circle, rectangle, triangle, star, heart, arrow
+  optional string interactive_type = 11; // speech, thought, callout, highlight
+  optional string image_type = 12;     // placeholder, uploaded
+  optional string text_style = 13;    // basic, heading, quote, sticky
+  
+  Style style = 14;
 }
 
 message Style {
-  string background_color = 1;
-  string border_color = 2;
-  int32 border_width = 3;
-  int32 border_radius = 4;
-  int32 padding = 5;
-  int32 font_size = 6;
-  string color = 7;
-  string font_family = 8;
-  int32 scale = 9;
-  int32 rotation = 10;
-  int32 opacity = 11;
+  // Colors
+  optional string color = 1;
+  optional string background_color = 2;
+  optional string border_color = 3;
+  optional string gradient = 4;
+  
+  // Typography
+  optional int32 font_size = 5;
+  optional string font_family = 6;
+  optional string font_weight = 7;    // normal, bold, 100-900
+  optional string font_style = 8;     // normal, italic, oblique
+  optional string text_decoration = 9; // none, underline, line-through, overline
+  optional string text_align = 10;    // left, center, right, justify
+  optional float line_height = 11;
+  optional float letter_spacing = 12;
+  optional float word_spacing = 13;
+  
+  // Layout & Spacing
+  optional int32 padding = 14;
+  optional int32 margin = 15;
+  optional int32 border_width = 16;
+  optional int32 border_radius = 17;
+  optional string border_style = 18;  // solid, dashed, dotted
+  
+  // Transforms & Effects
+  optional float scale = 19;          // Use float for precision (1.0 = 100%)
+  optional float rotation = 20;       // Degrees, use float for precision
+  optional float opacity = 21;        // 0.0 to 1.0
+  optional string shadow = 22;        // CSS shadow string
+  optional int32 z_index = 23;
 }

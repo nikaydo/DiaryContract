@@ -120,8 +120,9 @@ func (x *DiaryDeleteResponse) GetStatus() string {
 
 type DiaryUpdateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
-	Diary         *Diaryies              `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
+	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
+	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	Diary         *Diaries               `protobuf:"bytes,3,opt,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -156,6 +157,13 @@ func (*DiaryUpdateRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{2}
 }
 
+func (x *DiaryUpdateRequest) GetUuidDiaryes() string {
+	if x != nil {
+		return x.UuidDiaryes
+	}
+	return ""
+}
+
 func (x *DiaryUpdateRequest) GetUuidUser() string {
 	if x != nil {
 		return x.UuidUser
@@ -163,7 +171,7 @@ func (x *DiaryUpdateRequest) GetUuidUser() string {
 	return ""
 }
 
-func (x *DiaryUpdateRequest) GetDiary() *Diaryies {
+func (x *DiaryUpdateRequest) GetDiary() *Diaries {
 	if x != nil {
 		return x.Diary
 	}
@@ -217,7 +225,7 @@ func (x *DiaryUpdateResponse) GetStatus() string {
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
-	Diary         *Diaryies              `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
+	Diary         *Diaries               `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -259,7 +267,7 @@ func (x *DiaryWriteRequest) GetUuidUser() string {
 	return ""
 }
 
-func (x *DiaryWriteRequest) GetDiary() *Diaryies {
+func (x *DiaryWriteRequest) GetDiary() *Diaries {
 	if x != nil {
 		return x.Diary
 	}
@@ -364,7 +372,7 @@ func (x *DiaryReadRequest) GetUuidUser() string {
 
 type DiaryReadResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Diary         []*Diaryies            `protobuf:"bytes,1,rep,name=Diary,proto3" json:"Diary,omitempty"`
+	Diary         []*Diaries             `protobuf:"bytes,1,rep,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -399,14 +407,14 @@ func (*DiaryReadResponse) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *DiaryReadResponse) GetDiary() []*Diaryies {
+func (x *DiaryReadResponse) GetDiary() []*Diaries {
 	if x != nil {
 		return x.Diary
 	}
 	return nil
 }
 
-type Diaryies struct {
+type Diaries struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
@@ -417,20 +425,20 @@ type Diaryies struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Diaryies) Reset() {
-	*x = Diaryies{}
+func (x *Diaries) Reset() {
+	*x = Diaries{}
 	mi := &file_diary_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Diaryies) String() string {
+func (x *Diaries) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Diaryies) ProtoMessage() {}
+func (*Diaries) ProtoMessage() {}
 
-func (x *Diaryies) ProtoReflect() protoreflect.Message {
+func (x *Diaries) ProtoReflect() protoreflect.Message {
 	mi := &file_diary_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -442,40 +450,40 @@ func (x *Diaryies) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Diaryies.ProtoReflect.Descriptor instead.
-func (*Diaryies) Descriptor() ([]byte, []int) {
+// Deprecated: Use Diaries.ProtoReflect.Descriptor instead.
+func (*Diaries) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *Diaryies) GetId() string {
+func (x *Diaries) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Diaryies) GetTitle() string {
+func (x *Diaries) GetTitle() string {
 	if x != nil {
 		return x.Title
 	}
 	return ""
 }
 
-func (x *Diaryies) GetDate() *timestamppb.Timestamp {
+func (x *Diaries) GetDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Date
 	}
 	return nil
 }
 
-func (x *Diaryies) GetTags() []string {
+func (x *Diaries) GetTags() []string {
 	if x != nil {
 		return x.Tags
 	}
 	return nil
 }
 
-func (x *Diaryies) GetElements() []*Element {
+func (x *Diaries) GetElements() []*Element {
 	if x != nil {
 		return x.Elements
 	}
@@ -483,16 +491,23 @@ func (x *Diaryies) GetElements() []*Element {
 }
 
 type Element struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	X               float32                `protobuf:"fixed32,2,opt,name=x,proto3" json:"x,omitempty"`
-	Y               float32                `protobuf:"fixed32,3,opt,name=y,proto3" json:"y,omitempty"`
-	Type            string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
-	Width           int32                  `protobuf:"varint,5,opt,name=width,proto3" json:"width,omitempty"`
-	Height          int32                  `protobuf:"varint,6,opt,name=height,proto3" json:"height,omitempty"`
-	InteractiveType string                 `protobuf:"bytes,7,opt,name=interactive_type,json=interactiveType,proto3" json:"interactive_type,omitempty"`
-	Content         string                 `protobuf:"bytes,8,opt,name=content,proto3" json:"content,omitempty"`
-	Style           *Style                 `protobuf:"bytes,9,opt,name=style,proto3" json:"style,omitempty"`
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	Id     string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	X      float32                `protobuf:"fixed32,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y      float32                `protobuf:"fixed32,3,opt,name=y,proto3" json:"y,omitempty"`
+	Type   string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"` // text, decoration, shape, interactive, image, emoji, divider, line
+	Width  *int32                 `protobuf:"varint,5,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height *int32                 `protobuf:"varint,6,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	// Content fields
+	Content      *string `protobuf:"bytes,7,opt,name=content,proto3,oneof" json:"content,omitempty"`                               // HTML content for text/interactive elements
+	EmojiContent *string `protobuf:"bytes,8,opt,name=emoji_content,json=emojiContent,proto3,oneof" json:"emoji_content,omitempty"` // Emoji character
+	// Type-specific fields
+	DecorationType  *string `protobuf:"bytes,9,opt,name=decoration_type,json=decorationType,proto3,oneof" json:"decoration_type,omitempty"`     // flower, leaf, border, heart, star, frame, sparkles, ribbon
+	ShapeType       *string `protobuf:"bytes,10,opt,name=shape_type,json=shapeType,proto3,oneof" json:"shape_type,omitempty"`                   // circle, rectangle, triangle, star, heart, arrow
+	InteractiveType *string `protobuf:"bytes,11,opt,name=interactive_type,json=interactiveType,proto3,oneof" json:"interactive_type,omitempty"` // speech, thought, callout, highlight
+	ImageType       *string `protobuf:"bytes,12,opt,name=image_type,json=imageType,proto3,oneof" json:"image_type,omitempty"`                   // placeholder, uploaded
+	TextStyle       *string `protobuf:"bytes,13,opt,name=text_style,json=textStyle,proto3,oneof" json:"text_style,omitempty"`                   // basic, heading, quote, sticky
+	Style           *Style  `protobuf:"bytes,14,opt,name=style,proto3" json:"style,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -556,29 +571,64 @@ func (x *Element) GetType() string {
 }
 
 func (x *Element) GetWidth() int32 {
-	if x != nil {
-		return x.Width
+	if x != nil && x.Width != nil {
+		return *x.Width
 	}
 	return 0
 }
 
 func (x *Element) GetHeight() int32 {
-	if x != nil {
-		return x.Height
+	if x != nil && x.Height != nil {
+		return *x.Height
 	}
 	return 0
 }
 
-func (x *Element) GetInteractiveType() string {
-	if x != nil {
-		return x.InteractiveType
+func (x *Element) GetContent() string {
+	if x != nil && x.Content != nil {
+		return *x.Content
 	}
 	return ""
 }
 
-func (x *Element) GetContent() string {
-	if x != nil {
-		return x.Content
+func (x *Element) GetEmojiContent() string {
+	if x != nil && x.EmojiContent != nil {
+		return *x.EmojiContent
+	}
+	return ""
+}
+
+func (x *Element) GetDecorationType() string {
+	if x != nil && x.DecorationType != nil {
+		return *x.DecorationType
+	}
+	return ""
+}
+
+func (x *Element) GetShapeType() string {
+	if x != nil && x.ShapeType != nil {
+		return *x.ShapeType
+	}
+	return ""
+}
+
+func (x *Element) GetInteractiveType() string {
+	if x != nil && x.InteractiveType != nil {
+		return *x.InteractiveType
+	}
+	return ""
+}
+
+func (x *Element) GetImageType() string {
+	if x != nil && x.ImageType != nil {
+		return *x.ImageType
+	}
+	return ""
+}
+
+func (x *Element) GetTextStyle() string {
+	if x != nil && x.TextStyle != nil {
+		return *x.TextStyle
 	}
 	return ""
 }
@@ -591,20 +641,36 @@ func (x *Element) GetStyle() *Style {
 }
 
 type Style struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	BackgroundColor string                 `protobuf:"bytes,1,opt,name=background_color,json=backgroundColor,proto3" json:"background_color,omitempty"`
-	BorderColor     string                 `protobuf:"bytes,2,opt,name=border_color,json=borderColor,proto3" json:"border_color,omitempty"`
-	BorderWidth     int32                  `protobuf:"varint,3,opt,name=border_width,json=borderWidth,proto3" json:"border_width,omitempty"`
-	BorderRadius    int32                  `protobuf:"varint,4,opt,name=border_radius,json=borderRadius,proto3" json:"border_radius,omitempty"`
-	Padding         int32                  `protobuf:"varint,5,opt,name=padding,proto3" json:"padding,omitempty"`
-	FontSize        int32                  `protobuf:"varint,6,opt,name=font_size,json=fontSize,proto3" json:"font_size,omitempty"`
-	Color           string                 `protobuf:"bytes,7,opt,name=color,proto3" json:"color,omitempty"`
-	FontFamily      string                 `protobuf:"bytes,8,opt,name=font_family,json=fontFamily,proto3" json:"font_family,omitempty"`
-	Scale           int32                  `protobuf:"varint,9,opt,name=scale,proto3" json:"scale,omitempty"`
-	Rotation        int32                  `protobuf:"varint,10,opt,name=rotation,proto3" json:"rotation,omitempty"`
-	Opacity         int32                  `protobuf:"varint,11,opt,name=opacity,proto3" json:"opacity,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Colors
+	Color           *string `protobuf:"bytes,1,opt,name=color,proto3,oneof" json:"color,omitempty"`
+	BackgroundColor *string `protobuf:"bytes,2,opt,name=background_color,json=backgroundColor,proto3,oneof" json:"background_color,omitempty"`
+	BorderColor     *string `protobuf:"bytes,3,opt,name=border_color,json=borderColor,proto3,oneof" json:"border_color,omitempty"`
+	Gradient        *string `protobuf:"bytes,4,opt,name=gradient,proto3,oneof" json:"gradient,omitempty"`
+	// Typography
+	FontSize       *int32   `protobuf:"varint,5,opt,name=font_size,json=fontSize,proto3,oneof" json:"font_size,omitempty"`
+	FontFamily     *string  `protobuf:"bytes,6,opt,name=font_family,json=fontFamily,proto3,oneof" json:"font_family,omitempty"`
+	FontWeight     *string  `protobuf:"bytes,7,opt,name=font_weight,json=fontWeight,proto3,oneof" json:"font_weight,omitempty"`             // normal, bold, 100-900
+	FontStyle      *string  `protobuf:"bytes,8,opt,name=font_style,json=fontStyle,proto3,oneof" json:"font_style,omitempty"`                // normal, italic, oblique
+	TextDecoration *string  `protobuf:"bytes,9,opt,name=text_decoration,json=textDecoration,proto3,oneof" json:"text_decoration,omitempty"` // none, underline, line-through, overline
+	TextAlign      *string  `protobuf:"bytes,10,opt,name=text_align,json=textAlign,proto3,oneof" json:"text_align,omitempty"`               // left, center, right, justify
+	LineHeight     *float32 `protobuf:"fixed32,11,opt,name=line_height,json=lineHeight,proto3,oneof" json:"line_height,omitempty"`
+	LetterSpacing  *float32 `protobuf:"fixed32,12,opt,name=letter_spacing,json=letterSpacing,proto3,oneof" json:"letter_spacing,omitempty"`
+	WordSpacing    *float32 `protobuf:"fixed32,13,opt,name=word_spacing,json=wordSpacing,proto3,oneof" json:"word_spacing,omitempty"`
+	// Layout & Spacing
+	Padding      *int32  `protobuf:"varint,14,opt,name=padding,proto3,oneof" json:"padding,omitempty"`
+	Margin       *int32  `protobuf:"varint,15,opt,name=margin,proto3,oneof" json:"margin,omitempty"`
+	BorderWidth  *int32  `protobuf:"varint,16,opt,name=border_width,json=borderWidth,proto3,oneof" json:"border_width,omitempty"`
+	BorderRadius *int32  `protobuf:"varint,17,opt,name=border_radius,json=borderRadius,proto3,oneof" json:"border_radius,omitempty"`
+	BorderStyle  *string `protobuf:"bytes,18,opt,name=border_style,json=borderStyle,proto3,oneof" json:"border_style,omitempty"` // solid, dashed, dotted
+	// Transforms & Effects
+	Scale         *float32 `protobuf:"fixed32,19,opt,name=scale,proto3,oneof" json:"scale,omitempty"`       // Use float for precision (1.0 = 100%)
+	Rotation      *float32 `protobuf:"fixed32,20,opt,name=rotation,proto3,oneof" json:"rotation,omitempty"` // Degrees, use float for precision
+	Opacity       *float32 `protobuf:"fixed32,21,opt,name=opacity,proto3,oneof" json:"opacity,omitempty"`   // 0.0 to 1.0
+	Shadow        *string  `protobuf:"bytes,22,opt,name=shadow,proto3,oneof" json:"shadow,omitempty"`       // CSS shadow string
+	ZIndex        *int32   `protobuf:"varint,23,opt,name=z_index,json=zIndex,proto3,oneof" json:"z_index,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Style) Reset() {
@@ -637,79 +703,163 @@ func (*Style) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{10}
 }
 
+func (x *Style) GetColor() string {
+	if x != nil && x.Color != nil {
+		return *x.Color
+	}
+	return ""
+}
+
 func (x *Style) GetBackgroundColor() string {
-	if x != nil {
-		return x.BackgroundColor
+	if x != nil && x.BackgroundColor != nil {
+		return *x.BackgroundColor
 	}
 	return ""
 }
 
 func (x *Style) GetBorderColor() string {
-	if x != nil {
-		return x.BorderColor
+	if x != nil && x.BorderColor != nil {
+		return *x.BorderColor
 	}
 	return ""
 }
 
-func (x *Style) GetBorderWidth() int32 {
-	if x != nil {
-		return x.BorderWidth
+func (x *Style) GetGradient() string {
+	if x != nil && x.Gradient != nil {
+		return *x.Gradient
+	}
+	return ""
+}
+
+func (x *Style) GetFontSize() int32 {
+	if x != nil && x.FontSize != nil {
+		return *x.FontSize
 	}
 	return 0
 }
 
-func (x *Style) GetBorderRadius() int32 {
-	if x != nil {
-		return x.BorderRadius
+func (x *Style) GetFontFamily() string {
+	if x != nil && x.FontFamily != nil {
+		return *x.FontFamily
+	}
+	return ""
+}
+
+func (x *Style) GetFontWeight() string {
+	if x != nil && x.FontWeight != nil {
+		return *x.FontWeight
+	}
+	return ""
+}
+
+func (x *Style) GetFontStyle() string {
+	if x != nil && x.FontStyle != nil {
+		return *x.FontStyle
+	}
+	return ""
+}
+
+func (x *Style) GetTextDecoration() string {
+	if x != nil && x.TextDecoration != nil {
+		return *x.TextDecoration
+	}
+	return ""
+}
+
+func (x *Style) GetTextAlign() string {
+	if x != nil && x.TextAlign != nil {
+		return *x.TextAlign
+	}
+	return ""
+}
+
+func (x *Style) GetLineHeight() float32 {
+	if x != nil && x.LineHeight != nil {
+		return *x.LineHeight
+	}
+	return 0
+}
+
+func (x *Style) GetLetterSpacing() float32 {
+	if x != nil && x.LetterSpacing != nil {
+		return *x.LetterSpacing
+	}
+	return 0
+}
+
+func (x *Style) GetWordSpacing() float32 {
+	if x != nil && x.WordSpacing != nil {
+		return *x.WordSpacing
 	}
 	return 0
 }
 
 func (x *Style) GetPadding() int32 {
-	if x != nil {
-		return x.Padding
+	if x != nil && x.Padding != nil {
+		return *x.Padding
 	}
 	return 0
 }
 
-func (x *Style) GetFontSize() int32 {
-	if x != nil {
-		return x.FontSize
+func (x *Style) GetMargin() int32 {
+	if x != nil && x.Margin != nil {
+		return *x.Margin
 	}
 	return 0
 }
 
-func (x *Style) GetColor() string {
-	if x != nil {
-		return x.Color
+func (x *Style) GetBorderWidth() int32 {
+	if x != nil && x.BorderWidth != nil {
+		return *x.BorderWidth
+	}
+	return 0
+}
+
+func (x *Style) GetBorderRadius() int32 {
+	if x != nil && x.BorderRadius != nil {
+		return *x.BorderRadius
+	}
+	return 0
+}
+
+func (x *Style) GetBorderStyle() string {
+	if x != nil && x.BorderStyle != nil {
+		return *x.BorderStyle
 	}
 	return ""
 }
 
-func (x *Style) GetFontFamily() string {
-	if x != nil {
-		return x.FontFamily
+func (x *Style) GetScale() float32 {
+	if x != nil && x.Scale != nil {
+		return *x.Scale
+	}
+	return 0
+}
+
+func (x *Style) GetRotation() float32 {
+	if x != nil && x.Rotation != nil {
+		return *x.Rotation
+	}
+	return 0
+}
+
+func (x *Style) GetOpacity() float32 {
+	if x != nil && x.Opacity != nil {
+		return *x.Opacity
+	}
+	return 0
+}
+
+func (x *Style) GetShadow() string {
+	if x != nil && x.Shadow != nil {
+		return *x.Shadow
 	}
 	return ""
 }
 
-func (x *Style) GetScale() int32 {
-	if x != nil {
-		return x.Scale
-	}
-	return 0
-}
-
-func (x *Style) GetRotation() int32 {
-	if x != nil {
-		return x.Rotation
-	}
-	return 0
-}
-
-func (x *Style) GetOpacity() int32 {
-	if x != nil {
-		return x.Opacity
+func (x *Style) GetZIndex() int32 {
+	if x != nil && x.ZIndex != nil {
+		return *x.ZIndex
 	}
 	return 0
 }
@@ -723,52 +873,116 @@ const file_diary_proto_rawDesc = "" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
 	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"-\n" +
 	"\x13DiaryDeleteResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"W\n" +
-	"\x12DiaryUpdateRequest\x12\x1a\n" +
-	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12%\n" +
-	"\x05Diary\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\x05Diary\"-\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"x\n" +
+	"\x12DiaryUpdateRequest\x12 \n" +
+	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\x12$\n" +
+	"\x05Diary\x18\x03 \x01(\v2\x0e.diary.DiariesR\x05Diary\"-\n" +
 	"\x13DiaryUpdateResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"V\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"U\n" +
 	"\x11DiaryWriteRequest\x12\x1a\n" +
-	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12%\n" +
-	"\x05Diary\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\x05Diary\"6\n" +
+	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12$\n" +
+	"\x05Diary\x18\x02 \x01(\v2\x0e.diary.DiariesR\x05Diary\"6\n" +
 	"\x12DiaryWriteResponse\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\"P\n" +
 	"\x10DiaryReadRequest\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\":\n" +
-	"\x11DiaryReadResponse\x12%\n" +
-	"\x05Diary\x18\x01 \x03(\v2\x0f.diary.DiaryiesR\x05Diary\"\xa0\x01\n" +
-	"\bDiaryies\x12\x0e\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"9\n" +
+	"\x11DiaryReadResponse\x12$\n" +
+	"\x05Diary\x18\x01 \x03(\v2\x0e.diary.DiariesR\x05Diary\"\x9f\x01\n" +
+	"\aDiaries\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12.\n" +
 	"\x04date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12*\n" +
-	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xe0\x01\n" +
+	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xc1\x04\n" +
 	"\aElement\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\f\n" +
 	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
 	"\x01y\x18\x03 \x01(\x02R\x01y\x12\x12\n" +
-	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
-	"\x05width\x18\x05 \x01(\x05R\x05width\x12\x16\n" +
-	"\x06height\x18\x06 \x01(\x05R\x06height\x12)\n" +
-	"\x10interactive_type\x18\a \x01(\tR\x0finteractiveType\x12\x18\n" +
-	"\acontent\x18\b \x01(\tR\acontent\x12\"\n" +
-	"\x05style\x18\t \x01(\v2\f.diary.StyleR\x05style\"\xd7\x02\n" +
-	"\x05Style\x12)\n" +
-	"\x10background_color\x18\x01 \x01(\tR\x0fbackgroundColor\x12!\n" +
-	"\fborder_color\x18\x02 \x01(\tR\vborderColor\x12!\n" +
-	"\fborder_width\x18\x03 \x01(\x05R\vborderWidth\x12#\n" +
-	"\rborder_radius\x18\x04 \x01(\x05R\fborderRadius\x12\x18\n" +
-	"\apadding\x18\x05 \x01(\x05R\apadding\x12\x1b\n" +
-	"\tfont_size\x18\x06 \x01(\x05R\bfontSize\x12\x14\n" +
-	"\x05color\x18\a \x01(\tR\x05color\x12\x1f\n" +
-	"\vfont_family\x18\b \x01(\tR\n" +
-	"fontFamily\x12\x14\n" +
-	"\x05scale\x18\t \x01(\x05R\x05scale\x12\x1a\n" +
-	"\brotation\x18\n" +
-	" \x01(\x05R\brotation\x12\x18\n" +
-	"\aopacity\x18\v \x01(\x05R\aopacity2\x96\x02\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12\x19\n" +
+	"\x05width\x18\x05 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01\x12\x1d\n" +
+	"\acontent\x18\a \x01(\tH\x02R\acontent\x88\x01\x01\x12(\n" +
+	"\remoji_content\x18\b \x01(\tH\x03R\femojiContent\x88\x01\x01\x12,\n" +
+	"\x0fdecoration_type\x18\t \x01(\tH\x04R\x0edecorationType\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"shape_type\x18\n" +
+	" \x01(\tH\x05R\tshapeType\x88\x01\x01\x12.\n" +
+	"\x10interactive_type\x18\v \x01(\tH\x06R\x0finteractiveType\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"image_type\x18\f \x01(\tH\aR\timageType\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"text_style\x18\r \x01(\tH\bR\ttextStyle\x88\x01\x01\x12\"\n" +
+	"\x05style\x18\x0e \x01(\v2\f.diary.StyleR\x05styleB\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_heightB\n" +
+	"\n" +
+	"\b_contentB\x10\n" +
+	"\x0e_emoji_contentB\x12\n" +
+	"\x10_decoration_typeB\r\n" +
+	"\v_shape_typeB\x13\n" +
+	"\x11_interactive_typeB\r\n" +
+	"\v_image_typeB\r\n" +
+	"\v_text_style\"\x9b\t\n" +
+	"\x05Style\x12\x19\n" +
+	"\x05color\x18\x01 \x01(\tH\x00R\x05color\x88\x01\x01\x12.\n" +
+	"\x10background_color\x18\x02 \x01(\tH\x01R\x0fbackgroundColor\x88\x01\x01\x12&\n" +
+	"\fborder_color\x18\x03 \x01(\tH\x02R\vborderColor\x88\x01\x01\x12\x1f\n" +
+	"\bgradient\x18\x04 \x01(\tH\x03R\bgradient\x88\x01\x01\x12 \n" +
+	"\tfont_size\x18\x05 \x01(\x05H\x04R\bfontSize\x88\x01\x01\x12$\n" +
+	"\vfont_family\x18\x06 \x01(\tH\x05R\n" +
+	"fontFamily\x88\x01\x01\x12$\n" +
+	"\vfont_weight\x18\a \x01(\tH\x06R\n" +
+	"fontWeight\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"font_style\x18\b \x01(\tH\aR\tfontStyle\x88\x01\x01\x12,\n" +
+	"\x0ftext_decoration\x18\t \x01(\tH\bR\x0etextDecoration\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"text_align\x18\n" +
+	" \x01(\tH\tR\ttextAlign\x88\x01\x01\x12$\n" +
+	"\vline_height\x18\v \x01(\x02H\n" +
+	"R\n" +
+	"lineHeight\x88\x01\x01\x12*\n" +
+	"\x0eletter_spacing\x18\f \x01(\x02H\vR\rletterSpacing\x88\x01\x01\x12&\n" +
+	"\fword_spacing\x18\r \x01(\x02H\fR\vwordSpacing\x88\x01\x01\x12\x1d\n" +
+	"\apadding\x18\x0e \x01(\x05H\rR\apadding\x88\x01\x01\x12\x1b\n" +
+	"\x06margin\x18\x0f \x01(\x05H\x0eR\x06margin\x88\x01\x01\x12&\n" +
+	"\fborder_width\x18\x10 \x01(\x05H\x0fR\vborderWidth\x88\x01\x01\x12(\n" +
+	"\rborder_radius\x18\x11 \x01(\x05H\x10R\fborderRadius\x88\x01\x01\x12&\n" +
+	"\fborder_style\x18\x12 \x01(\tH\x11R\vborderStyle\x88\x01\x01\x12\x19\n" +
+	"\x05scale\x18\x13 \x01(\x02H\x12R\x05scale\x88\x01\x01\x12\x1f\n" +
+	"\brotation\x18\x14 \x01(\x02H\x13R\brotation\x88\x01\x01\x12\x1d\n" +
+	"\aopacity\x18\x15 \x01(\x02H\x14R\aopacity\x88\x01\x01\x12\x1b\n" +
+	"\x06shadow\x18\x16 \x01(\tH\x15R\x06shadow\x88\x01\x01\x12\x1c\n" +
+	"\az_index\x18\x17 \x01(\x05H\x16R\x06zIndex\x88\x01\x01B\b\n" +
+	"\x06_colorB\x13\n" +
+	"\x11_background_colorB\x0f\n" +
+	"\r_border_colorB\v\n" +
+	"\t_gradientB\f\n" +
+	"\n" +
+	"_font_sizeB\x0e\n" +
+	"\f_font_familyB\x0e\n" +
+	"\f_font_weightB\r\n" +
+	"\v_font_styleB\x12\n" +
+	"\x10_text_decorationB\r\n" +
+	"\v_text_alignB\x0e\n" +
+	"\f_line_heightB\x11\n" +
+	"\x0f_letter_spacingB\x0f\n" +
+	"\r_word_spacingB\n" +
+	"\n" +
+	"\b_paddingB\t\n" +
+	"\a_marginB\x0f\n" +
+	"\r_border_widthB\x10\n" +
+	"\x0e_border_radiusB\x0f\n" +
+	"\r_border_styleB\b\n" +
+	"\x06_scaleB\v\n" +
+	"\t_rotationB\n" +
+	"\n" +
+	"\b_opacityB\t\n" +
+	"\a_shadowB\n" +
+	"\n" +
+	"\b_z_index2\x96\x02\n" +
 	"\x05Diary\x12A\n" +
 	"\n" +
 	"DiaryWrite\x12\x18.diary.DiaryWriteRequest\x1a\x19.diary.DiaryWriteResponse\x12>\n" +
@@ -798,17 +1012,17 @@ var file_diary_proto_goTypes = []any{
 	(*DiaryWriteResponse)(nil),    // 5: diary.DiaryWriteResponse
 	(*DiaryReadRequest)(nil),      // 6: diary.DiaryReadRequest
 	(*DiaryReadResponse)(nil),     // 7: diary.DiaryReadResponse
-	(*Diaryies)(nil),              // 8: diary.Diaryies
+	(*Diaries)(nil),               // 8: diary.Diaries
 	(*Element)(nil),               // 9: diary.Element
 	(*Style)(nil),                 // 10: diary.Style
 	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
 var file_diary_proto_depIdxs = []int32{
-	8,  // 0: diary.DiaryUpdateRequest.Diary:type_name -> diary.Diaryies
-	8,  // 1: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaryies
-	8,  // 2: diary.DiaryReadResponse.Diary:type_name -> diary.Diaryies
-	11, // 3: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
-	9,  // 4: diary.Diaryies.elements:type_name -> diary.Element
+	8,  // 0: diary.DiaryUpdateRequest.Diary:type_name -> diary.Diaries
+	8,  // 1: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaries
+	8,  // 2: diary.DiaryReadResponse.Diary:type_name -> diary.Diaries
+	11, // 3: diary.Diaries.date:type_name -> google.protobuf.Timestamp
+	9,  // 4: diary.Diaries.elements:type_name -> diary.Element
 	10, // 5: diary.Element.style:type_name -> diary.Style
 	4,  // 6: diary.Diary.DiaryWrite:input_type -> diary.DiaryWriteRequest
 	6,  // 7: diary.Diary.DiaryRead:input_type -> diary.DiaryReadRequest
@@ -830,6 +1044,8 @@ func file_diary_proto_init() {
 	if File_diary_proto != nil {
 		return
 	}
+	file_diary_proto_msgTypes[9].OneofWrappers = []any{}
+	file_diary_proto_msgTypes[10].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
