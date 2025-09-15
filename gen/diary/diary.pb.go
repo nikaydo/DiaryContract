@@ -23,7 +23,7 @@ const (
 
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
 	Content       []byte                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -59,9 +59,9 @@ func (*DiaryWriteRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *DiaryWriteRequest) GetUuid() string {
+func (x *DiaryWriteRequest) GetUuidUser() string {
 	if x != nil {
-		return x.Uuid
+		return x.UuidUser
 	}
 	return ""
 }
@@ -75,7 +75,7 @@ func (x *DiaryWriteRequest) GetContent() []byte {
 
 type DiaryWriteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Err           string                 `protobuf:"bytes,1,opt,name=err,proto3" json:"err,omitempty"`
+	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,16 +110,17 @@ func (*DiaryWriteResponse) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *DiaryWriteResponse) GetErr() string {
+func (x *DiaryWriteResponse) GetUuidDiaryes() string {
 	if x != nil {
-		return x.Err
+		return x.UuidDiaryes
 	}
 	return ""
 }
 
 type DiaryReadRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
+	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -154,9 +155,16 @@ func (*DiaryReadRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DiaryReadRequest) GetUuid() string {
+func (x *DiaryReadRequest) GetUuidDiaryes() string {
 	if x != nil {
-		return x.Uuid
+		return x.UuidDiaryes
+	}
+	return ""
+}
+
+func (x *DiaryReadRequest) GetUuidUser() string {
+	if x != nil {
+		return x.UuidUser
 	}
 	return ""
 }
@@ -164,7 +172,6 @@ func (x *DiaryReadRequest) GetUuid() string {
 type DiaryReadResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Content       []byte                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
-	Err           string                 `protobuf:"bytes,2,opt,name=err,proto3" json:"err,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -206,28 +213,21 @@ func (x *DiaryReadResponse) GetContent() []byte {
 	return nil
 }
 
-func (x *DiaryReadResponse) GetErr() string {
-	if x != nil {
-		return x.Err
-	}
-	return ""
-}
-
 var File_diary_proto protoreflect.FileDescriptor
 
 const file_diary_proto_rawDesc = "" +
 	"\n" +
-	"\vdiary.proto\x12\x05diary\"A\n" +
-	"\x11DiaryWriteRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\fR\acontent\"&\n" +
-	"\x12DiaryWriteResponse\x12\x10\n" +
-	"\x03err\x18\x01 \x01(\tR\x03err\"&\n" +
-	"\x10DiaryReadRequest\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"?\n" +
+	"\vdiary.proto\x12\x05diary\"I\n" +
+	"\x11DiaryWriteRequest\x12\x1a\n" +
+	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\fR\acontent\"6\n" +
+	"\x12DiaryWriteResponse\x12 \n" +
+	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\"P\n" +
+	"\x10DiaryReadRequest\x12 \n" +
+	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"-\n" +
 	"\x11DiaryReadResponse\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\fR\acontent\x12\x10\n" +
-	"\x03err\x18\x02 \x01(\tR\x03err2\x89\x01\n" +
+	"\acontent\x18\x01 \x01(\fR\acontent2\x89\x01\n" +
 	"\x04Auth\x12A\n" +
 	"\n" +
 	"DiaryWrite\x12\x18.diary.DiaryWriteRequest\x1a\x19.diary.DiaryWriteResponse\x12>\n" +

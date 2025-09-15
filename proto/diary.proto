@@ -11,19 +11,19 @@ service Auth{
 } 
 
 message DiaryWriteRequest {
-  string uuid = 1; 
+  string uuidUser = 1; 
   bytes content = 2; 
 }
 
 message DiaryWriteResponse {
-  string err = 1;
+  string uuidDiaryes = 1; 
 }
 
 message DiaryReadRequest {
-  string uuid = 1; 
+  string uuidDiaryes = 1; 
+  string uuidUser = 2; 
 }
 
 message DiaryReadResponse {
   bytes content = 1;
-  string err = 2; 
 }
