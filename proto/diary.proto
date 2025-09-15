@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package diary;   
+
+option go_package = "github.com/nikaydo/DiaryService;diary";
+
+service Auth{
+  rpc DiaryWrite (DiaryWriteRequest) returns (DiaryWriteResponse);
+  
+  rpc DiaryRead (DiaryReadRequest) returns (DiaryReadResponse);
+} 
+
+message DiaryWriteRequest {
+  string uuid = 1; 
+  bytes content = 2; 
+}
+
+message DiaryWriteResponse {
+  string err = 1;
+}
+
+message DiaryReadRequest {
+  string uuid = 1; 
+}
+
+message DiaryReadResponse {
+  bytes content = 1;
+  string err = 2; 
+}

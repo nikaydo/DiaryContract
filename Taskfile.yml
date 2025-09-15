@@ -10,3 +10,4 @@ tasks:
     desc: "Generate code from proto files"  
     cmds:  
       - protoc -I proto proto/auth.proto --go_out=./gen/auth/ --go_opt=paths=source_relative --go-grpc_out=./gen/auth/ --go-grpc_opt=paths=source_relative
+      - protoc -I proto proto/diary.proto --go_out=./gen/diary/ --go_opt=paths=source_relative --go-grpc_out=./gen/diary/ --go-grpc_opt=paths=source_relative
