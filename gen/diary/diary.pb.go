@@ -410,9 +410,9 @@ type Diaryies struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Elements      []*Element             `protobuf:"bytes,3,rep,name=elements,proto3" json:"elements,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
-	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
+	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
+	Elements      []*Element             `protobuf:"bytes,5,rep,name=elements,proto3" json:"elements,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -461,13 +461,6 @@ func (x *Diaryies) GetTitle() string {
 	return ""
 }
 
-func (x *Diaryies) GetElements() []*Element {
-	if x != nil {
-		return x.Elements
-	}
-	return nil
-}
-
 func (x *Diaryies) GetDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Date
@@ -482,11 +475,18 @@ func (x *Diaryies) GetTags() []string {
 	return nil
 }
 
+func (x *Diaryies) GetElements() []*Element {
+	if x != nil {
+		return x.Elements
+	}
+	return nil
+}
+
 type Element struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Xpos            int32                  `protobuf:"varint,2,opt,name=xpos,proto3" json:"xpos,omitempty"`
-	Ypos            int32                  `protobuf:"varint,3,opt,name=ypos,proto3" json:"ypos,omitempty"`
+	X               int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y               int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y,omitempty"`
 	Type            string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
 	Width           int32                  `protobuf:"varint,5,opt,name=width,proto3" json:"width,omitempty"`
 	Height          int32                  `protobuf:"varint,6,opt,name=height,proto3" json:"height,omitempty"`
@@ -534,16 +534,16 @@ func (x *Element) GetId() string {
 	return ""
 }
 
-func (x *Element) GetXpos() int32 {
+func (x *Element) GetX() int32 {
 	if x != nil {
-		return x.Xpos
+		return x.X
 	}
 	return 0
 }
 
-func (x *Element) GetYpos() int32 {
+func (x *Element) GetY() int32 {
 	if x != nil {
-		return x.Ypos
+		return x.Y
 	}
 	return 0
 }
@@ -741,14 +741,14 @@ const file_diary_proto_rawDesc = "" +
 	"\x05Diary\x18\x01 \x03(\v2\x0f.diary.DiaryiesR\x05Diary\"\xa0\x01\n" +
 	"\bDiaryies\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12*\n" +
-	"\belements\x18\x03 \x03(\v2\x0e.diary.ElementR\belements\x12.\n" +
-	"\x04date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
-	"\x04tags\x18\x05 \x03(\tR\x04tags\"\xec\x01\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12.\n" +
+	"\x04date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
+	"\x04tags\x18\x04 \x03(\tR\x04tags\x12*\n" +
+	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xe0\x01\n" +
 	"\aElement\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04xpos\x18\x02 \x01(\x05R\x04xpos\x12\x12\n" +
-	"\x04ypos\x18\x03 \x01(\x05R\x04ypos\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\f\n" +
+	"\x01x\x18\x02 \x01(\x05R\x01x\x12\f\n" +
+	"\x01y\x18\x03 \x01(\x05R\x01y\x12\x12\n" +
 	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
 	"\x05width\x18\x05 \x01(\x05R\x05width\x12\x16\n" +
 	"\x06height\x18\x06 \x01(\x05R\x06height\x12)\n" +
@@ -807,8 +807,8 @@ var file_diary_proto_depIdxs = []int32{
 	8,  // 0: diary.DiaryUpdateRequest.Diary:type_name -> diary.Diaryies
 	8,  // 1: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaryies
 	8,  // 2: diary.DiaryReadResponse.Diary:type_name -> diary.Diaryies
-	9,  // 3: diary.Diaryies.elements:type_name -> diary.Element
-	11, // 4: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
+	11, // 3: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
+	9,  // 4: diary.Diaryies.elements:type_name -> diary.Element
 	10, // 5: diary.Element.style:type_name -> diary.Style
 	4,  // 6: diary.Diary.DiaryWrite:input_type -> diary.DiaryWriteRequest
 	6,  // 7: diary.Diary.DiaryRead:input_type -> diary.DiaryReadRequest

@@ -54,15 +54,15 @@ message DiaryReadResponse {
 message Diaryies {
   string id = 1;
   string title = 2;
-  repeated Element elements = 3;
-  google.protobuf.Timestamp date = 4;
-  repeated string tags = 5;
+  google.protobuf.Timestamp date = 3;
+  repeated string tags = 4;
+  repeated Element elements = 5;
 }
 
 message Element {
   string id = 1;
-  int32 xpos = 2;
-  int32 ypos = 3;
+  int32 x = 2;
+  int32 y = 3;
   string type = 4;
   int32 width = 5;
   int32 height = 6;
