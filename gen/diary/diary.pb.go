@@ -25,7 +25,7 @@ const (
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
-	Diaryies      *Diaryies              `protobuf:"bytes,2,opt,name=Diaryies,proto3" json:"Diaryies,omitempty"`
+	Diary         *Diaryies              `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,9 +67,9 @@ func (x *DiaryWriteRequest) GetUuidUser() string {
 	return ""
 }
 
-func (x *DiaryWriteRequest) GetDiaryies() *Diaryies {
+func (x *DiaryWriteRequest) GetDiary() *Diaryies {
 	if x != nil {
-		return x.Diaryies
+		return x.Diary
 	}
 	return nil
 }
@@ -172,7 +172,7 @@ func (x *DiaryReadRequest) GetUuidUser() string {
 
 type DiaryReadResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Diaryies      *Diaryies              `protobuf:"bytes,1,opt,name=Diaryies,proto3" json:"Diaryies,omitempty"`
+	Diary         []*Diaryies            `protobuf:"bytes,1,rep,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -207,9 +207,9 @@ func (*DiaryReadResponse) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *DiaryReadResponse) GetDiaryies() *Diaryies {
+func (x *DiaryReadResponse) GetDiary() []*Diaryies {
 	if x != nil {
-		return x.Diaryies
+		return x.Diary
 	}
 	return nil
 }
@@ -526,17 +526,17 @@ var File_diary_proto protoreflect.FileDescriptor
 
 const file_diary_proto_rawDesc = "" +
 	"\n" +
-	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"\\\n" +
+	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
 	"\x11DiaryWriteRequest\x12\x1a\n" +
-	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12+\n" +
-	"\bDiaryies\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\bDiaryies\"6\n" +
+	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12%\n" +
+	"\x05Diary\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\x05Diary\"6\n" +
 	"\x12DiaryWriteResponse\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\"P\n" +
 	"\x10DiaryReadRequest\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"@\n" +
-	"\x11DiaryReadResponse\x12+\n" +
-	"\bDiaryies\x18\x01 \x01(\v2\x0f.diary.DiaryiesR\bDiaryies\"\xa0\x01\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\":\n" +
+	"\x11DiaryReadResponse\x12%\n" +
+	"\x05Diary\x18\x01 \x03(\v2\x0f.diary.DiaryiesR\x05Diary\"\xa0\x01\n" +
 	"\bDiaryies\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12*\n" +
@@ -596,8 +596,8 @@ var file_diary_proto_goTypes = []any{
 	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_diary_proto_depIdxs = []int32{
-	4, // 0: diary.DiaryWriteRequest.Diaryies:type_name -> diary.Diaryies
-	4, // 1: diary.DiaryReadResponse.Diaryies:type_name -> diary.Diaryies
+	4, // 0: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaryies
+	4, // 1: diary.DiaryReadResponse.Diary:type_name -> diary.Diaryies
 	5, // 2: diary.Diaryies.elements:type_name -> diary.Element
 	7, // 3: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
 	6, // 4: diary.Element.style:type_name -> diary.Style
