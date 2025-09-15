@@ -485,8 +485,8 @@ func (x *Diaryies) GetElements() []*Element {
 type Element struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	X               int32                  `protobuf:"varint,2,opt,name=x,proto3" json:"x,omitempty"`
-	Y               int32                  `protobuf:"varint,3,opt,name=y,proto3" json:"y,omitempty"`
+	X               float32                `protobuf:"fixed32,2,opt,name=x,proto3" json:"x,omitempty"`
+	Y               float32                `protobuf:"fixed32,3,opt,name=y,proto3" json:"y,omitempty"`
 	Type            string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
 	Width           int32                  `protobuf:"varint,5,opt,name=width,proto3" json:"width,omitempty"`
 	Height          int32                  `protobuf:"varint,6,opt,name=height,proto3" json:"height,omitempty"`
@@ -534,14 +534,14 @@ func (x *Element) GetId() string {
 	return ""
 }
 
-func (x *Element) GetX() int32 {
+func (x *Element) GetX() float32 {
 	if x != nil {
 		return x.X
 	}
 	return 0
 }
 
-func (x *Element) GetY() int32 {
+func (x *Element) GetY() float32 {
 	if x != nil {
 		return x.Y
 	}
@@ -747,8 +747,8 @@ const file_diary_proto_rawDesc = "" +
 	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xe0\x01\n" +
 	"\aElement\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\f\n" +
-	"\x01x\x18\x02 \x01(\x05R\x01x\x12\f\n" +
-	"\x01y\x18\x03 \x01(\x05R\x01y\x12\x12\n" +
+	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
+	"\x01y\x18\x03 \x01(\x02R\x01y\x12\x12\n" +
 	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
 	"\x05width\x18\x05 \x01(\x05R\x05width\x12\x16\n" +
 	"\x06height\x18\x06 \x01(\x05R\x06height\x12)\n" +
