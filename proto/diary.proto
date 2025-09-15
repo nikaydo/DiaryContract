@@ -27,7 +27,7 @@ message DiaryReadRequest {
 }
 
 message DiaryReadResponse {
-  Diaryies Diaryies = 1;
+  repeated Diaryies Diaryies = 1;
 }
 
 message Diaryies {
