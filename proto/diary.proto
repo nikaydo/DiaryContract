@@ -4,7 +4,7 @@ package diary;
 
 option go_package = "github.com/nikaydo/DiaryService;diary";
 
-service Auth{
+service Diary{
   rpc DiaryWrite (DiaryWriteRequest) returns (DiaryWriteResponse);
   
   rpc DiaryRead (DiaryReadRequest) returns (DiaryReadResponse);
