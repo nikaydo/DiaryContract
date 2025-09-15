@@ -10,7 +10,28 @@ service Diary{
   rpc DiaryWrite (DiaryWriteRequest) returns (DiaryWriteResponse);
   
   rpc DiaryRead (DiaryReadRequest) returns (DiaryReadResponse);
+
+  rpc DiaryUpdate (DiaryUpdateRequest) returns (DiaryUpdateResponse);
+
+  rpc DiaryDelete (DiaryDeleteRequest) returns (DiaryDeleteResponse);
+
 } 
+
+message DiaryDeleteRequest {
+  string uuidDiaryes = 1; 
+  string uuidUser = 2; 
+}
+message DiaryDeleteResponse {
+  string status = 1; 
+}
+
+message DiaryUpdateRequest {
+  string uuidUser = 1; 
+  Diaryies Diary = 2; 
+}
+message DiaryUpdateResponse {
+  string status = 1; 
+}
 
 message DiaryWriteRequest {
   string uuidUser = 1; 

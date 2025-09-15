@@ -22,6 +22,198 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type DiaryDeleteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
+	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DiaryDeleteRequest) Reset() {
+	*x = DiaryDeleteRequest{}
+	mi := &file_diary_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiaryDeleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiaryDeleteRequest) ProtoMessage() {}
+
+func (x *DiaryDeleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiaryDeleteRequest.ProtoReflect.Descriptor instead.
+func (*DiaryDeleteRequest) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *DiaryDeleteRequest) GetUuidDiaryes() string {
+	if x != nil {
+		return x.UuidDiaryes
+	}
+	return ""
+}
+
+func (x *DiaryDeleteRequest) GetUuidUser() string {
+	if x != nil {
+		return x.UuidUser
+	}
+	return ""
+}
+
+type DiaryDeleteResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DiaryDeleteResponse) Reset() {
+	*x = DiaryDeleteResponse{}
+	mi := &file_diary_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiaryDeleteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiaryDeleteResponse) ProtoMessage() {}
+
+func (x *DiaryDeleteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiaryDeleteResponse.ProtoReflect.Descriptor instead.
+func (*DiaryDeleteResponse) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *DiaryDeleteResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type DiaryUpdateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	Diary         *Diaryies              `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DiaryUpdateRequest) Reset() {
+	*x = DiaryUpdateRequest{}
+	mi := &file_diary_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiaryUpdateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiaryUpdateRequest) ProtoMessage() {}
+
+func (x *DiaryUpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiaryUpdateRequest.ProtoReflect.Descriptor instead.
+func (*DiaryUpdateRequest) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DiaryUpdateRequest) GetUuidUser() string {
+	if x != nil {
+		return x.UuidUser
+	}
+	return ""
+}
+
+func (x *DiaryUpdateRequest) GetDiary() *Diaryies {
+	if x != nil {
+		return x.Diary
+	}
+	return nil
+}
+
+type DiaryUpdateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DiaryUpdateResponse) Reset() {
+	*x = DiaryUpdateResponse{}
+	mi := &file_diary_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DiaryUpdateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiaryUpdateResponse) ProtoMessage() {}
+
+func (x *DiaryUpdateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiaryUpdateResponse.ProtoReflect.Descriptor instead.
+func (*DiaryUpdateResponse) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DiaryUpdateResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
@@ -32,7 +224,7 @@ type DiaryWriteRequest struct {
 
 func (x *DiaryWriteRequest) Reset() {
 	*x = DiaryWriteRequest{}
-	mi := &file_diary_proto_msgTypes[0]
+	mi := &file_diary_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +236,7 @@ func (x *DiaryWriteRequest) String() string {
 func (*DiaryWriteRequest) ProtoMessage() {}
 
 func (x *DiaryWriteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[0]
+	mi := &file_diary_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +249,7 @@ func (x *DiaryWriteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiaryWriteRequest.ProtoReflect.Descriptor instead.
 func (*DiaryWriteRequest) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{0}
+	return file_diary_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DiaryWriteRequest) GetUuidUser() string {
@@ -83,7 +275,7 @@ type DiaryWriteResponse struct {
 
 func (x *DiaryWriteResponse) Reset() {
 	*x = DiaryWriteResponse{}
-	mi := &file_diary_proto_msgTypes[1]
+	mi := &file_diary_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +287,7 @@ func (x *DiaryWriteResponse) String() string {
 func (*DiaryWriteResponse) ProtoMessage() {}
 
 func (x *DiaryWriteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[1]
+	mi := &file_diary_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,7 +300,7 @@ func (x *DiaryWriteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiaryWriteResponse.ProtoReflect.Descriptor instead.
 func (*DiaryWriteResponse) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{1}
+	return file_diary_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *DiaryWriteResponse) GetUuidDiaryes() string {
@@ -128,7 +320,7 @@ type DiaryReadRequest struct {
 
 func (x *DiaryReadRequest) Reset() {
 	*x = DiaryReadRequest{}
-	mi := &file_diary_proto_msgTypes[2]
+	mi := &file_diary_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -140,7 +332,7 @@ func (x *DiaryReadRequest) String() string {
 func (*DiaryReadRequest) ProtoMessage() {}
 
 func (x *DiaryReadRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[2]
+	mi := &file_diary_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -153,7 +345,7 @@ func (x *DiaryReadRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiaryReadRequest.ProtoReflect.Descriptor instead.
 func (*DiaryReadRequest) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{2}
+	return file_diary_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DiaryReadRequest) GetUuidDiaryes() string {
@@ -179,7 +371,7 @@ type DiaryReadResponse struct {
 
 func (x *DiaryReadResponse) Reset() {
 	*x = DiaryReadResponse{}
-	mi := &file_diary_proto_msgTypes[3]
+	mi := &file_diary_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -191,7 +383,7 @@ func (x *DiaryReadResponse) String() string {
 func (*DiaryReadResponse) ProtoMessage() {}
 
 func (x *DiaryReadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[3]
+	mi := &file_diary_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -204,7 +396,7 @@ func (x *DiaryReadResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiaryReadResponse.ProtoReflect.Descriptor instead.
 func (*DiaryReadResponse) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{3}
+	return file_diary_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DiaryReadResponse) GetDiary() []*Diaryies {
@@ -227,7 +419,7 @@ type Diaryies struct {
 
 func (x *Diaryies) Reset() {
 	*x = Diaryies{}
-	mi := &file_diary_proto_msgTypes[4]
+	mi := &file_diary_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -239,7 +431,7 @@ func (x *Diaryies) String() string {
 func (*Diaryies) ProtoMessage() {}
 
 func (x *Diaryies) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[4]
+	mi := &file_diary_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -252,7 +444,7 @@ func (x *Diaryies) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Diaryies.ProtoReflect.Descriptor instead.
 func (*Diaryies) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{4}
+	return file_diary_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Diaryies) GetId() string {
@@ -307,7 +499,7 @@ type Element struct {
 
 func (x *Element) Reset() {
 	*x = Element{}
-	mi := &file_diary_proto_msgTypes[5]
+	mi := &file_diary_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -319,7 +511,7 @@ func (x *Element) String() string {
 func (*Element) ProtoMessage() {}
 
 func (x *Element) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[5]
+	mi := &file_diary_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -332,7 +524,7 @@ func (x *Element) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Element.ProtoReflect.Descriptor instead.
 func (*Element) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{5}
+	return file_diary_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Element) GetId() string {
@@ -417,7 +609,7 @@ type Style struct {
 
 func (x *Style) Reset() {
 	*x = Style{}
-	mi := &file_diary_proto_msgTypes[6]
+	mi := &file_diary_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +621,7 @@ func (x *Style) String() string {
 func (*Style) ProtoMessage() {}
 
 func (x *Style) ProtoReflect() protoreflect.Message {
-	mi := &file_diary_proto_msgTypes[6]
+	mi := &file_diary_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -442,7 +634,7 @@ func (x *Style) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Style.ProtoReflect.Descriptor instead.
 func (*Style) Descriptor() ([]byte, []int) {
-	return file_diary_proto_rawDescGZIP(), []int{6}
+	return file_diary_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Style) GetBackgroundColor() string {
@@ -526,7 +718,17 @@ var File_diary_proto protoreflect.FileDescriptor
 
 const file_diary_proto_rawDesc = "" +
 	"\n" +
-	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
+	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
+	"\x12DiaryDeleteRequest\x12 \n" +
+	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"-\n" +
+	"\x13DiaryDeleteResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"W\n" +
+	"\x12DiaryUpdateRequest\x12\x1a\n" +
+	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12%\n" +
+	"\x05Diary\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\x05Diary\"-\n" +
+	"\x13DiaryUpdateResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"V\n" +
 	"\x11DiaryWriteRequest\x12\x1a\n" +
 	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12%\n" +
 	"\x05Diary\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\x05Diary\"6\n" +
@@ -566,11 +768,13 @@ const file_diary_proto_rawDesc = "" +
 	"\x05scale\x18\t \x01(\x05R\x05scale\x12\x1a\n" +
 	"\brotation\x18\n" +
 	" \x01(\x05R\brotation\x12\x18\n" +
-	"\aopacity\x18\v \x01(\x05R\aopacity2\x8a\x01\n" +
+	"\aopacity\x18\v \x01(\x05R\aopacity2\x96\x02\n" +
 	"\x05Diary\x12A\n" +
 	"\n" +
 	"DiaryWrite\x12\x18.diary.DiaryWriteRequest\x1a\x19.diary.DiaryWriteResponse\x12>\n" +
-	"\tDiaryRead\x12\x17.diary.DiaryReadRequest\x1a\x18.diary.DiaryReadResponseB'Z%github.com/nikaydo/DiaryService;diaryb\x06proto3"
+	"\tDiaryRead\x12\x17.diary.DiaryReadRequest\x1a\x18.diary.DiaryReadResponse\x12D\n" +
+	"\vDiaryUpdate\x12\x19.diary.DiaryUpdateRequest\x1a\x1a.diary.DiaryUpdateResponse\x12D\n" +
+	"\vDiaryDelete\x12\x19.diary.DiaryDeleteRequest\x1a\x1a.diary.DiaryDeleteResponseB'Z%github.com/nikaydo/DiaryService;diaryb\x06proto3"
 
 var (
 	file_diary_proto_rawDescOnce sync.Once
@@ -584,32 +788,41 @@ func file_diary_proto_rawDescGZIP() []byte {
 	return file_diary_proto_rawDescData
 }
 
-var file_diary_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_diary_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_diary_proto_goTypes = []any{
-	(*DiaryWriteRequest)(nil),     // 0: diary.DiaryWriteRequest
-	(*DiaryWriteResponse)(nil),    // 1: diary.DiaryWriteResponse
-	(*DiaryReadRequest)(nil),      // 2: diary.DiaryReadRequest
-	(*DiaryReadResponse)(nil),     // 3: diary.DiaryReadResponse
-	(*Diaryies)(nil),              // 4: diary.Diaryies
-	(*Element)(nil),               // 5: diary.Element
-	(*Style)(nil),                 // 6: diary.Style
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(*DiaryDeleteRequest)(nil),    // 0: diary.DiaryDeleteRequest
+	(*DiaryDeleteResponse)(nil),   // 1: diary.DiaryDeleteResponse
+	(*DiaryUpdateRequest)(nil),    // 2: diary.DiaryUpdateRequest
+	(*DiaryUpdateResponse)(nil),   // 3: diary.DiaryUpdateResponse
+	(*DiaryWriteRequest)(nil),     // 4: diary.DiaryWriteRequest
+	(*DiaryWriteResponse)(nil),    // 5: diary.DiaryWriteResponse
+	(*DiaryReadRequest)(nil),      // 6: diary.DiaryReadRequest
+	(*DiaryReadResponse)(nil),     // 7: diary.DiaryReadResponse
+	(*Diaryies)(nil),              // 8: diary.Diaryies
+	(*Element)(nil),               // 9: diary.Element
+	(*Style)(nil),                 // 10: diary.Style
+	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
 }
 var file_diary_proto_depIdxs = []int32{
-	4, // 0: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaryies
-	4, // 1: diary.DiaryReadResponse.Diary:type_name -> diary.Diaryies
-	5, // 2: diary.Diaryies.elements:type_name -> diary.Element
-	7, // 3: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
-	6, // 4: diary.Element.style:type_name -> diary.Style
-	0, // 5: diary.Diary.DiaryWrite:input_type -> diary.DiaryWriteRequest
-	2, // 6: diary.Diary.DiaryRead:input_type -> diary.DiaryReadRequest
-	1, // 7: diary.Diary.DiaryWrite:output_type -> diary.DiaryWriteResponse
-	3, // 8: diary.Diary.DiaryRead:output_type -> diary.DiaryReadResponse
-	7, // [7:9] is the sub-list for method output_type
-	5, // [5:7] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	8,  // 0: diary.DiaryUpdateRequest.Diary:type_name -> diary.Diaryies
+	8,  // 1: diary.DiaryWriteRequest.Diary:type_name -> diary.Diaryies
+	8,  // 2: diary.DiaryReadResponse.Diary:type_name -> diary.Diaryies
+	9,  // 3: diary.Diaryies.elements:type_name -> diary.Element
+	11, // 4: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
+	10, // 5: diary.Element.style:type_name -> diary.Style
+	4,  // 6: diary.Diary.DiaryWrite:input_type -> diary.DiaryWriteRequest
+	6,  // 7: diary.Diary.DiaryRead:input_type -> diary.DiaryReadRequest
+	2,  // 8: diary.Diary.DiaryUpdate:input_type -> diary.DiaryUpdateRequest
+	0,  // 9: diary.Diary.DiaryDelete:input_type -> diary.DiaryDeleteRequest
+	5,  // 10: diary.Diary.DiaryWrite:output_type -> diary.DiaryWriteResponse
+	7,  // 11: diary.Diary.DiaryRead:output_type -> diary.DiaryReadResponse
+	3,  // 12: diary.Diary.DiaryUpdate:output_type -> diary.DiaryUpdateResponse
+	1,  // 13: diary.Diary.DiaryDelete:output_type -> diary.DiaryDeleteResponse
+	10, // [10:14] is the sub-list for method output_type
+	6,  // [6:10] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_diary_proto_init() }
@@ -623,7 +836,7 @@ func file_diary_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_diary_proto_rawDesc), len(file_diary_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

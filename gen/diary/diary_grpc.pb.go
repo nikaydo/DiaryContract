@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Diary_DiaryWrite_FullMethodName = "/diary.Diary/DiaryWrite"
-	Diary_DiaryRead_FullMethodName  = "/diary.Diary/DiaryRead"
+	Diary_DiaryWrite_FullMethodName  = "/diary.Diary/DiaryWrite"
+	Diary_DiaryRead_FullMethodName   = "/diary.Diary/DiaryRead"
+	Diary_DiaryUpdate_FullMethodName = "/diary.Diary/DiaryUpdate"
+	Diary_DiaryDelete_FullMethodName = "/diary.Diary/DiaryDelete"
 )
 
 // DiaryClient is the client API for Diary service.
@@ -29,6 +31,8 @@ const (
 type DiaryClient interface {
 	DiaryWrite(ctx context.Context, in *DiaryWriteRequest, opts ...grpc.CallOption) (*DiaryWriteResponse, error)
 	DiaryRead(ctx context.Context, in *DiaryReadRequest, opts ...grpc.CallOption) (*DiaryReadResponse, error)
+	DiaryUpdate(ctx context.Context, in *DiaryUpdateRequest, opts ...grpc.CallOption) (*DiaryUpdateResponse, error)
+	DiaryDelete(ctx context.Context, in *DiaryDeleteRequest, opts ...grpc.CallOption) (*DiaryDeleteResponse, error)
 }
 
 type diaryClient struct {
@@ -59,12 +63,34 @@ func (c *diaryClient) DiaryRead(ctx context.Context, in *DiaryReadRequest, opts 
 	return out, nil
 }
 
+func (c *diaryClient) DiaryUpdate(ctx context.Context, in *DiaryUpdateRequest, opts ...grpc.CallOption) (*DiaryUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiaryUpdateResponse)
+	err := c.cc.Invoke(ctx, Diary_DiaryUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *diaryClient) DiaryDelete(ctx context.Context, in *DiaryDeleteRequest, opts ...grpc.CallOption) (*DiaryDeleteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiaryDeleteResponse)
+	err := c.cc.Invoke(ctx, Diary_DiaryDelete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DiaryServer is the server API for Diary service.
 // All implementations must embed UnimplementedDiaryServer
 // for forward compatibility.
 type DiaryServer interface {
 	DiaryWrite(context.Context, *DiaryWriteRequest) (*DiaryWriteResponse, error)
 	DiaryRead(context.Context, *DiaryReadRequest) (*DiaryReadResponse, error)
+	DiaryUpdate(context.Context, *DiaryUpdateRequest) (*DiaryUpdateResponse, error)
+	DiaryDelete(context.Context, *DiaryDeleteRequest) (*DiaryDeleteResponse, error)
 	mustEmbedUnimplementedDiaryServer()
 }
 
@@ -80,6 +106,12 @@ func (UnimplementedDiaryServer) DiaryWrite(context.Context, *DiaryWriteRequest) 
 }
 func (UnimplementedDiaryServer) DiaryRead(context.Context, *DiaryReadRequest) (*DiaryReadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiaryRead not implemented")
+}
+func (UnimplementedDiaryServer) DiaryUpdate(context.Context, *DiaryUpdateRequest) (*DiaryUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiaryUpdate not implemented")
+}
+func (UnimplementedDiaryServer) DiaryDelete(context.Context, *DiaryDeleteRequest) (*DiaryDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiaryDelete not implemented")
 }
 func (UnimplementedDiaryServer) mustEmbedUnimplementedDiaryServer() {}
 func (UnimplementedDiaryServer) testEmbeddedByValue()               {}
@@ -138,6 +170,42 @@ func _Diary_DiaryRead_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Diary_DiaryUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiaryUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiaryServer).DiaryUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Diary_DiaryUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiaryServer).DiaryUpdate(ctx, req.(*DiaryUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Diary_DiaryDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiaryDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiaryServer).DiaryDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Diary_DiaryDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiaryServer).DiaryDelete(ctx, req.(*DiaryDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Diary_ServiceDesc is the grpc.ServiceDesc for Diary service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +220,14 @@ var Diary_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DiaryRead",
 			Handler:    _Diary_DiaryRead_Handler,
+		},
+		{
+			MethodName: "DiaryUpdate",
+			Handler:    _Diary_DiaryUpdate_Handler,
+		},
+		{
+			MethodName: "DiaryDelete",
+			Handler:    _Diary_DiaryDelete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
