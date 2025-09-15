@@ -499,14 +499,14 @@ type Element struct {
 	Width  *int32                 `protobuf:"varint,5,opt,name=width,proto3,oneof" json:"width,omitempty"`
 	Height *int32                 `protobuf:"varint,6,opt,name=height,proto3,oneof" json:"height,omitempty"`
 	// Content fields
-	Content      *string `protobuf:"bytes,7,opt,name=content,proto3,oneof" json:"content,omitempty"`                               // HTML content for text/interactive elements
-	EmojiContent *string `protobuf:"bytes,8,opt,name=emoji_content,json=emojiContent,proto3,oneof" json:"emoji_content,omitempty"` // Emoji character
+	Content      *string `protobuf:"bytes,7,opt,name=content,proto3,oneof" json:"content,omitempty"`           // HTML content for text/interactive elements
+	EmojiContent *string `protobuf:"bytes,8,opt,name=emojiContent,proto3,oneof" json:"emojiContent,omitempty"` // Emoji character
 	// Type-specific fields
-	DecorationType  *string `protobuf:"bytes,9,opt,name=decoration_type,json=decorationType,proto3,oneof" json:"decoration_type,omitempty"`     // flower, leaf, border, heart, star, frame, sparkles, ribbon
-	ShapeType       *string `protobuf:"bytes,10,opt,name=shape_type,json=shapeType,proto3,oneof" json:"shape_type,omitempty"`                   // circle, rectangle, triangle, star, heart, arrow
-	InteractiveType *string `protobuf:"bytes,11,opt,name=interactive_type,json=interactiveType,proto3,oneof" json:"interactive_type,omitempty"` // speech, thought, callout, highlight
-	ImageType       *string `protobuf:"bytes,12,opt,name=image_type,json=imageType,proto3,oneof" json:"image_type,omitempty"`                   // placeholder, uploaded
-	TextStyle       *string `protobuf:"bytes,13,opt,name=text_style,json=textStyle,proto3,oneof" json:"text_style,omitempty"`                   // basic, heading, quote, sticky
+	DecorationType  *string `protobuf:"bytes,9,opt,name=decorationType,proto3,oneof" json:"decorationType,omitempty"`    // flower, leaf, border, heart, star, frame, sparkles, ribbon
+	ShapeType       *string `protobuf:"bytes,10,opt,name=shapeType,proto3,oneof" json:"shapeType,omitempty"`             // circle, rectangle, triangle, star, heart, arrow
+	InteractiveType *string `protobuf:"bytes,11,opt,name=interactiveType,proto3,oneof" json:"interactiveType,omitempty"` // speech, thought, callout, highlight
+	ImageType       *string `protobuf:"bytes,12,opt,name=imageType,proto3,oneof" json:"imageType,omitempty"`             // placeholder, uploaded
+	TextStyle       *string `protobuf:"bytes,13,opt,name=textStyle,proto3,oneof" json:"textStyle,omitempty"`             // basic, heading, quote, sticky
 	Style           *Style  `protobuf:"bytes,14,opt,name=style,proto3" json:"style,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
@@ -644,31 +644,31 @@ type Style struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Colors
 	Color           *string `protobuf:"bytes,1,opt,name=color,proto3,oneof" json:"color,omitempty"`
-	BackgroundColor *string `protobuf:"bytes,2,opt,name=background_color,json=backgroundColor,proto3,oneof" json:"background_color,omitempty"`
-	BorderColor     *string `protobuf:"bytes,3,opt,name=border_color,json=borderColor,proto3,oneof" json:"border_color,omitempty"`
+	BackgroundColor *string `protobuf:"bytes,2,opt,name=backgroundColor,proto3,oneof" json:"backgroundColor,omitempty"`
+	BorderColor     *string `protobuf:"bytes,3,opt,name=borderColor,proto3,oneof" json:"borderColor,omitempty"`
 	Gradient        *string `protobuf:"bytes,4,opt,name=gradient,proto3,oneof" json:"gradient,omitempty"`
 	// Typography
-	FontSize       *int32   `protobuf:"varint,5,opt,name=font_size,json=fontSize,proto3,oneof" json:"font_size,omitempty"`
-	FontFamily     *string  `protobuf:"bytes,6,opt,name=font_family,json=fontFamily,proto3,oneof" json:"font_family,omitempty"`
-	FontWeight     *string  `protobuf:"bytes,7,opt,name=font_weight,json=fontWeight,proto3,oneof" json:"font_weight,omitempty"`             // normal, bold, 100-900
-	FontStyle      *string  `protobuf:"bytes,8,opt,name=font_style,json=fontStyle,proto3,oneof" json:"font_style,omitempty"`                // normal, italic, oblique
-	TextDecoration *string  `protobuf:"bytes,9,opt,name=text_decoration,json=textDecoration,proto3,oneof" json:"text_decoration,omitempty"` // none, underline, line-through, overline
-	TextAlign      *string  `protobuf:"bytes,10,opt,name=text_align,json=textAlign,proto3,oneof" json:"text_align,omitempty"`               // left, center, right, justify
-	LineHeight     *float32 `protobuf:"fixed32,11,opt,name=line_height,json=lineHeight,proto3,oneof" json:"line_height,omitempty"`
-	LetterSpacing  *float32 `protobuf:"fixed32,12,opt,name=letter_spacing,json=letterSpacing,proto3,oneof" json:"letter_spacing,omitempty"`
-	WordSpacing    *float32 `protobuf:"fixed32,13,opt,name=word_spacing,json=wordSpacing,proto3,oneof" json:"word_spacing,omitempty"`
+	FontSize       *int32   `protobuf:"varint,5,opt,name=fontSize,proto3,oneof" json:"fontSize,omitempty"`
+	FontFamily     *string  `protobuf:"bytes,6,opt,name=fontFamily,proto3,oneof" json:"fontFamily,omitempty"`
+	FontWeight     *string  `protobuf:"bytes,7,opt,name=fontWeight,proto3,oneof" json:"fontWeight,omitempty"`         // normal, bold, 100-900
+	FontStyle      *string  `protobuf:"bytes,8,opt,name=fontStyle,proto3,oneof" json:"fontStyle,omitempty"`           // normal, italic, oblique
+	TextDecoration *string  `protobuf:"bytes,9,opt,name=textDecoration,proto3,oneof" json:"textDecoration,omitempty"` // none, underline, line-through, overline
+	TextAlign      *string  `protobuf:"bytes,10,opt,name=textAlign,proto3,oneof" json:"textAlign,omitempty"`          // left, center, right, justify
+	LineHeight     *float32 `protobuf:"fixed32,11,opt,name=lineHeight,proto3,oneof" json:"lineHeight,omitempty"`
+	LetterSpacing  *float32 `protobuf:"fixed32,12,opt,name=letterSpacing,proto3,oneof" json:"letterSpacing,omitempty"`
+	WordSpacing    *float32 `protobuf:"fixed32,13,opt,name=wordSpacing,proto3,oneof" json:"wordSpacing,omitempty"`
 	// Layout & Spacing
 	Padding      *int32  `protobuf:"varint,14,opt,name=padding,proto3,oneof" json:"padding,omitempty"`
 	Margin       *int32  `protobuf:"varint,15,opt,name=margin,proto3,oneof" json:"margin,omitempty"`
-	BorderWidth  *int32  `protobuf:"varint,16,opt,name=border_width,json=borderWidth,proto3,oneof" json:"border_width,omitempty"`
-	BorderRadius *int32  `protobuf:"varint,17,opt,name=border_radius,json=borderRadius,proto3,oneof" json:"border_radius,omitempty"`
-	BorderStyle  *string `protobuf:"bytes,18,opt,name=border_style,json=borderStyle,proto3,oneof" json:"border_style,omitempty"` // solid, dashed, dotted
+	BorderWidth  *int32  `protobuf:"varint,16,opt,name=borderWidth,proto3,oneof" json:"borderWidth,omitempty"`
+	BorderRadius *int32  `protobuf:"varint,17,opt,name=borderRadius,proto3,oneof" json:"borderRadius,omitempty"`
+	BorderStyle  *string `protobuf:"bytes,18,opt,name=borderStyle,proto3,oneof" json:"borderStyle,omitempty"` // solid, dashed, dotted
 	// Transforms & Effects
 	Scale         *float32 `protobuf:"fixed32,19,opt,name=scale,proto3,oneof" json:"scale,omitempty"`       // Use float for precision (1.0 = 100%)
 	Rotation      *float32 `protobuf:"fixed32,20,opt,name=rotation,proto3,oneof" json:"rotation,omitempty"` // Degrees, use float for precision
 	Opacity       *float32 `protobuf:"fixed32,21,opt,name=opacity,proto3,oneof" json:"opacity,omitempty"`   // 0.0 to 1.0
 	Shadow        *string  `protobuf:"bytes,22,opt,name=shadow,proto3,oneof" json:"shadow,omitempty"`       // CSS shadow string
-	ZIndex        *int32   `protobuf:"varint,23,opt,name=z_index,json=zIndex,proto3,oneof" json:"z_index,omitempty"`
+	ZIndex        *int32   `protobuf:"varint,23,opt,name=zIndex,proto3,oneof" json:"zIndex,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -895,7 +895,7 @@ const file_diary_proto_rawDesc = "" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12.\n" +
 	"\x04date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\x12*\n" +
-	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xc1\x04\n" +
+	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xb5\x04\n" +
 	"\aElement\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\f\n" +
 	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
@@ -903,86 +903,87 @@ const file_diary_proto_rawDesc = "" +
 	"\x04type\x18\x04 \x01(\tR\x04type\x12\x19\n" +
 	"\x05width\x18\x05 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
 	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01\x12\x1d\n" +
-	"\acontent\x18\a \x01(\tH\x02R\acontent\x88\x01\x01\x12(\n" +
-	"\remoji_content\x18\b \x01(\tH\x03R\femojiContent\x88\x01\x01\x12,\n" +
-	"\x0fdecoration_type\x18\t \x01(\tH\x04R\x0edecorationType\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"shape_type\x18\n" +
-	" \x01(\tH\x05R\tshapeType\x88\x01\x01\x12.\n" +
-	"\x10interactive_type\x18\v \x01(\tH\x06R\x0finteractiveType\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"image_type\x18\f \x01(\tH\aR\timageType\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"text_style\x18\r \x01(\tH\bR\ttextStyle\x88\x01\x01\x12\"\n" +
+	"\acontent\x18\a \x01(\tH\x02R\acontent\x88\x01\x01\x12'\n" +
+	"\femojiContent\x18\b \x01(\tH\x03R\femojiContent\x88\x01\x01\x12+\n" +
+	"\x0edecorationType\x18\t \x01(\tH\x04R\x0edecorationType\x88\x01\x01\x12!\n" +
+	"\tshapeType\x18\n" +
+	" \x01(\tH\x05R\tshapeType\x88\x01\x01\x12-\n" +
+	"\x0finteractiveType\x18\v \x01(\tH\x06R\x0finteractiveType\x88\x01\x01\x12!\n" +
+	"\timageType\x18\f \x01(\tH\aR\timageType\x88\x01\x01\x12!\n" +
+	"\ttextStyle\x18\r \x01(\tH\bR\ttextStyle\x88\x01\x01\x12\"\n" +
 	"\x05style\x18\x0e \x01(\v2\f.diary.StyleR\x05styleB\b\n" +
 	"\x06_widthB\t\n" +
 	"\a_heightB\n" +
 	"\n" +
-	"\b_contentB\x10\n" +
-	"\x0e_emoji_contentB\x12\n" +
-	"\x10_decoration_typeB\r\n" +
-	"\v_shape_typeB\x13\n" +
-	"\x11_interactive_typeB\r\n" +
-	"\v_image_typeB\r\n" +
-	"\v_text_style\"\x9b\t\n" +
+	"\b_contentB\x0f\n" +
+	"\r_emojiContentB\x11\n" +
+	"\x0f_decorationTypeB\f\n" +
+	"\n" +
+	"_shapeTypeB\x12\n" +
+	"\x10_interactiveTypeB\f\n" +
+	"\n" +
+	"_imageTypeB\f\n" +
+	"\n" +
+	"_textStyle\"\xfd\b\n" +
 	"\x05Style\x12\x19\n" +
-	"\x05color\x18\x01 \x01(\tH\x00R\x05color\x88\x01\x01\x12.\n" +
-	"\x10background_color\x18\x02 \x01(\tH\x01R\x0fbackgroundColor\x88\x01\x01\x12&\n" +
-	"\fborder_color\x18\x03 \x01(\tH\x02R\vborderColor\x88\x01\x01\x12\x1f\n" +
-	"\bgradient\x18\x04 \x01(\tH\x03R\bgradient\x88\x01\x01\x12 \n" +
-	"\tfont_size\x18\x05 \x01(\x05H\x04R\bfontSize\x88\x01\x01\x12$\n" +
-	"\vfont_family\x18\x06 \x01(\tH\x05R\n" +
-	"fontFamily\x88\x01\x01\x12$\n" +
-	"\vfont_weight\x18\a \x01(\tH\x06R\n" +
-	"fontWeight\x88\x01\x01\x12\"\n" +
+	"\x05color\x18\x01 \x01(\tH\x00R\x05color\x88\x01\x01\x12-\n" +
+	"\x0fbackgroundColor\x18\x02 \x01(\tH\x01R\x0fbackgroundColor\x88\x01\x01\x12%\n" +
+	"\vborderColor\x18\x03 \x01(\tH\x02R\vborderColor\x88\x01\x01\x12\x1f\n" +
+	"\bgradient\x18\x04 \x01(\tH\x03R\bgradient\x88\x01\x01\x12\x1f\n" +
+	"\bfontSize\x18\x05 \x01(\x05H\x04R\bfontSize\x88\x01\x01\x12#\n" +
 	"\n" +
-	"font_style\x18\b \x01(\tH\aR\tfontStyle\x88\x01\x01\x12,\n" +
-	"\x0ftext_decoration\x18\t \x01(\tH\bR\x0etextDecoration\x88\x01\x01\x12\"\n" +
+	"fontFamily\x18\x06 \x01(\tH\x05R\n" +
+	"fontFamily\x88\x01\x01\x12#\n" +
 	"\n" +
-	"text_align\x18\n" +
-	" \x01(\tH\tR\ttextAlign\x88\x01\x01\x12$\n" +
-	"\vline_height\x18\v \x01(\x02H\n" +
+	"fontWeight\x18\a \x01(\tH\x06R\n" +
+	"fontWeight\x88\x01\x01\x12!\n" +
+	"\tfontStyle\x18\b \x01(\tH\aR\tfontStyle\x88\x01\x01\x12+\n" +
+	"\x0etextDecoration\x18\t \x01(\tH\bR\x0etextDecoration\x88\x01\x01\x12!\n" +
+	"\ttextAlign\x18\n" +
+	" \x01(\tH\tR\ttextAlign\x88\x01\x01\x12#\n" +
+	"\n" +
+	"lineHeight\x18\v \x01(\x02H\n" +
 	"R\n" +
-	"lineHeight\x88\x01\x01\x12*\n" +
-	"\x0eletter_spacing\x18\f \x01(\x02H\vR\rletterSpacing\x88\x01\x01\x12&\n" +
-	"\fword_spacing\x18\r \x01(\x02H\fR\vwordSpacing\x88\x01\x01\x12\x1d\n" +
+	"lineHeight\x88\x01\x01\x12)\n" +
+	"\rletterSpacing\x18\f \x01(\x02H\vR\rletterSpacing\x88\x01\x01\x12%\n" +
+	"\vwordSpacing\x18\r \x01(\x02H\fR\vwordSpacing\x88\x01\x01\x12\x1d\n" +
 	"\apadding\x18\x0e \x01(\x05H\rR\apadding\x88\x01\x01\x12\x1b\n" +
-	"\x06margin\x18\x0f \x01(\x05H\x0eR\x06margin\x88\x01\x01\x12&\n" +
-	"\fborder_width\x18\x10 \x01(\x05H\x0fR\vborderWidth\x88\x01\x01\x12(\n" +
-	"\rborder_radius\x18\x11 \x01(\x05H\x10R\fborderRadius\x88\x01\x01\x12&\n" +
-	"\fborder_style\x18\x12 \x01(\tH\x11R\vborderStyle\x88\x01\x01\x12\x19\n" +
+	"\x06margin\x18\x0f \x01(\x05H\x0eR\x06margin\x88\x01\x01\x12%\n" +
+	"\vborderWidth\x18\x10 \x01(\x05H\x0fR\vborderWidth\x88\x01\x01\x12'\n" +
+	"\fborderRadius\x18\x11 \x01(\x05H\x10R\fborderRadius\x88\x01\x01\x12%\n" +
+	"\vborderStyle\x18\x12 \x01(\tH\x11R\vborderStyle\x88\x01\x01\x12\x19\n" +
 	"\x05scale\x18\x13 \x01(\x02H\x12R\x05scale\x88\x01\x01\x12\x1f\n" +
 	"\brotation\x18\x14 \x01(\x02H\x13R\brotation\x88\x01\x01\x12\x1d\n" +
 	"\aopacity\x18\x15 \x01(\x02H\x14R\aopacity\x88\x01\x01\x12\x1b\n" +
-	"\x06shadow\x18\x16 \x01(\tH\x15R\x06shadow\x88\x01\x01\x12\x1c\n" +
-	"\az_index\x18\x17 \x01(\x05H\x16R\x06zIndex\x88\x01\x01B\b\n" +
-	"\x06_colorB\x13\n" +
-	"\x11_background_colorB\x0f\n" +
-	"\r_border_colorB\v\n" +
-	"\t_gradientB\f\n" +
+	"\x06shadow\x18\x16 \x01(\tH\x15R\x06shadow\x88\x01\x01\x12\x1b\n" +
+	"\x06zIndex\x18\x17 \x01(\x05H\x16R\x06zIndex\x88\x01\x01B\b\n" +
+	"\x06_colorB\x12\n" +
+	"\x10_backgroundColorB\x0e\n" +
+	"\f_borderColorB\v\n" +
+	"\t_gradientB\v\n" +
+	"\t_fontSizeB\r\n" +
+	"\v_fontFamilyB\r\n" +
+	"\v_fontWeightB\f\n" +
 	"\n" +
-	"_font_sizeB\x0e\n" +
-	"\f_font_familyB\x0e\n" +
-	"\f_font_weightB\r\n" +
-	"\v_font_styleB\x12\n" +
-	"\x10_text_decorationB\r\n" +
-	"\v_text_alignB\x0e\n" +
-	"\f_line_heightB\x11\n" +
-	"\x0f_letter_spacingB\x0f\n" +
-	"\r_word_spacingB\n" +
+	"_fontStyleB\x11\n" +
+	"\x0f_textDecorationB\f\n" +
+	"\n" +
+	"_textAlignB\r\n" +
+	"\v_lineHeightB\x10\n" +
+	"\x0e_letterSpacingB\x0e\n" +
+	"\f_wordSpacingB\n" +
 	"\n" +
 	"\b_paddingB\t\n" +
-	"\a_marginB\x0f\n" +
-	"\r_border_widthB\x10\n" +
-	"\x0e_border_radiusB\x0f\n" +
-	"\r_border_styleB\b\n" +
+	"\a_marginB\x0e\n" +
+	"\f_borderWidthB\x0f\n" +
+	"\r_borderRadiusB\x0e\n" +
+	"\f_borderStyleB\b\n" +
 	"\x06_scaleB\v\n" +
 	"\t_rotationB\n" +
 	"\n" +
 	"\b_opacityB\t\n" +
-	"\a_shadowB\n" +
-	"\n" +
-	"\b_z_index2\x96\x02\n" +
+	"\a_shadowB\t\n" +
+	"\a_zIndex2\x96\x02\n" +
 	"\x05Diary\x12A\n" +
 	"\n" +
 	"DiaryWrite\x12\x18.diary.DiaryWriteRequest\x1a\x19.diary.DiaryWriteResponse\x12>\n" +
