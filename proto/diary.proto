@@ -14,7 +14,7 @@ service Diary{
 
 message DiaryWriteRequest {
   string uuidUser = 1; 
-  Diaryies Diaryies = 2; 
+  Diaryies Diary = 2; 
 }
 
 message DiaryWriteResponse {
@@ -27,7 +27,7 @@ message DiaryReadRequest {
 }
 
 message DiaryReadResponse {
-  repeated Diaryies Diaryies = 1;
+  repeated Diaryies Diary = 1;
 }
 
 message Diaryies {
