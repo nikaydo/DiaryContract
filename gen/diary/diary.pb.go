@@ -9,6 +9,7 @@ package diary
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -24,7 +25,7 @@ const (
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
-	Content       []byte                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Diaryies      *Diaryies              `protobuf:"bytes,2,opt,name=Diaryies,proto3" json:"Diaryies,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,9 +67,9 @@ func (x *DiaryWriteRequest) GetUuidUser() string {
 	return ""
 }
 
-func (x *DiaryWriteRequest) GetContent() []byte {
+func (x *DiaryWriteRequest) GetDiaryies() *Diaryies {
 	if x != nil {
-		return x.Content
+		return x.Diaryies
 	}
 	return nil
 }
@@ -171,7 +172,7 @@ func (x *DiaryReadRequest) GetUuidUser() string {
 
 type DiaryReadResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Content       []byte                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	Diaryies      *Diaryies              `protobuf:"bytes,1,opt,name=Diaryies,proto3" json:"Diaryies,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -206,29 +207,367 @@ func (*DiaryReadResponse) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *DiaryReadResponse) GetContent() []byte {
+func (x *DiaryReadResponse) GetDiaryies() *Diaryies {
+	if x != nil {
+		return x.Diaryies
+	}
+	return nil
+}
+
+type Diaryies struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Elements      []*Element             `protobuf:"bytes,3,rep,name=elements,proto3" json:"elements,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Diaryies) Reset() {
+	*x = Diaryies{}
+	mi := &file_diary_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Diaryies) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Diaryies) ProtoMessage() {}
+
+func (x *Diaryies) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Diaryies.ProtoReflect.Descriptor instead.
+func (*Diaryies) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Diaryies) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Diaryies) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Diaryies) GetElements() []*Element {
+	if x != nil {
+		return x.Elements
+	}
+	return nil
+}
+
+func (x *Diaryies) GetDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Date
+	}
+	return nil
+}
+
+func (x *Diaryies) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+type Element struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Xpos            int32                  `protobuf:"varint,2,opt,name=xpos,proto3" json:"xpos,omitempty"`
+	Ypos            int32                  `protobuf:"varint,3,opt,name=ypos,proto3" json:"ypos,omitempty"`
+	Type            string                 `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	Width           int32                  `protobuf:"varint,5,opt,name=width,proto3" json:"width,omitempty"`
+	Height          int32                  `protobuf:"varint,6,opt,name=height,proto3" json:"height,omitempty"`
+	InteractiveType string                 `protobuf:"bytes,7,opt,name=interactive_type,json=interactiveType,proto3" json:"interactive_type,omitempty"`
+	Content         string                 `protobuf:"bytes,8,opt,name=content,proto3" json:"content,omitempty"`
+	Style           *Style                 `protobuf:"bytes,9,opt,name=style,proto3" json:"style,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Element) Reset() {
+	*x = Element{}
+	mi := &file_diary_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Element) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Element) ProtoMessage() {}
+
+func (x *Element) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Element.ProtoReflect.Descriptor instead.
+func (*Element) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Element) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Element) GetXpos() int32 {
+	if x != nil {
+		return x.Xpos
+	}
+	return 0
+}
+
+func (x *Element) GetYpos() int32 {
+	if x != nil {
+		return x.Ypos
+	}
+	return 0
+}
+
+func (x *Element) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Element) GetWidth() int32 {
+	if x != nil {
+		return x.Width
+	}
+	return 0
+}
+
+func (x *Element) GetHeight() int32 {
+	if x != nil {
+		return x.Height
+	}
+	return 0
+}
+
+func (x *Element) GetInteractiveType() string {
+	if x != nil {
+		return x.InteractiveType
+	}
+	return ""
+}
+
+func (x *Element) GetContent() string {
 	if x != nil {
 		return x.Content
 	}
+	return ""
+}
+
+func (x *Element) GetStyle() *Style {
+	if x != nil {
+		return x.Style
+	}
 	return nil
+}
+
+type Style struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	BackgroundColor string                 `protobuf:"bytes,1,opt,name=background_color,json=backgroundColor,proto3" json:"background_color,omitempty"`
+	BorderColor     string                 `protobuf:"bytes,2,opt,name=border_color,json=borderColor,proto3" json:"border_color,omitempty"`
+	BorderWidth     int32                  `protobuf:"varint,3,opt,name=border_width,json=borderWidth,proto3" json:"border_width,omitempty"`
+	BorderRadius    int32                  `protobuf:"varint,4,opt,name=border_radius,json=borderRadius,proto3" json:"border_radius,omitempty"`
+	Padding         int32                  `protobuf:"varint,5,opt,name=padding,proto3" json:"padding,omitempty"`
+	FontSize        int32                  `protobuf:"varint,6,opt,name=font_size,json=fontSize,proto3" json:"font_size,omitempty"`
+	Color           string                 `protobuf:"bytes,7,opt,name=color,proto3" json:"color,omitempty"`
+	FontFamily      string                 `protobuf:"bytes,8,opt,name=font_family,json=fontFamily,proto3" json:"font_family,omitempty"`
+	Scale           int32                  `protobuf:"varint,9,opt,name=scale,proto3" json:"scale,omitempty"`
+	Rotation        int32                  `protobuf:"varint,10,opt,name=rotation,proto3" json:"rotation,omitempty"`
+	Opacity         int32                  `protobuf:"varint,11,opt,name=opacity,proto3" json:"opacity,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *Style) Reset() {
+	*x = Style{}
+	mi := &file_diary_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Style) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Style) ProtoMessage() {}
+
+func (x *Style) ProtoReflect() protoreflect.Message {
+	mi := &file_diary_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Style.ProtoReflect.Descriptor instead.
+func (*Style) Descriptor() ([]byte, []int) {
+	return file_diary_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Style) GetBackgroundColor() string {
+	if x != nil {
+		return x.BackgroundColor
+	}
+	return ""
+}
+
+func (x *Style) GetBorderColor() string {
+	if x != nil {
+		return x.BorderColor
+	}
+	return ""
+}
+
+func (x *Style) GetBorderWidth() int32 {
+	if x != nil {
+		return x.BorderWidth
+	}
+	return 0
+}
+
+func (x *Style) GetBorderRadius() int32 {
+	if x != nil {
+		return x.BorderRadius
+	}
+	return 0
+}
+
+func (x *Style) GetPadding() int32 {
+	if x != nil {
+		return x.Padding
+	}
+	return 0
+}
+
+func (x *Style) GetFontSize() int32 {
+	if x != nil {
+		return x.FontSize
+	}
+	return 0
+}
+
+func (x *Style) GetColor() string {
+	if x != nil {
+		return x.Color
+	}
+	return ""
+}
+
+func (x *Style) GetFontFamily() string {
+	if x != nil {
+		return x.FontFamily
+	}
+	return ""
+}
+
+func (x *Style) GetScale() int32 {
+	if x != nil {
+		return x.Scale
+	}
+	return 0
+}
+
+func (x *Style) GetRotation() int32 {
+	if x != nil {
+		return x.Rotation
+	}
+	return 0
+}
+
+func (x *Style) GetOpacity() int32 {
+	if x != nil {
+		return x.Opacity
+	}
+	return 0
 }
 
 var File_diary_proto protoreflect.FileDescriptor
 
 const file_diary_proto_rawDesc = "" +
 	"\n" +
-	"\vdiary.proto\x12\x05diary\"I\n" +
+	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"\\\n" +
 	"\x11DiaryWriteRequest\x12\x1a\n" +
-	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\fR\acontent\"6\n" +
+	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12+\n" +
+	"\bDiaryies\x18\x02 \x01(\v2\x0f.diary.DiaryiesR\bDiaryies\"6\n" +
 	"\x12DiaryWriteResponse\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\"P\n" +
 	"\x10DiaryReadRequest\x12 \n" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"-\n" +
-	"\x11DiaryReadResponse\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\fR\acontent2\x89\x01\n" +
-	"\x04Auth\x12A\n" +
+	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"@\n" +
+	"\x11DiaryReadResponse\x12+\n" +
+	"\bDiaryies\x18\x01 \x01(\v2\x0f.diary.DiaryiesR\bDiaryies\"\xa0\x01\n" +
+	"\bDiaryies\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12*\n" +
+	"\belements\x18\x03 \x03(\v2\x0e.diary.ElementR\belements\x12.\n" +
+	"\x04date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
+	"\x04tags\x18\x05 \x03(\tR\x04tags\"\xec\x01\n" +
+	"\aElement\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04xpos\x18\x02 \x01(\x05R\x04xpos\x12\x12\n" +
+	"\x04ypos\x18\x03 \x01(\x05R\x04ypos\x12\x12\n" +
+	"\x04type\x18\x04 \x01(\tR\x04type\x12\x14\n" +
+	"\x05width\x18\x05 \x01(\x05R\x05width\x12\x16\n" +
+	"\x06height\x18\x06 \x01(\x05R\x06height\x12)\n" +
+	"\x10interactive_type\x18\a \x01(\tR\x0finteractiveType\x12\x18\n" +
+	"\acontent\x18\b \x01(\tR\acontent\x12\"\n" +
+	"\x05style\x18\t \x01(\v2\f.diary.StyleR\x05style\"\xd7\x02\n" +
+	"\x05Style\x12)\n" +
+	"\x10background_color\x18\x01 \x01(\tR\x0fbackgroundColor\x12!\n" +
+	"\fborder_color\x18\x02 \x01(\tR\vborderColor\x12!\n" +
+	"\fborder_width\x18\x03 \x01(\x05R\vborderWidth\x12#\n" +
+	"\rborder_radius\x18\x04 \x01(\x05R\fborderRadius\x12\x18\n" +
+	"\apadding\x18\x05 \x01(\x05R\apadding\x12\x1b\n" +
+	"\tfont_size\x18\x06 \x01(\x05R\bfontSize\x12\x14\n" +
+	"\x05color\x18\a \x01(\tR\x05color\x12\x1f\n" +
+	"\vfont_family\x18\b \x01(\tR\n" +
+	"fontFamily\x12\x14\n" +
+	"\x05scale\x18\t \x01(\x05R\x05scale\x12\x1a\n" +
+	"\brotation\x18\n" +
+	" \x01(\x05R\brotation\x12\x18\n" +
+	"\aopacity\x18\v \x01(\x05R\aopacity2\x8a\x01\n" +
+	"\x05Diary\x12A\n" +
 	"\n" +
 	"DiaryWrite\x12\x18.diary.DiaryWriteRequest\x1a\x19.diary.DiaryWriteResponse\x12>\n" +
 	"\tDiaryRead\x12\x17.diary.DiaryReadRequest\x1a\x18.diary.DiaryReadResponseB'Z%github.com/nikaydo/DiaryService;diaryb\x06proto3"
@@ -245,23 +584,32 @@ func file_diary_proto_rawDescGZIP() []byte {
 	return file_diary_proto_rawDescData
 }
 
-var file_diary_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_diary_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_diary_proto_goTypes = []any{
-	(*DiaryWriteRequest)(nil),  // 0: diary.DiaryWriteRequest
-	(*DiaryWriteResponse)(nil), // 1: diary.DiaryWriteResponse
-	(*DiaryReadRequest)(nil),   // 2: diary.DiaryReadRequest
-	(*DiaryReadResponse)(nil),  // 3: diary.DiaryReadResponse
+	(*DiaryWriteRequest)(nil),     // 0: diary.DiaryWriteRequest
+	(*DiaryWriteResponse)(nil),    // 1: diary.DiaryWriteResponse
+	(*DiaryReadRequest)(nil),      // 2: diary.DiaryReadRequest
+	(*DiaryReadResponse)(nil),     // 3: diary.DiaryReadResponse
+	(*Diaryies)(nil),              // 4: diary.Diaryies
+	(*Element)(nil),               // 5: diary.Element
+	(*Style)(nil),                 // 6: diary.Style
+	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_diary_proto_depIdxs = []int32{
-	0, // 0: diary.Auth.DiaryWrite:input_type -> diary.DiaryWriteRequest
-	2, // 1: diary.Auth.DiaryRead:input_type -> diary.DiaryReadRequest
-	1, // 2: diary.Auth.DiaryWrite:output_type -> diary.DiaryWriteResponse
-	3, // 3: diary.Auth.DiaryRead:output_type -> diary.DiaryReadResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: diary.DiaryWriteRequest.Diaryies:type_name -> diary.Diaryies
+	4, // 1: diary.DiaryReadResponse.Diaryies:type_name -> diary.Diaryies
+	5, // 2: diary.Diaryies.elements:type_name -> diary.Element
+	7, // 3: diary.Diaryies.date:type_name -> google.protobuf.Timestamp
+	6, // 4: diary.Element.style:type_name -> diary.Style
+	0, // 5: diary.Diary.DiaryWrite:input_type -> diary.DiaryWriteRequest
+	2, // 6: diary.Diary.DiaryRead:input_type -> diary.DiaryReadRequest
+	1, // 7: diary.Diary.DiaryWrite:output_type -> diary.DiaryWriteResponse
+	3, // 8: diary.Diary.DiaryRead:output_type -> diary.DiaryReadResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_diary_proto_init() }
@@ -275,7 +623,7 @@ func file_diary_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_diary_proto_rawDesc), len(file_diary_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

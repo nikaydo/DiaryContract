@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package diary;   
 
 option go_package = "github.com/nikaydo/DiaryService;diary";
@@ -12,7 +14,7 @@ service Diary{
 
 message DiaryWriteRequest {
   string uuidUser = 1; 
-  bytes content = 2; 
+  Diaryies Diaryies = 2; 
 }
 
 message DiaryWriteResponse {
@@ -25,5 +27,39 @@ message DiaryReadRequest {
 }
 
 message DiaryReadResponse {
-  bytes content = 1;
+  Diaryies Diaryies = 1;
+}
+
+message Diaryies {
+  string id = 1;
+  string title = 2;
+  repeated Element elements = 3;
+  google.protobuf.Timestamp date = 4;
+  repeated string tags = 5;
+}
+
+message Element {
+  string id = 1;
+  int32 xpos = 2;
+  int32 ypos = 3;
+  string type = 4;
+  int32 width = 5;
+  int32 height = 6;
+  string interactive_type = 7;
+  string content = 8;
+  Style style = 9;
+}
+
+message Style {
+  string background_color = 1;
+  string border_color = 2;
+  int32 border_width = 3;
+  int32 border_radius = 4;
+  int32 padding = 5;
+  int32 font_size = 6;
+  string color = 7;
+  string font_family = 8;
+  int32 scale = 9;
+  int32 rotation = 10;
+  int32 opacity = 11;
 }
