@@ -931,7 +931,6 @@ type Preferences struct {
 	Timezone      string                 `protobuf:"bytes,4,opt,name=timezone,proto3" json:"timezone,omitempty"`
 	DiarySettings *DiarySettings         `protobuf:"bytes,5,opt,name=diarySettings,proto3" json:"diarySettings,omitempty"`
 	Notifications *Notifications         `protobuf:"bytes,6,opt,name=notifications,proto3" json:"notifications,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1004,13 +1003,6 @@ func (x *Preferences) GetDiarySettings() *DiarySettings {
 func (x *Preferences) GetNotifications() *Notifications {
 	if x != nil {
 		return x.Notifications
-	}
-	return nil
-}
-
-func (x *Preferences) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
 	}
 	return nil
 }
@@ -1186,15 +1178,14 @@ const file_auth_proto_rawDesc = "" +
 	"\vdisplayName\x18\x04 \x01(\tR\vdisplayName\x12\x16\n" +
 	"\x06avatar\x18\x05 \x01(\tR\x06avatar\x123\n" +
 	"\vpreferences\x18\x06 \x01(\v2\x11.auth.PreferencesR\vpreferences\x128\n" +
-	"\tcreatedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xa3\x02\n" +
+	"\tcreatedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xe9\x01\n" +
 	"\vPreferences\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x14\n" +
 	"\x05theme\x18\x02 \x01(\tR\x05theme\x12\x1a\n" +
 	"\blanguage\x18\x03 \x01(\tR\blanguage\x12\x1a\n" +
 	"\btimezone\x18\x04 \x01(\tR\btimezone\x129\n" +
 	"\rdiarySettings\x18\x05 \x01(\v2\x13.auth.DiarySettingsR\rdiarySettings\x129\n" +
-	"\rnotifications\x18\x06 \x01(\v2\x13.auth.NotificationsR\rnotifications\x128\n" +
-	"\tupdatedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"S\n" +
+	"\rnotifications\x18\x06 \x01(\v2\x13.auth.NotificationsR\rnotifications\"S\n" +
 	"\rDiarySettings\x12\x1a\n" +
 	"\bautoSave\x18\x01 \x01(\bR\bautoSave\x12&\n" +
 	"\x0eshowThumbnails\x18\x02 \x01(\bR\x0eshowThumbnails\"W\n" +
@@ -1259,28 +1250,27 @@ var file_auth_proto_depIdxs = []int32{
 	20, // 6: auth.Profile.createdAt:type_name -> google.protobuf.Timestamp
 	18, // 7: auth.Preferences.diarySettings:type_name -> auth.DiarySettings
 	19, // 8: auth.Preferences.notifications:type_name -> auth.Notifications
-	20, // 9: auth.Preferences.updatedAt:type_name -> google.protobuf.Timestamp
-	0,  // 10: auth.Auth.SignUp:input_type -> auth.SignUpRequest
-	2,  // 11: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	4,  // 12: auth.Auth.ValidateToken:input_type -> auth.ValidateTokenRequest
-	6,  // 13: auth.Auth.ProfileGet:input_type -> auth.ProfileGetRequest
-	8,  // 14: auth.Auth.ProfileUpdate:input_type -> auth.ProfileUpdateRequest
-	10, // 15: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
-	12, // 16: auth.Auth.NotificationUpdate:input_type -> auth.NotificationUpdateRequest
-	14, // 17: auth.Auth.DiarySettingsUpdate:input_type -> auth.DiarySettingsUpdateRequest
-	1,  // 18: auth.Auth.SignUp:output_type -> auth.SignUpResponse
-	3,  // 19: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	5,  // 20: auth.Auth.ValidateToken:output_type -> auth.ValidateTokenResponse
-	7,  // 21: auth.Auth.ProfileGet:output_type -> auth.ProfileGetResponse
-	9,  // 22: auth.Auth.ProfileUpdate:output_type -> auth.ProfileUpdateResponse
-	11, // 23: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
-	13, // 24: auth.Auth.NotificationUpdate:output_type -> auth.NotificationUpdateResponse
-	15, // 25: auth.Auth.DiarySettingsUpdate:output_type -> auth.DiarySettingsUpdateResponse
-	18, // [18:26] is the sub-list for method output_type
-	10, // [10:18] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	0,  // 9: auth.Auth.SignUp:input_type -> auth.SignUpRequest
+	2,  // 10: auth.Auth.SignIn:input_type -> auth.SignInRequest
+	4,  // 11: auth.Auth.ValidateToken:input_type -> auth.ValidateTokenRequest
+	6,  // 12: auth.Auth.ProfileGet:input_type -> auth.ProfileGetRequest
+	8,  // 13: auth.Auth.ProfileUpdate:input_type -> auth.ProfileUpdateRequest
+	10, // 14: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
+	12, // 15: auth.Auth.NotificationUpdate:input_type -> auth.NotificationUpdateRequest
+	14, // 16: auth.Auth.DiarySettingsUpdate:input_type -> auth.DiarySettingsUpdateRequest
+	1,  // 17: auth.Auth.SignUp:output_type -> auth.SignUpResponse
+	3,  // 18: auth.Auth.SignIn:output_type -> auth.SignInResponse
+	5,  // 19: auth.Auth.ValidateToken:output_type -> auth.ValidateTokenResponse
+	7,  // 20: auth.Auth.ProfileGet:output_type -> auth.ProfileGetResponse
+	9,  // 21: auth.Auth.ProfileUpdate:output_type -> auth.ProfileUpdateResponse
+	11, // 22: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
+	13, // 23: auth.Auth.NotificationUpdate:output_type -> auth.NotificationUpdateResponse
+	15, // 24: auth.Auth.DiarySettingsUpdate:output_type -> auth.DiarySettingsUpdateResponse
+	17, // [17:25] is the sub-list for method output_type
+	9,  // [9:17] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_auth_proto_init() }

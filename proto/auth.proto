@@ -121,7 +121,6 @@ message Preferences {
   string timezone = 4;
   DiarySettings diarySettings = 5;
   Notifications notifications = 6;
-  google.protobuf.Timestamp updatedAt = 7;
 }
 
 message DiarySettings {

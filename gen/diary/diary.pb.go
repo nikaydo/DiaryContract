@@ -418,9 +418,10 @@ type Diaries struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Date          *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
-	Tags          []string               `protobuf:"bytes,4,rep,name=tags,proto3" json:"tags,omitempty"`
-	Elements      []*Element             `protobuf:"bytes,5,rep,name=elements,proto3" json:"elements,omitempty"`
+	MainText      string                 `protobuf:"bytes,3,opt,name=mainText,proto3" json:"mainText,omitempty"`
+	Date          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
+	Elements      []*Element             `protobuf:"bytes,6,rep,name=elements,proto3" json:"elements,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -465,6 +466,13 @@ func (x *Diaries) GetId() string {
 func (x *Diaries) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *Diaries) GetMainText() string {
+	if x != nil {
+		return x.MainText
 	}
 	return ""
 }
@@ -889,13 +897,14 @@ const file_diary_proto_rawDesc = "" +
 	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
 	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"9\n" +
 	"\x11DiaryReadResponse\x12$\n" +
-	"\x05Diary\x18\x01 \x03(\v2\x0e.diary.DiariesR\x05Diary\"\x9f\x01\n" +
+	"\x05Diary\x18\x01 \x03(\v2\x0e.diary.DiariesR\x05Diary\"\xbb\x01\n" +
 	"\aDiaries\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12.\n" +
-	"\x04date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
-	"\x04tags\x18\x04 \x03(\tR\x04tags\x12*\n" +
-	"\belements\x18\x05 \x03(\v2\x0e.diary.ElementR\belements\"\xb5\x04\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x1a\n" +
+	"\bmainText\x18\x03 \x01(\tR\bmainText\x12.\n" +
+	"\x04date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12\x12\n" +
+	"\x04tags\x18\x05 \x03(\tR\x04tags\x12*\n" +
+	"\belements\x18\x06 \x03(\v2\x0e.diary.ElementR\belements\"\xb5\x04\n" +
 	"\aElement\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\f\n" +
 	"\x01x\x18\x02 \x01(\x02R\x01x\x12\f\n" +
