@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package auth;   
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/nikaydo/DiaryAuth;auth";
 
 service Auth{
@@ -10,7 +12,16 @@ service Auth{
 
     rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
 
+    rpc ProfileGet (ProfileGetRequest) returns (ProfileGetResponse);
+    rpc ProfileUpdate (ProfileUpdateRequest) returns (ProfileUpdateResponse);
+    rpc PreferencesUpdate (PreferencesUpdateRequest) returns (PreferencesUpdateResponse);
+    rpc NotificationUpdate (NotificationUpdateRequest) returns (NotificationUpdateResponse);
+    rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 } 
+
+message PreferencesUpdateResponse{
+  string status = 1; 
+}
 
 message SignUpRequest {
   string login = 1; 
@@ -50,4 +61,75 @@ message ValidateTokenResponse {
   string jwtToken = 2; 
   //if token expaired return jwt token and true 
   bool isExpaired = 3;
+}
+
+message ProfileGetRequest{
+  string uuid = 1;
+  Profile profile =2;
+}
+
+message ProfileGetResponse{
+  string status = 1; 
+}
+
+message ProfileUpdateRequest{
+  string uuid = 1;
+  Profile profile =2;
+}
+
+message ProfileUpdateResponse{
+  string status = 1; 
+}
+
+message PreferencesUpdateRequest{
+  string uuid = 1;
+  Preferences preferences = 2;
+}
+
+message NotificationUpdateRequest{
+  string uuid = 1;
+  Notifications notifications =2;
+}
+
+message NotificationUpdateResponse{
+  string status = 1; 
+}
+
+message DiarySettingsUpdateRequest{
+  string uuid = 1;
+  DiarySettings diarySettings =2;
+}
+
+message DiarySettingsUpdateResponse{
+  string status = 1; 
+}
+
+message Profile {
+  string userid = 1;
+  string email = 2;
+  string username = 3;
+  string displayName = 4;
+  string avatar = 5;
+  google.protobuf.Timestamp createdAt = 6;
+}
+
+message DiarySettings {
+  bool autoSave = 1;
+  bool showThumbnails = 2;
+}
+
+message Notifications {
+  bool email = 1;
+  bool push = 2;
+  bool reminders = 3;
+}
+
+message Preferences {
+  string userid = 1;
+  string theme = 2;
+  string language = 3;
+  string timezone = 4;
+  DiarySettings diarySettings = 5;
+  Notifications notifications = 6;
+  google.protobuf.Timestamp updatedAt = 7;
 }

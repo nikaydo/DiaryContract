@@ -19,9 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_SignUp_FullMethodName        = "/auth.Auth/SignUp"
-	Auth_SignIn_FullMethodName        = "/auth.Auth/SignIn"
-	Auth_ValidateToken_FullMethodName = "/auth.Auth/ValidateToken"
+	Auth_SignUp_FullMethodName              = "/auth.Auth/SignUp"
+	Auth_SignIn_FullMethodName              = "/auth.Auth/SignIn"
+	Auth_ValidateToken_FullMethodName       = "/auth.Auth/ValidateToken"
+	Auth_ProfileGet_FullMethodName          = "/auth.Auth/ProfileGet"
+	Auth_ProfileUpdate_FullMethodName       = "/auth.Auth/ProfileUpdate"
+	Auth_PreferencesUpdate_FullMethodName   = "/auth.Auth/PreferencesUpdate"
+	Auth_NotificationUpdate_FullMethodName  = "/auth.Auth/NotificationUpdate"
+	Auth_DiarySettingsUpdate_FullMethodName = "/auth.Auth/DiarySettingsUpdate"
 )
 
 // AuthClient is the client API for Auth service.
@@ -31,6 +36,11 @@ type AuthClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
+	ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
+	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
+	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
+	NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error)
+	DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error)
 }
 
 type authClient struct {
@@ -71,6 +81,56 @@ func (c *authClient) ValidateToken(ctx context.Context, in *ValidateTokenRequest
 	return out, nil
 }
 
+func (c *authClient) ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileGetResponse)
+	err := c.cc.Invoke(ctx, Auth_ProfileGet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileUpdateResponse)
+	err := c.cc.Invoke(ctx, Auth_ProfileUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PreferencesUpdateResponse)
+	err := c.cc.Invoke(ctx, Auth_PreferencesUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(NotificationUpdateResponse)
+	err := c.cc.Invoke(ctx, Auth_NotificationUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiarySettingsUpdateResponse)
+	err := c.cc.Invoke(ctx, Auth_DiarySettingsUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -78,6 +138,11 @@ type AuthServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
+	ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
+	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
+	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
+	NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error)
+	DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -96,6 +161,21 @@ func (UnimplementedAuthServer) SignIn(context.Context, *SignInRequest) (*SignInR
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
+}
+func (UnimplementedAuthServer) ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProfileGet not implemented")
+}
+func (UnimplementedAuthServer) ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProfileUpdate not implemented")
+}
+func (UnimplementedAuthServer) PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreferencesUpdate not implemented")
+}
+func (UnimplementedAuthServer) NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotificationUpdate not implemented")
+}
+func (UnimplementedAuthServer) DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiarySettingsUpdate not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -172,6 +252,96 @@ func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_ProfileGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ProfileGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ProfileGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ProfileGet(ctx, req.(*ProfileGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_ProfileUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ProfileUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ProfileUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ProfileUpdate(ctx, req.(*ProfileUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_PreferencesUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PreferencesUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).PreferencesUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_PreferencesUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).PreferencesUpdate(ctx, req.(*PreferencesUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_NotificationUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotificationUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).NotificationUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_NotificationUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).NotificationUpdate(ctx, req.(*NotificationUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_DiarySettingsUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiarySettingsUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).DiarySettingsUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_DiarySettingsUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).DiarySettingsUpdate(ctx, req.(*DiarySettingsUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +360,26 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateToken",
 			Handler:    _Auth_ValidateToken_Handler,
+		},
+		{
+			MethodName: "ProfileGet",
+			Handler:    _Auth_ProfileGet_Handler,
+		},
+		{
+			MethodName: "ProfileUpdate",
+			Handler:    _Auth_ProfileUpdate_Handler,
+		},
+		{
+			MethodName: "PreferencesUpdate",
+			Handler:    _Auth_PreferencesUpdate_Handler,
+		},
+		{
+			MethodName: "NotificationUpdate",
+			Handler:    _Auth_NotificationUpdate_Handler,
+		},
+		{
+			MethodName: "DiarySettingsUpdate",
+			Handler:    _Auth_DiarySettingsUpdate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
