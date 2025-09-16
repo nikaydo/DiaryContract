@@ -19,10 +19,6 @@ service Auth{
     rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 } 
 
-message PreferencesUpdateResponse{
-  string status = 1; 
-}
-
 message SignUpRequest {
   string login = 1; 
   string password = 2; 
@@ -65,11 +61,11 @@ message ValidateTokenResponse {
 
 message ProfileGetRequest{
   string uuid = 1;
-  Profile profile =2;
 }
 
 message ProfileGetResponse{
   string status = 1; 
+  Profile profile =2;
 }
 
 message ProfileUpdateRequest{
@@ -84,6 +80,10 @@ message ProfileUpdateResponse{
 message PreferencesUpdateRequest{
   string uuid = 1;
   Preferences preferences = 2;
+}
+
+message PreferencesUpdateResponse{
+  string status = 1; 
 }
 
 message NotificationUpdateRequest{
@@ -110,7 +110,18 @@ message Profile {
   string username = 3;
   string displayName = 4;
   string avatar = 5;
-  google.protobuf.Timestamp createdAt = 6;
+  Preferences preferences = 6;
+  google.protobuf.Timestamp createdAt = 7;
+}
+
+message Preferences {
+  string userid = 1;
+  string theme = 2;
+  string language = 3;
+  string timezone = 4;
+  DiarySettings diarySettings = 5;
+  Notifications notifications = 6;
+  google.protobuf.Timestamp updatedAt = 7;
 }
 
 message DiarySettings {
@@ -122,14 +133,4 @@ message Notifications {
   bool email = 1;
   bool push = 2;
   bool reminders = 3;
-}
-
-message Preferences {
-  string userid = 1;
-  string theme = 2;
-  string language = 3;
-  string timezone = 4;
-  DiarySettings diarySettings = 5;
-  Notifications notifications = 6;
-  google.protobuf.Timestamp updatedAt = 7;
 }
