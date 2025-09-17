@@ -24,8 +24,8 @@ const (
 
 type DiaryDeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
-	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	UuidDiary     string                 `protobuf:"bytes,1,opt,name=uuidDiary,proto3" json:"uuidDiary,omitempty"`
+	Userid        string                 `protobuf:"bytes,2,opt,name=userid,proto3" json:"userid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60,16 +60,16 @@ func (*DiaryDeleteRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *DiaryDeleteRequest) GetUuidDiaryes() string {
+func (x *DiaryDeleteRequest) GetUuidDiary() string {
 	if x != nil {
-		return x.UuidDiaryes
+		return x.UuidDiary
 	}
 	return ""
 }
 
-func (x *DiaryDeleteRequest) GetUuidUser() string {
+func (x *DiaryDeleteRequest) GetUserid() string {
 	if x != nil {
-		return x.UuidUser
+		return x.Userid
 	}
 	return ""
 }
@@ -120,9 +120,8 @@ func (x *DiaryDeleteResponse) GetStatus() string {
 
 type DiaryUpdateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
-	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
-	Diary         *Diaries               `protobuf:"bytes,3,opt,name=Diary,proto3" json:"Diary,omitempty"`
+	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
+	Diary         *Diaries               `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -157,16 +156,9 @@ func (*DiaryUpdateRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DiaryUpdateRequest) GetUuidDiaryes() string {
+func (x *DiaryUpdateRequest) GetUserid() string {
 	if x != nil {
-		return x.UuidDiaryes
-	}
-	return ""
-}
-
-func (x *DiaryUpdateRequest) GetUuidUser() string {
-	if x != nil {
-		return x.UuidUser
+		return x.Userid
 	}
 	return ""
 }
@@ -224,7 +216,7 @@ func (x *DiaryUpdateResponse) GetStatus() string {
 
 type DiaryWriteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidUser      string                 `protobuf:"bytes,1,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
 	Diary         *Diaries               `protobuf:"bytes,2,opt,name=Diary,proto3" json:"Diary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -260,9 +252,9 @@ func (*DiaryWriteRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *DiaryWriteRequest) GetUuidUser() string {
+func (x *DiaryWriteRequest) GetUserid() string {
 	if x != nil {
-		return x.UuidUser
+		return x.Userid
 	}
 	return ""
 }
@@ -276,7 +268,7 @@ func (x *DiaryWriteRequest) GetDiary() *Diaries {
 
 type DiaryWriteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
+	UuidDiary     string                 `protobuf:"bytes,1,opt,name=uuidDiary,proto3" json:"uuidDiary,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -311,17 +303,17 @@ func (*DiaryWriteResponse) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DiaryWriteResponse) GetUuidDiaryes() string {
+func (x *DiaryWriteResponse) GetUuidDiary() string {
 	if x != nil {
-		return x.UuidDiaryes
+		return x.UuidDiary
 	}
 	return ""
 }
 
 type DiaryReadRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UuidDiaryes   string                 `protobuf:"bytes,1,opt,name=uuidDiaryes,proto3" json:"uuidDiaryes,omitempty"`
-	UuidUser      string                 `protobuf:"bytes,2,opt,name=uuidUser,proto3" json:"uuidUser,omitempty"`
+	UuidDiary     string                 `protobuf:"bytes,1,opt,name=uuidDiary,proto3" json:"uuidDiary,omitempty"`
+	Userid        string                 `protobuf:"bytes,2,opt,name=userid,proto3" json:"userid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -356,16 +348,16 @@ func (*DiaryReadRequest) Descriptor() ([]byte, []int) {
 	return file_diary_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *DiaryReadRequest) GetUuidDiaryes() string {
+func (x *DiaryReadRequest) GetUuidDiary() string {
 	if x != nil {
-		return x.UuidDiaryes
+		return x.UuidDiary
 	}
 	return ""
 }
 
-func (x *DiaryReadRequest) GetUuidUser() string {
+func (x *DiaryReadRequest) GetUserid() string {
 	if x != nil {
-		return x.UuidUser
+		return x.Userid
 	}
 	return ""
 }
@@ -876,26 +868,25 @@ var File_diary_proto protoreflect.FileDescriptor
 
 const file_diary_proto_rawDesc = "" +
 	"\n" +
-	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
-	"\x12DiaryDeleteRequest\x12 \n" +
-	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"-\n" +
+	"\vdiary.proto\x12\x05diary\x1a\x1fgoogle/protobuf/timestamp.proto\"J\n" +
+	"\x12DiaryDeleteRequest\x12\x1c\n" +
+	"\tuuidDiary\x18\x01 \x01(\tR\tuuidDiary\x12\x16\n" +
+	"\x06userid\x18\x02 \x01(\tR\x06userid\"-\n" +
 	"\x13DiaryDeleteResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"x\n" +
-	"\x12DiaryUpdateRequest\x12 \n" +
-	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\x12$\n" +
-	"\x05Diary\x18\x03 \x01(\v2\x0e.diary.DiariesR\x05Diary\"-\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"R\n" +
+	"\x12DiaryUpdateRequest\x12\x16\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\x12$\n" +
+	"\x05Diary\x18\x02 \x01(\v2\x0e.diary.DiariesR\x05Diary\"-\n" +
 	"\x13DiaryUpdateResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"U\n" +
-	"\x11DiaryWriteRequest\x12\x1a\n" +
-	"\buuidUser\x18\x01 \x01(\tR\buuidUser\x12$\n" +
-	"\x05Diary\x18\x02 \x01(\v2\x0e.diary.DiariesR\x05Diary\"6\n" +
-	"\x12DiaryWriteResponse\x12 \n" +
-	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\"P\n" +
-	"\x10DiaryReadRequest\x12 \n" +
-	"\vuuidDiaryes\x18\x01 \x01(\tR\vuuidDiaryes\x12\x1a\n" +
-	"\buuidUser\x18\x02 \x01(\tR\buuidUser\"9\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"Q\n" +
+	"\x11DiaryWriteRequest\x12\x16\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\x12$\n" +
+	"\x05Diary\x18\x02 \x01(\v2\x0e.diary.DiariesR\x05Diary\"2\n" +
+	"\x12DiaryWriteResponse\x12\x1c\n" +
+	"\tuuidDiary\x18\x01 \x01(\tR\tuuidDiary\"H\n" +
+	"\x10DiaryReadRequest\x12\x1c\n" +
+	"\tuuidDiary\x18\x01 \x01(\tR\tuuidDiary\x12\x16\n" +
+	"\x06userid\x18\x02 \x01(\tR\x06userid\"9\n" +
 	"\x11DiaryReadResponse\x12$\n" +
 	"\x05Diary\x18\x01 \x03(\v2\x0e.diary.DiariesR\x05Diary\"\xbb\x01\n" +
 	"\aDiaries\x12\x0e\n" +

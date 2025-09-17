@@ -20,8 +20,7 @@ service Auth{
 } 
 
 message SignUpRequest {
-  string login = 1; 
-  string password = 2; 
+  User user = 1;
 }
 
 message SignUpResponse {
@@ -32,8 +31,7 @@ message SignUpResponse {
 }
 
 message SignInRequest {
-  string login = 1; 
-  string password = 2; 
+  User user = 1;
 }
 
 message SignInResponse {
@@ -41,6 +39,12 @@ message SignInResponse {
   string user_uuid = 1;
   //jwt token
   string jwtToken = 2;
+}
+
+message User {
+  string login = 1;
+  string password = 2;
+  string email = 3;
 }
 
 message ValidateTokenRequest {
@@ -52,7 +56,7 @@ message ValidateTokenRequest {
 
 message ValidateTokenResponse {
   //Jwt token in have write uuid if token valid return uuid 
-  string uuid = 1;
+  string userid = 1;
   //retrunring jwt token if token in requests valid
   string jwtToken = 2; 
   //if token expaired return jwt token and true 
@@ -60,17 +64,17 @@ message ValidateTokenResponse {
 }
 
 message ProfileGetRequest{
-  string uuid = 1;
+  string userid = 1;
 }
 
 message ProfileGetResponse{
   string status = 1; 
-  Profile profile =2;
+  Profile profile = 2;
 }
 
 message ProfileUpdateRequest{
-  string uuid = 1;
-  Profile profile =2;
+  string userid = 1;
+  Profile profile = 2;
 }
 
 message ProfileUpdateResponse{
@@ -78,7 +82,7 @@ message ProfileUpdateResponse{
 }
 
 message PreferencesUpdateRequest{
-  string uuid = 1;
+  string userid = 1;
   Preferences preferences = 2;
 }
 
@@ -87,8 +91,8 @@ message PreferencesUpdateResponse{
 }
 
 message NotificationUpdateRequest{
-  string uuid = 1;
-  Notifications notifications =2;
+  string userid = 1;
+  Notifications notifications = 2;
 }
 
 message NotificationUpdateResponse{
@@ -96,8 +100,8 @@ message NotificationUpdateResponse{
 }
 
 message DiarySettingsUpdateRequest{
-  string uuid = 1;
-  DiarySettings diarySettings =2;
+  string userid = 1;
+  DiarySettings diarySettings = 2;
 }
 
 message DiarySettingsUpdateResponse{
@@ -106,7 +110,6 @@ message DiarySettingsUpdateResponse{
 
 message Profile {
   string userid = 1;
-  string email = 2;
   string username = 3;
   string displayName = 4;
   string avatar = 5;
@@ -129,7 +132,6 @@ message DiarySettings {
 }
 
 message Notifications {
-  bool email = 1;
-  bool push = 2;
-  bool reminders = 3;
+  bool push = 1;
+  bool reminders = 2;
 }

@@ -18,18 +18,17 @@ service Diary{
 } 
 
 message DiaryDeleteRequest {
-  string uuidDiaryes = 1; 
-  string uuidUser = 2; 
+  string uuidDiary = 1; 
+  string userid = 2; 
 }
 
 message DiaryDeleteResponse {
   string status = 1; 
 }
 
-message DiaryUpdateRequest {
-  string uuidDiaryes = 1; 
-  string uuidUser = 2; 
-  Diaries Diary = 3; 
+message DiaryUpdateRequest { 
+  string userid = 1; 
+  Diaries Diary = 2; 
 }
 
 message DiaryUpdateResponse {
@@ -37,17 +36,17 @@ message DiaryUpdateResponse {
 }
 
 message DiaryWriteRequest {
-  string uuidUser = 1; 
+  string userid = 1; 
   Diaries Diary = 2; 
 }
 
 message DiaryWriteResponse {
-  string uuidDiaryes = 1; 
+  string uuidDiary = 1; 
 }
 
 message DiaryReadRequest {
-  string uuidDiaryes = 1; 
-  string uuidUser = 2; 
+  string uuidDiary = 1; 
+  string userid = 2; 
 }
 
 message DiaryReadResponse {
