@@ -26,6 +26,7 @@ type OauthGoogleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	State         string                 `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
+	Url           string                 `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -70,6 +71,13 @@ func (x *OauthGoogleRequest) GetCode() string {
 func (x *OauthGoogleRequest) GetState() string {
 	if x != nil {
 		return x.State
+	}
+	return ""
+}
+
+func (x *OauthGoogleRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
 	}
 	return ""
 }
@@ -1360,10 +1368,11 @@ var File_auth_proto protoreflect.FileDescriptor
 const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
+	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\"P\n" +
 	"\x12OauthGoogleRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
-	"\x05state\x18\x02 \x01(\tR\x05state\"|\n" +
+	"\x05state\x18\x02 \x01(\tR\x05state\x12\x10\n" +
+	"\x03url\x18\x03 \x01(\tR\x03url\"|\n" +
 	"\x13OauthGoogleResponse\x12\x1b\n" +
 	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1a\n" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x12\n" +
