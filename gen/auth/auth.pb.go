@@ -75,10 +75,11 @@ func (x *OauthGoogleRequest) GetState() string {
 }
 
 type OauthGoogleResponse struct {
-	state    protoimpl.MessageState `protogen:"open.v1"`
-	UserUuid string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
-	// jwt token
-	JwtToken      string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserUuid      string                 `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	JwtToken      string                 `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Picture       string                 `protobuf:"bytes,4,opt,name=picture,proto3" json:"picture,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -123,6 +124,20 @@ func (x *OauthGoogleResponse) GetUserUuid() string {
 func (x *OauthGoogleResponse) GetJwtToken() string {
 	if x != nil {
 		return x.JwtToken
+	}
+	return ""
+}
+
+func (x *OauthGoogleResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *OauthGoogleResponse) GetPicture() string {
+	if x != nil {
+		return x.Picture
 	}
 	return ""
 }
@@ -1348,10 +1363,12 @@ const file_auth_proto_rawDesc = "" +
 	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
 	"\x12OauthGoogleRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
-	"\x05state\x18\x02 \x01(\tR\x05state\"N\n" +
+	"\x05state\x18\x02 \x01(\tR\x05state\"|\n" +
 	"\x13OauthGoogleResponse\x12\x1b\n" +
 	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\")\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x18\n" +
+	"\apicture\x18\x04 \x01(\tR\apicture\")\n" +
 	"\x15OauthGoogleUrlRequest\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"*\n" +
 	"\x16OauthGoogleUrlResponse\x12\x10\n" +

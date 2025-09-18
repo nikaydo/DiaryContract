@@ -31,8 +31,9 @@ message OauthGoogleRequest{
 
 message OauthGoogleResponse{
   string user_uuid = 1;
-  //jwt token
   string jwtToken = 2;
+  string name = 3;
+  string picture = 4;
 }
 
 message OauthGoogleUrlRequest{
