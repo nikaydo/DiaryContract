@@ -27,6 +27,7 @@ service Auth{
 message OauthGoogleRequest{
   string code =1;
   string state =2;
+  string url = 3;
 }
 
 message OauthGoogleResponse{
