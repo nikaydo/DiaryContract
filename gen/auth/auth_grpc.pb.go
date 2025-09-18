@@ -21,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Auth_SignUp_FullMethodName              = "/auth.Auth/SignUp"
 	Auth_SignIn_FullMethodName              = "/auth.Auth/SignIn"
+	Auth_OauthGoogleUrl_FullMethodName      = "/auth.Auth/OauthGoogleUrl"
+	Auth_OauthGoogle_FullMethodName         = "/auth.Auth/OauthGoogle"
 	Auth_ValidateToken_FullMethodName       = "/auth.Auth/ValidateToken"
 	Auth_ProfileGet_FullMethodName          = "/auth.Auth/ProfileGet"
 	Auth_ProfileUpdate_FullMethodName       = "/auth.Auth/ProfileUpdate"
@@ -35,6 +37,8 @@ const (
 type AuthClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
+	OauthGoogleUrl(ctx context.Context, in *OauthGoogleUrlRequest, opts ...grpc.CallOption) (*OauthGoogleUrlResponse, error)
+	OauthGoogle(ctx context.Context, in *OauthGoogleRequest, opts ...grpc.CallOption) (*OauthGoogleResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateTokenRequest, opts ...grpc.CallOption) (*ValidateTokenResponse, error)
 	ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
 	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
@@ -65,6 +69,26 @@ func (c *authClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignInResponse)
 	err := c.cc.Invoke(ctx, Auth_SignIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) OauthGoogleUrl(ctx context.Context, in *OauthGoogleUrlRequest, opts ...grpc.CallOption) (*OauthGoogleUrlResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OauthGoogleUrlResponse)
+	err := c.cc.Invoke(ctx, Auth_OauthGoogleUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) OauthGoogle(ctx context.Context, in *OauthGoogleRequest, opts ...grpc.CallOption) (*OauthGoogleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(OauthGoogleResponse)
+	err := c.cc.Invoke(ctx, Auth_OauthGoogle_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -137,6 +161,8 @@ func (c *authClient) DiarySettingsUpdate(ctx context.Context, in *DiarySettingsU
 type AuthServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
+	OauthGoogleUrl(context.Context, *OauthGoogleUrlRequest) (*OauthGoogleUrlResponse, error)
+	OauthGoogle(context.Context, *OauthGoogleRequest) (*OauthGoogleResponse, error)
 	ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error)
 	ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
 	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
@@ -158,6 +184,12 @@ func (UnimplementedAuthServer) SignUp(context.Context, *SignUpRequest) (*SignUpR
 }
 func (UnimplementedAuthServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
+}
+func (UnimplementedAuthServer) OauthGoogleUrl(context.Context, *OauthGoogleUrlRequest) (*OauthGoogleUrlResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OauthGoogleUrl not implemented")
+}
+func (UnimplementedAuthServer) OauthGoogle(context.Context, *OauthGoogleRequest) (*OauthGoogleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OauthGoogle not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateTokenRequest) (*ValidateTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -230,6 +262,42 @@ func _Auth_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).SignIn(ctx, req.(*SignInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_OauthGoogleUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OauthGoogleUrlRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).OauthGoogleUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_OauthGoogleUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).OauthGoogleUrl(ctx, req.(*OauthGoogleUrlRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_OauthGoogle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OauthGoogleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).OauthGoogle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_OauthGoogle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).OauthGoogle(ctx, req.(*OauthGoogleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -356,6 +424,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignIn",
 			Handler:    _Auth_SignIn_Handler,
+		},
+		{
+			MethodName: "OauthGoogleUrl",
+			Handler:    _Auth_OauthGoogleUrl_Handler,
+		},
+		{
+			MethodName: "OauthGoogle",
+			Handler:    _Auth_OauthGoogle_Handler,
 		},
 		{
 			MethodName: "ValidateToken",

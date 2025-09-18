@@ -10,6 +10,9 @@ service Auth{
     rpc SignUp (SignUpRequest) returns (SignUpResponse);
     rpc SignIn (SignInRequest) returns (SignInResponse);
 
+    rpc OauthGoogleUrl (OauthGoogleUrlRequest) returns (OauthGoogleUrlResponse);
+    rpc OauthGoogle (OauthGoogleRequest) returns (OauthGoogleResponse);
+
     rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
 
     rpc ProfileGet (ProfileGetRequest) returns (ProfileGetResponse);
@@ -17,7 +20,28 @@ service Auth{
     rpc PreferencesUpdate (PreferencesUpdateRequest) returns (PreferencesUpdateResponse);
     rpc NotificationUpdate (NotificationUpdateRequest) returns (NotificationUpdateResponse);
     rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
+
+    
 } 
+
+message OauthGoogleRequest{
+  string code =1;
+  string state =2;
+}
+
+message OauthGoogleResponse{
+  string user_uuid = 1;
+  //jwt token
+  string jwtToken = 2;
+}
+
+message OauthGoogleUrlRequest{
+  string url = 1;
+}
+
+message OauthGoogleUrlResponse{
+  string url = 1;
+}
 
 message SignUpRequest {
   User user = 1;
