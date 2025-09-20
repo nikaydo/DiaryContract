@@ -39,7 +39,7 @@ message Enable2FAResponse{
 
 message Validate2FARequest{
   string code =1;
-  
+  string user_uuid =2;
 }
 
 message Validate2FAResponse{

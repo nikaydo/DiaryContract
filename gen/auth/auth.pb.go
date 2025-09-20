@@ -113,6 +113,7 @@ func (x *Enable2FAResponse) GetUrl() string {
 type Validate2FARequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	UserUuid      string                 `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -150,6 +151,13 @@ func (*Validate2FARequest) Descriptor() ([]byte, []int) {
 func (x *Validate2FARequest) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *Validate2FARequest) GetUserUuid() string {
+	if x != nil {
+		return x.UserUuid
 	}
 	return ""
 }
@@ -1796,9 +1804,10 @@ const file_auth_proto_rawDesc = "" +
 	"\x10Enable2FARequest\x12\x1b\n" +
 	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\"%\n" +
 	"\x11Enable2FAResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"(\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"E\n" +
 	"\x12Validate2FARequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"-\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1b\n" +
+	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\"-\n" +
 	"\x13Validate2FAResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\"1\n" +
 	"\x12RecoveryGenRequest\x12\x1b\n" +
