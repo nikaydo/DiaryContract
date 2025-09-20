@@ -22,33 +22,42 @@ service Auth{
     rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 
     rpc Enable2FA(Enable2FARequest) returns (Enable2FAResponse);
+    rpc Setup2FA(Setup2FARequest) returns (Setup12FAResponse);
     rpc Validate2FA(Validate2FARequest) returns (Validate2FAResponse);
     
     rpc RecoveryGen(RecoveryGenRequest) returns (RecoveryGenResponse);
     rpc RecoveryCheck(RecoveryCheckRequest) returns (RecoveryCheckResponse);
     rpc RecoveryGet(RecoveryGetRequest) returns (RecoveryGetResponse);
 } 
+//2FA
+message Setup2FARequest{
+  string userid =1;
+}
+
+message Setup12FAResponse{
+  string url =1;
+}
 
 message Enable2FARequest{
-  string user_uuid =1;
+  string userid =1;
   
 }
 message Enable2FAResponse{
-  string url =1;
+  string status =1;
 }
 
 message Validate2FARequest{
   string code =1;
-  string user_uuid =2;
+  string userid =2;
 }
 
 message Validate2FAResponse{
   bool status =1;
 }
-
-
+//2FA
+//Recovery code
 message RecoveryGenRequest{
-  string user_uuid =1;
+  string userid =1;
   
 }
 
@@ -67,15 +76,15 @@ message RecoveryCheckResponse{
 }
 
 message RecoveryGetRequest{
-  string user_uuid =1;
+  string userid =1;
   
 }
 
 message RecoveryGetResponse{
   repeated string code =1;
 }
-
-
+//Recovery code
+//Oauth2
 message OauthGoogleRequest{
   string code =1;
   string state =2;
@@ -83,7 +92,7 @@ message OauthGoogleRequest{
 }
 
 message OauthGoogleResponse{
-  string user_uuid = 1;
+  string userid = 1;
   string jwtToken = 2;
 }
 
@@ -94,14 +103,15 @@ message OauthGoogleUrlRequest{
 message OauthGoogleUrlResponse{
   string url = 1;
 }
-
+//Oauth2
+//Auth
 message SignUpRequest {
   User user = 1;
 }
 
 message SignUpResponse {
   //uuid user
-  string user_uuid = 1;
+  string userid = 1;
   //jwt token
   string jwtToken = 2;
 }
@@ -112,7 +122,7 @@ message SignInRequest {
 
 message SignInResponse {
   //uuid user
-  string user_uuid = 1;
+  string userid = 1;
   //jwt token
   string jwtToken = 2;
 }
@@ -138,6 +148,7 @@ message ValidateTokenResponse {
   //if token expaired return jwt token and true 
   bool isExpaired = 3;
 }
+//Auth
 
 message ProfileGetRequest{
   string userid = 1;
