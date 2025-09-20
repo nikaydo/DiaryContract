@@ -67,115 +67,115 @@ func (x *Setup2FARequest) GetUserid() string {
 	return ""
 }
 
-type Setup12FAResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Setup12FAResponse) Reset() {
-	*x = Setup12FAResponse{}
-	mi := &file_auth_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Setup12FAResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Setup12FAResponse) ProtoMessage() {}
-
-func (x *Setup12FAResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Setup12FAResponse.ProtoReflect.Descriptor instead.
-func (*Setup12FAResponse) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Setup12FAResponse) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-type Enable2FARequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Enable2FARequest) Reset() {
-	*x = Enable2FARequest{}
-	mi := &file_auth_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Enable2FARequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Enable2FARequest) ProtoMessage() {}
-
-func (x *Enable2FARequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Enable2FARequest.ProtoReflect.Descriptor instead.
-func (*Enable2FARequest) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Enable2FARequest) GetUserid() string {
-	if x != nil {
-		return x.Userid
-	}
-	return ""
-}
-
-type Enable2FAResponse struct {
+type Setup2FAResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Enable2FAResponse) Reset() {
-	*x = Enable2FAResponse{}
+func (x *Setup2FAResponse) Reset() {
+	*x = Setup2FAResponse{}
+	mi := &file_auth_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Setup2FAResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Setup2FAResponse) ProtoMessage() {}
+
+func (x *Setup2FAResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Setup2FAResponse.ProtoReflect.Descriptor instead.
+func (*Setup2FAResponse) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Setup2FAResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+type Prepare2FARequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Prepare2FARequest) Reset() {
+	*x = Prepare2FARequest{}
+	mi := &file_auth_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Prepare2FARequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Prepare2FARequest) ProtoMessage() {}
+
+func (x *Prepare2FARequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Prepare2FARequest.ProtoReflect.Descriptor instead.
+func (*Prepare2FARequest) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Prepare2FARequest) GetUserid() string {
+	if x != nil {
+		return x.Userid
+	}
+	return ""
+}
+
+type Prepare2FAResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Prepare2FAResponse) Reset() {
+	*x = Prepare2FAResponse{}
 	mi := &file_auth_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Enable2FAResponse) String() string {
+func (x *Prepare2FAResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Enable2FAResponse) ProtoMessage() {}
+func (*Prepare2FAResponse) ProtoMessage() {}
 
-func (x *Enable2FAResponse) ProtoReflect() protoreflect.Message {
+func (x *Prepare2FAResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -187,14 +187,14 @@ func (x *Enable2FAResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Enable2FAResponse.ProtoReflect.Descriptor instead.
-func (*Enable2FAResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use Prepare2FAResponse.ProtoReflect.Descriptor instead.
+func (*Prepare2FAResponse) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Enable2FAResponse) GetStatus() string {
+func (x *Prepare2FAResponse) GetUrl() string {
 	if x != nil {
-		return x.Status
+		return x.Url
 	}
 	return ""
 }
@@ -1897,13 +1897,13 @@ const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\")\n" +
 	"\x0fSetup2FARequest\x12\x16\n" +
-	"\x06userid\x18\x01 \x01(\tR\x06userid\"%\n" +
-	"\x11Setup12FAResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"*\n" +
-	"\x10Enable2FARequest\x12\x16\n" +
-	"\x06userid\x18\x01 \x01(\tR\x06userid\"+\n" +
-	"\x11Enable2FAResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"@\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\"*\n" +
+	"\x10Setup2FAResponse\x12\x16\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"+\n" +
+	"\x11Prepare2FARequest\x12\x16\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\"&\n" +
+	"\x12Prepare2FAResponse\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"@\n" +
 	"\x12Validate2FARequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x16\n" +
 	"\x06userid\x18\x02 \x01(\tR\x06userid\"-\n" +
@@ -2001,7 +2001,7 @@ const file_auth_proto_rawDesc = "" +
 	"\x0eshowThumbnails\x18\x02 \x01(\bR\x0eshowThumbnails\"A\n" +
 	"\rNotifications\x12\x12\n" +
 	"\x04push\x18\x01 \x01(\bR\x04push\x12\x1c\n" +
-	"\treminders\x18\x02 \x01(\bR\treminders2\xf1\b\n" +
+	"\treminders\x18\x02 \x01(\bR\treminders2\xf2\b\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
 	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12K\n" +
@@ -2013,9 +2013,9 @@ const file_auth_proto_rawDesc = "" +
 	"\rProfileUpdate\x12\x1a.auth.ProfileUpdateRequest\x1a\x1b.auth.ProfileUpdateResponse\x12T\n" +
 	"\x11PreferencesUpdate\x12\x1e.auth.PreferencesUpdateRequest\x1a\x1f.auth.PreferencesUpdateResponse\x12W\n" +
 	"\x12NotificationUpdate\x12\x1f.auth.NotificationUpdateRequest\x1a .auth.NotificationUpdateResponse\x12Z\n" +
-	"\x13DiarySettingsUpdate\x12 .auth.DiarySettingsUpdateRequest\x1a!.auth.DiarySettingsUpdateResponse\x12<\n" +
-	"\tEnable2FA\x12\x16.auth.Enable2FARequest\x1a\x17.auth.Enable2FAResponse\x12:\n" +
-	"\bSetup2FA\x12\x15.auth.Setup2FARequest\x1a\x17.auth.Setup12FAResponse\x12B\n" +
+	"\x13DiarySettingsUpdate\x12 .auth.DiarySettingsUpdateRequest\x1a!.auth.DiarySettingsUpdateResponse\x12>\n" +
+	"\tEnable2FA\x12\x17.auth.Prepare2FARequest\x1a\x18.auth.Prepare2FAResponse\x129\n" +
+	"\bSetup2FA\x12\x15.auth.Setup2FARequest\x1a\x16.auth.Setup2FAResponse\x12B\n" +
 	"\vValidate2FA\x12\x18.auth.Validate2FARequest\x1a\x19.auth.Validate2FAResponse\x12B\n" +
 	"\vRecoveryGen\x12\x18.auth.RecoveryGenRequest\x1a\x19.auth.RecoveryGenResponse\x12H\n" +
 	"\rRecoveryCheck\x12\x1a.auth.RecoveryCheckRequest\x1a\x1b.auth.RecoveryCheckResponse\x12B\n" +
@@ -2036,9 +2036,9 @@ func file_auth_proto_rawDescGZIP() []byte {
 var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_auth_proto_goTypes = []any{
 	(*Setup2FARequest)(nil),             // 0: auth.Setup2FARequest
-	(*Setup12FAResponse)(nil),           // 1: auth.Setup12FAResponse
-	(*Enable2FARequest)(nil),            // 2: auth.Enable2FARequest
-	(*Enable2FAResponse)(nil),           // 3: auth.Enable2FAResponse
+	(*Setup2FAResponse)(nil),            // 1: auth.Setup2FAResponse
+	(*Prepare2FARequest)(nil),           // 2: auth.Prepare2FARequest
+	(*Prepare2FAResponse)(nil),          // 3: auth.Prepare2FAResponse
 	(*Validate2FARequest)(nil),          // 4: auth.Validate2FARequest
 	(*Validate2FAResponse)(nil),         // 5: auth.Validate2FAResponse
 	(*RecoveryGenRequest)(nil),          // 6: auth.RecoveryGenRequest
@@ -2096,7 +2096,7 @@ var file_auth_proto_depIdxs = []int32{
 	27, // 18: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
 	29, // 19: auth.Auth.NotificationUpdate:input_type -> auth.NotificationUpdateRequest
 	31, // 20: auth.Auth.DiarySettingsUpdate:input_type -> auth.DiarySettingsUpdateRequest
-	2,  // 21: auth.Auth.Enable2FA:input_type -> auth.Enable2FARequest
+	2,  // 21: auth.Auth.Enable2FA:input_type -> auth.Prepare2FARequest
 	0,  // 22: auth.Auth.Setup2FA:input_type -> auth.Setup2FARequest
 	4,  // 23: auth.Auth.Validate2FA:input_type -> auth.Validate2FARequest
 	6,  // 24: auth.Auth.RecoveryGen:input_type -> auth.RecoveryGenRequest
@@ -2112,8 +2112,8 @@ var file_auth_proto_depIdxs = []int32{
 	28, // 34: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
 	30, // 35: auth.Auth.NotificationUpdate:output_type -> auth.NotificationUpdateResponse
 	32, // 36: auth.Auth.DiarySettingsUpdate:output_type -> auth.DiarySettingsUpdateResponse
-	3,  // 37: auth.Auth.Enable2FA:output_type -> auth.Enable2FAResponse
-	1,  // 38: auth.Auth.Setup2FA:output_type -> auth.Setup12FAResponse
+	3,  // 37: auth.Auth.Enable2FA:output_type -> auth.Prepare2FAResponse
+	1,  // 38: auth.Auth.Setup2FA:output_type -> auth.Setup2FAResponse
 	5,  // 39: auth.Auth.Validate2FA:output_type -> auth.Validate2FAResponse
 	7,  // 40: auth.Auth.RecoveryGen:output_type -> auth.RecoveryGenResponse
 	9,  // 41: auth.Auth.RecoveryCheck:output_type -> auth.RecoveryCheckResponse

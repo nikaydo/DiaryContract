@@ -21,8 +21,8 @@ service Auth{
     rpc NotificationUpdate (NotificationUpdateRequest) returns (NotificationUpdateResponse);
     rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 
-    rpc Enable2FA(Enable2FARequest) returns (Enable2FAResponse);
-    rpc Setup2FA(Setup2FARequest) returns (Setup12FAResponse);
+    rpc Enable2FA(Prepare2FARequest) returns (Prepare2FAResponse);
+    rpc Setup2FA(Setup2FARequest) returns (Setup2FAResponse);
     rpc Validate2FA(Validate2FARequest) returns (Validate2FAResponse);
     
     rpc RecoveryGen(RecoveryGenRequest) returns (RecoveryGenResponse);
@@ -34,16 +34,16 @@ message Setup2FARequest{
   string userid =1;
 }
 
-message Setup12FAResponse{
-  string url =1;
+message Setup2FAResponse{
+  string status =1;
 }
 
-message Enable2FARequest{
+message Prepare2FARequest{
   string userid =1;
   
 }
-message Enable2FAResponse{
-  string status =1;
+message Prepare2FAResponse{
+  string url =1;
 }
 
 message Validate2FARequest{

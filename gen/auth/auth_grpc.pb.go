@@ -51,8 +51,8 @@ type AuthClient interface {
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
 	NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error)
 	DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error)
-	Enable2FA(ctx context.Context, in *Enable2FARequest, opts ...grpc.CallOption) (*Enable2FAResponse, error)
-	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup12FAResponse, error)
+	Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
+	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error)
 	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
 	RecoveryGen(ctx context.Context, in *RecoveryGenRequest, opts ...grpc.CallOption) (*RecoveryGenResponse, error)
 	RecoveryCheck(ctx context.Context, in *RecoveryCheckRequest, opts ...grpc.CallOption) (*RecoveryCheckResponse, error)
@@ -167,9 +167,9 @@ func (c *authClient) DiarySettingsUpdate(ctx context.Context, in *DiarySettingsU
 	return out, nil
 }
 
-func (c *authClient) Enable2FA(ctx context.Context, in *Enable2FARequest, opts ...grpc.CallOption) (*Enable2FAResponse, error) {
+func (c *authClient) Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Enable2FAResponse)
+	out := new(Prepare2FAResponse)
 	err := c.cc.Invoke(ctx, Auth_Enable2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -177,9 +177,9 @@ func (c *authClient) Enable2FA(ctx context.Context, in *Enable2FARequest, opts .
 	return out, nil
 }
 
-func (c *authClient) Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup12FAResponse, error) {
+func (c *authClient) Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Setup12FAResponse)
+	out := new(Setup2FAResponse)
 	err := c.cc.Invoke(ctx, Auth_Setup2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -241,8 +241,8 @@ type AuthServer interface {
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
 	NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error)
 	DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error)
-	Enable2FA(context.Context, *Enable2FARequest) (*Enable2FAResponse, error)
-	Setup2FA(context.Context, *Setup2FARequest) (*Setup12FAResponse, error)
+	Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
+	Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error)
 	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
 	RecoveryGen(context.Context, *RecoveryGenRequest) (*RecoveryGenResponse, error)
 	RecoveryCheck(context.Context, *RecoveryCheckRequest) (*RecoveryCheckResponse, error)
@@ -287,10 +287,10 @@ func (UnimplementedAuthServer) NotificationUpdate(context.Context, *Notification
 func (UnimplementedAuthServer) DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiarySettingsUpdate not implemented")
 }
-func (UnimplementedAuthServer) Enable2FA(context.Context, *Enable2FARequest) (*Enable2FAResponse, error) {
+func (UnimplementedAuthServer) Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable2FA not implemented")
 }
-func (UnimplementedAuthServer) Setup2FA(context.Context, *Setup2FARequest) (*Setup12FAResponse, error) {
+func (UnimplementedAuthServer) Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Setup2FA not implemented")
 }
 func (UnimplementedAuthServer) Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error) {
@@ -507,7 +507,7 @@ func _Auth_DiarySettingsUpdate_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _Auth_Enable2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Enable2FARequest)
+	in := new(Prepare2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _Auth_Enable2FA_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Auth_Enable2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Enable2FA(ctx, req.(*Enable2FARequest))
+		return srv.(AuthServer).Enable2FA(ctx, req.(*Prepare2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
