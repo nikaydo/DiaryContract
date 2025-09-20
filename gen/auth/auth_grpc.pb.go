@@ -29,6 +29,11 @@ const (
 	Auth_PreferencesUpdate_FullMethodName   = "/auth.Auth/PreferencesUpdate"
 	Auth_NotificationUpdate_FullMethodName  = "/auth.Auth/NotificationUpdate"
 	Auth_DiarySettingsUpdate_FullMethodName = "/auth.Auth/DiarySettingsUpdate"
+	Auth_Enable2FA_FullMethodName           = "/auth.Auth/Enable2FA"
+	Auth_Validate2FA_FullMethodName         = "/auth.Auth/Validate2FA"
+	Auth_RecoveryGen_FullMethodName         = "/auth.Auth/RecoveryGen"
+	Auth_RecoveryCheck_FullMethodName       = "/auth.Auth/RecoveryCheck"
+	Auth_RecoveryGet_FullMethodName         = "/auth.Auth/RecoveryGet"
 )
 
 // AuthClient is the client API for Auth service.
@@ -45,6 +50,11 @@ type AuthClient interface {
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
 	NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error)
 	DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error)
+	Enable2FA(ctx context.Context, in *Enable2FARequest, opts ...grpc.CallOption) (*Enable2FAResponse, error)
+	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
+	RecoveryGen(ctx context.Context, in *RecoveryGenRequest, opts ...grpc.CallOption) (*RecoveryGenResponse, error)
+	RecoveryCheck(ctx context.Context, in *RecoveryCheckRequest, opts ...grpc.CallOption) (*RecoveryCheckResponse, error)
+	RecoveryGet(ctx context.Context, in *RecoveryGetRequest, opts ...grpc.CallOption) (*RecoveryGetResponse, error)
 }
 
 type authClient struct {
@@ -155,6 +165,56 @@ func (c *authClient) DiarySettingsUpdate(ctx context.Context, in *DiarySettingsU
 	return out, nil
 }
 
+func (c *authClient) Enable2FA(ctx context.Context, in *Enable2FARequest, opts ...grpc.CallOption) (*Enable2FAResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Enable2FAResponse)
+	err := c.cc.Invoke(ctx, Auth_Enable2FA_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Validate2FAResponse)
+	err := c.cc.Invoke(ctx, Auth_Validate2FA_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) RecoveryGen(ctx context.Context, in *RecoveryGenRequest, opts ...grpc.CallOption) (*RecoveryGenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecoveryGenResponse)
+	err := c.cc.Invoke(ctx, Auth_RecoveryGen_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) RecoveryCheck(ctx context.Context, in *RecoveryCheckRequest, opts ...grpc.CallOption) (*RecoveryCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecoveryCheckResponse)
+	err := c.cc.Invoke(ctx, Auth_RecoveryCheck_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) RecoveryGet(ctx context.Context, in *RecoveryGetRequest, opts ...grpc.CallOption) (*RecoveryGetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RecoveryGetResponse)
+	err := c.cc.Invoke(ctx, Auth_RecoveryGet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -169,6 +229,11 @@ type AuthServer interface {
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
 	NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error)
 	DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error)
+	Enable2FA(context.Context, *Enable2FARequest) (*Enable2FAResponse, error)
+	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
+	RecoveryGen(context.Context, *RecoveryGenRequest) (*RecoveryGenResponse, error)
+	RecoveryCheck(context.Context, *RecoveryCheckRequest) (*RecoveryCheckResponse, error)
+	RecoveryGet(context.Context, *RecoveryGetRequest) (*RecoveryGetResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -208,6 +273,21 @@ func (UnimplementedAuthServer) NotificationUpdate(context.Context, *Notification
 }
 func (UnimplementedAuthServer) DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DiarySettingsUpdate not implemented")
+}
+func (UnimplementedAuthServer) Enable2FA(context.Context, *Enable2FARequest) (*Enable2FAResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Enable2FA not implemented")
+}
+func (UnimplementedAuthServer) Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Validate2FA not implemented")
+}
+func (UnimplementedAuthServer) RecoveryGen(context.Context, *RecoveryGenRequest) (*RecoveryGenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecoveryGen not implemented")
+}
+func (UnimplementedAuthServer) RecoveryCheck(context.Context, *RecoveryCheckRequest) (*RecoveryCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecoveryCheck not implemented")
+}
+func (UnimplementedAuthServer) RecoveryGet(context.Context, *RecoveryGetRequest) (*RecoveryGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecoveryGet not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -410,6 +490,96 @@ func _Auth_DiarySettingsUpdate_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_Enable2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Enable2FARequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Enable2FA(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Enable2FA_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Enable2FA(ctx, req.(*Enable2FARequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_Validate2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Validate2FARequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).Validate2FA(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_Validate2FA_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).Validate2FA(ctx, req.(*Validate2FARequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_RecoveryGen_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecoveryGenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).RecoveryGen(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_RecoveryGen_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).RecoveryGen(ctx, req.(*RecoveryGenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_RecoveryCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecoveryCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).RecoveryCheck(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_RecoveryCheck_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).RecoveryCheck(ctx, req.(*RecoveryCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_RecoveryGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RecoveryGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).RecoveryGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_RecoveryGet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).RecoveryGet(ctx, req.(*RecoveryGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -456,6 +626,26 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DiarySettingsUpdate",
 			Handler:    _Auth_DiarySettingsUpdate_Handler,
+		},
+		{
+			MethodName: "Enable2FA",
+			Handler:    _Auth_Enable2FA_Handler,
+		},
+		{
+			MethodName: "Validate2FA",
+			Handler:    _Auth_Validate2FA_Handler,
+		},
+		{
+			MethodName: "RecoveryGen",
+			Handler:    _Auth_RecoveryGen_Handler,
+		},
+		{
+			MethodName: "RecoveryCheck",
+			Handler:    _Auth_RecoveryCheck_Handler,
+		},
+		{
+			MethodName: "RecoveryGet",
+			Handler:    _Auth_RecoveryGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

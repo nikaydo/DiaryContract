@@ -21,8 +21,60 @@ service Auth{
     rpc NotificationUpdate (NotificationUpdateRequest) returns (NotificationUpdateResponse);
     rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 
+    rpc Enable2FA(Enable2FARequest) returns (Enable2FAResponse);
+    rpc Validate2FA(Validate2FARequest) returns (Validate2FAResponse);
     
+    rpc RecoveryGen(RecoveryGenRequest) returns (RecoveryGenResponse);
+    rpc RecoveryCheck(RecoveryCheckRequest) returns (RecoveryCheckResponse);
+    rpc RecoveryGet(RecoveryGetRequest) returns (RecoveryGetResponse);
 } 
+
+message Enable2FARequest{
+  string user_uuid =1;
+  
+}
+message Enable2FAResponse{
+  string url =1;
+}
+
+message Validate2FARequest{
+  string code =1;
+  
+}
+
+message Validate2FAResponse{
+  string status =1;
+}
+
+
+message RecoveryGenRequest{
+  string user_uuid =1;
+  
+}
+
+message RecoveryGenResponse{
+  string status =1;
+}
+
+
+message RecoveryCheckRequest{
+  string code =1;
+  
+}
+
+message RecoveryCheckResponse{
+  string status =1;
+}
+
+message RecoveryGetRequest{
+  string user_uuid =1;
+  
+}
+
+message RecoveryGetResponse{
+  repeated string code =1;
+}
+
 
 message OauthGoogleRequest{
   string code =1;
