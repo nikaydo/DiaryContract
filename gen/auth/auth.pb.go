@@ -973,7 +973,6 @@ type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1018,13 +1017,6 @@ func (x *User) GetLogin() string {
 func (x *User) GetPassword() string {
 	if x != nil {
 		return x.Password
-	}
-	return ""
-}
-
-func (x *User) GetEmail() string {
-	if x != nil {
-		return x.Email
 	}
 	return ""
 }
@@ -1523,9 +1515,6 @@ type Preferences struct {
 	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
 	Theme         string                 `protobuf:"bytes,2,opt,name=theme,proto3" json:"theme,omitempty"`
 	Language      string                 `protobuf:"bytes,3,opt,name=language,proto3" json:"language,omitempty"`
-	Timezone      string                 `protobuf:"bytes,4,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	DiarySettings *DiarySettings         `protobuf:"bytes,5,opt,name=diarySettings,proto3" json:"diarySettings,omitempty"`
-	Notifications *Notifications         `protobuf:"bytes,6,opt,name=notifications,proto3" json:"notifications,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1579,131 +1568,6 @@ func (x *Preferences) GetLanguage() string {
 		return x.Language
 	}
 	return ""
-}
-
-func (x *Preferences) GetTimezone() string {
-	if x != nil {
-		return x.Timezone
-	}
-	return ""
-}
-
-func (x *Preferences) GetDiarySettings() *DiarySettings {
-	if x != nil {
-		return x.DiarySettings
-	}
-	return nil
-}
-
-func (x *Preferences) GetNotifications() *Notifications {
-	if x != nil {
-		return x.Notifications
-	}
-	return nil
-}
-
-type DiarySettings struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	AutoSave       bool                   `protobuf:"varint,1,opt,name=autoSave,proto3" json:"autoSave,omitempty"`
-	ShowThumbnails bool                   `protobuf:"varint,2,opt,name=showThumbnails,proto3" json:"showThumbnails,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *DiarySettings) Reset() {
-	*x = DiarySettings{}
-	mi := &file_auth_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DiarySettings) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DiarySettings) ProtoMessage() {}
-
-func (x *DiarySettings) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DiarySettings.ProtoReflect.Descriptor instead.
-func (*DiarySettings) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *DiarySettings) GetAutoSave() bool {
-	if x != nil {
-		return x.AutoSave
-	}
-	return false
-}
-
-func (x *DiarySettings) GetShowThumbnails() bool {
-	if x != nil {
-		return x.ShowThumbnails
-	}
-	return false
-}
-
-type Notifications struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Push          bool                   `protobuf:"varint,1,opt,name=push,proto3" json:"push,omitempty"`
-	Reminders     bool                   `protobuf:"varint,2,opt,name=reminders,proto3" json:"reminders,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Notifications) Reset() {
-	*x = Notifications{}
-	mi := &file_auth_proto_msgTypes[32]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Notifications) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Notifications) ProtoMessage() {}
-
-func (x *Notifications) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_proto_msgTypes[32]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Notifications.ProtoReflect.Descriptor instead.
-func (*Notifications) Descriptor() ([]byte, []int) {
-	return file_auth_proto_rawDescGZIP(), []int{32}
-}
-
-func (x *Notifications) GetPush() bool {
-	if x != nil {
-		return x.Push
-	}
-	return false
-}
-
-func (x *Notifications) GetReminders() bool {
-	if x != nil {
-		return x.Reminders
-	}
-	return false
 }
 
 var File_auth_proto protoreflect.FileDescriptor
@@ -1760,11 +1624,10 @@ const file_auth_proto_rawDesc = "" +
 	".auth.UserR\x04user\"D\n" +
 	"\x0eSignInResponse\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"N\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"8\n" +
 	"\x04User\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"F\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"F\n" +
 	"\x14ValidateTokenRequest\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"k\n" +
@@ -1795,20 +1658,11 @@ const file_auth_proto_rawDesc = "" +
 	"\vdisplayName\x18\x04 \x01(\tR\vdisplayName\x12\x16\n" +
 	"\x06avatar\x18\x05 \x01(\tR\x06avatar\x123\n" +
 	"\vpreferences\x18\x06 \x01(\v2\x11.auth.PreferencesR\vpreferences\x128\n" +
-	"\tcreatedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xe9\x01\n" +
+	"\tcreatedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"W\n" +
 	"\vPreferences\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x14\n" +
 	"\x05theme\x18\x02 \x01(\tR\x05theme\x12\x1a\n" +
-	"\blanguage\x18\x03 \x01(\tR\blanguage\x12\x1a\n" +
-	"\btimezone\x18\x04 \x01(\tR\btimezone\x129\n" +
-	"\rdiarySettings\x18\x05 \x01(\v2\x13.auth.DiarySettingsR\rdiarySettings\x129\n" +
-	"\rnotifications\x18\x06 \x01(\v2\x13.auth.NotificationsR\rnotifications\"S\n" +
-	"\rDiarySettings\x12\x1a\n" +
-	"\bautoSave\x18\x01 \x01(\bR\bautoSave\x12&\n" +
-	"\x0eshowThumbnails\x18\x02 \x01(\bR\x0eshowThumbnails\"A\n" +
-	"\rNotifications\x12\x12\n" +
-	"\x04push\x18\x01 \x01(\bR\x04push\x12\x1c\n" +
-	"\treminders\x18\x02 \x01(\bR\treminders2\xbd\a\n" +
+	"\blanguage\x18\x03 \x01(\tR\blanguage2\xbd\a\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
 	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12K\n" +
@@ -1838,7 +1692,7 @@ func file_auth_proto_rawDescGZIP() []byte {
 	return file_auth_proto_rawDescData
 }
 
-var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
 var file_auth_proto_goTypes = []any{
 	(*Setup2FARequest)(nil),           // 0: auth.Setup2FARequest
 	(*Setup2FAResponse)(nil),          // 1: auth.Setup2FAResponse
@@ -1871,9 +1725,7 @@ var file_auth_proto_goTypes = []any{
 	(*PreferencesUpdateResponse)(nil), // 28: auth.PreferencesUpdateResponse
 	(*Profile)(nil),                   // 29: auth.Profile
 	(*Preferences)(nil),               // 30: auth.Preferences
-	(*DiarySettings)(nil),             // 31: auth.DiarySettings
-	(*Notifications)(nil),             // 32: auth.Notifications
-	(*timestamppb.Timestamp)(nil),     // 33: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil),     // 31: google.protobuf.Timestamp
 }
 var file_auth_proto_depIdxs = []int32{
 	20, // 0: auth.SignUpRequest.user:type_name -> auth.User
@@ -1882,42 +1734,40 @@ var file_auth_proto_depIdxs = []int32{
 	29, // 3: auth.ProfileUpdateRequest.profile:type_name -> auth.Profile
 	30, // 4: auth.PreferencesUpdateRequest.preferences:type_name -> auth.Preferences
 	30, // 5: auth.Profile.preferences:type_name -> auth.Preferences
-	33, // 6: auth.Profile.createdAt:type_name -> google.protobuf.Timestamp
-	31, // 7: auth.Preferences.diarySettings:type_name -> auth.DiarySettings
-	32, // 8: auth.Preferences.notifications:type_name -> auth.Notifications
-	16, // 9: auth.Auth.SignUp:input_type -> auth.SignUpRequest
-	18, // 10: auth.Auth.SignIn:input_type -> auth.SignInRequest
-	14, // 11: auth.Auth.OauthGoogleUrl:input_type -> auth.OauthGoogleUrlRequest
-	12, // 12: auth.Auth.OauthGoogle:input_type -> auth.OauthGoogleRequest
-	21, // 13: auth.Auth.ValidateToken:input_type -> auth.ValidateTokenRequest
-	23, // 14: auth.Auth.ProfileGet:input_type -> auth.ProfileGetRequest
-	25, // 15: auth.Auth.ProfileUpdate:input_type -> auth.ProfileUpdateRequest
-	27, // 16: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
-	2,  // 17: auth.Auth.Enable2FA:input_type -> auth.Prepare2FARequest
-	0,  // 18: auth.Auth.Setup2FA:input_type -> auth.Setup2FARequest
-	4,  // 19: auth.Auth.Validate2FA:input_type -> auth.Validate2FARequest
-	6,  // 20: auth.Auth.RecoveryGen:input_type -> auth.RecoveryGenRequest
-	8,  // 21: auth.Auth.RecoveryCheck:input_type -> auth.RecoveryCheckRequest
-	10, // 22: auth.Auth.RecoveryGet:input_type -> auth.RecoveryGetRequest
-	17, // 23: auth.Auth.SignUp:output_type -> auth.SignUpResponse
-	19, // 24: auth.Auth.SignIn:output_type -> auth.SignInResponse
-	15, // 25: auth.Auth.OauthGoogleUrl:output_type -> auth.OauthGoogleUrlResponse
-	13, // 26: auth.Auth.OauthGoogle:output_type -> auth.OauthGoogleResponse
-	22, // 27: auth.Auth.ValidateToken:output_type -> auth.ValidateTokenResponse
-	24, // 28: auth.Auth.ProfileGet:output_type -> auth.ProfileGetResponse
-	26, // 29: auth.Auth.ProfileUpdate:output_type -> auth.ProfileUpdateResponse
-	28, // 30: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
-	3,  // 31: auth.Auth.Enable2FA:output_type -> auth.Prepare2FAResponse
-	1,  // 32: auth.Auth.Setup2FA:output_type -> auth.Setup2FAResponse
-	5,  // 33: auth.Auth.Validate2FA:output_type -> auth.Validate2FAResponse
-	7,  // 34: auth.Auth.RecoveryGen:output_type -> auth.RecoveryGenResponse
-	9,  // 35: auth.Auth.RecoveryCheck:output_type -> auth.RecoveryCheckResponse
-	11, // 36: auth.Auth.RecoveryGet:output_type -> auth.RecoveryGetResponse
-	23, // [23:37] is the sub-list for method output_type
-	9,  // [9:23] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	31, // 6: auth.Profile.createdAt:type_name -> google.protobuf.Timestamp
+	16, // 7: auth.Auth.SignUp:input_type -> auth.SignUpRequest
+	18, // 8: auth.Auth.SignIn:input_type -> auth.SignInRequest
+	14, // 9: auth.Auth.OauthGoogleUrl:input_type -> auth.OauthGoogleUrlRequest
+	12, // 10: auth.Auth.OauthGoogle:input_type -> auth.OauthGoogleRequest
+	21, // 11: auth.Auth.ValidateToken:input_type -> auth.ValidateTokenRequest
+	23, // 12: auth.Auth.ProfileGet:input_type -> auth.ProfileGetRequest
+	25, // 13: auth.Auth.ProfileUpdate:input_type -> auth.ProfileUpdateRequest
+	27, // 14: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
+	2,  // 15: auth.Auth.Enable2FA:input_type -> auth.Prepare2FARequest
+	0,  // 16: auth.Auth.Setup2FA:input_type -> auth.Setup2FARequest
+	4,  // 17: auth.Auth.Validate2FA:input_type -> auth.Validate2FARequest
+	6,  // 18: auth.Auth.RecoveryGen:input_type -> auth.RecoveryGenRequest
+	8,  // 19: auth.Auth.RecoveryCheck:input_type -> auth.RecoveryCheckRequest
+	10, // 20: auth.Auth.RecoveryGet:input_type -> auth.RecoveryGetRequest
+	17, // 21: auth.Auth.SignUp:output_type -> auth.SignUpResponse
+	19, // 22: auth.Auth.SignIn:output_type -> auth.SignInResponse
+	15, // 23: auth.Auth.OauthGoogleUrl:output_type -> auth.OauthGoogleUrlResponse
+	13, // 24: auth.Auth.OauthGoogle:output_type -> auth.OauthGoogleResponse
+	22, // 25: auth.Auth.ValidateToken:output_type -> auth.ValidateTokenResponse
+	24, // 26: auth.Auth.ProfileGet:output_type -> auth.ProfileGetResponse
+	26, // 27: auth.Auth.ProfileUpdate:output_type -> auth.ProfileUpdateResponse
+	28, // 28: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
+	3,  // 29: auth.Auth.Enable2FA:output_type -> auth.Prepare2FAResponse
+	1,  // 30: auth.Auth.Setup2FA:output_type -> auth.Setup2FAResponse
+	5,  // 31: auth.Auth.Validate2FA:output_type -> auth.Validate2FAResponse
+	7,  // 32: auth.Auth.RecoveryGen:output_type -> auth.RecoveryGenResponse
+	9,  // 33: auth.Auth.RecoveryCheck:output_type -> auth.RecoveryCheckResponse
+	11, // 34: auth.Auth.RecoveryGet:output_type -> auth.RecoveryGetResponse
+	21, // [21:35] is the sub-list for method output_type
+	7,  // [7:21] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_auth_proto_init() }
@@ -1931,7 +1781,7 @@ func file_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_proto_rawDesc), len(file_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   31,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

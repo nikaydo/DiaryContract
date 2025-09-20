@@ -128,7 +128,6 @@ message SignInResponse {
 message User {
   string login = 1;
   string password = 2;
-  string email = 3;
 }
 
 message ValidateTokenRequest {
@@ -189,17 +188,4 @@ message Preferences {
   string userid = 1;
   string theme = 2;
   string language = 3;
-  string timezone = 4;
-  DiarySettings diarySettings = 5;
-  Notifications notifications = 6;
-}
-
-message DiarySettings {
-  bool autoSave = 1;
-  bool showThumbnails = 2;
-}
-
-message Notifications {
-  bool push = 1;
-  bool reminders = 2;
 }
