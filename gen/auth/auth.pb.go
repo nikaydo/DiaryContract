@@ -114,6 +114,7 @@ func (x *Setup2FAResponse) GetStatus() string {
 type Prepare2FARequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -151,6 +152,13 @@ func (*Prepare2FARequest) Descriptor() ([]byte, []int) {
 func (x *Prepare2FARequest) GetUserid() string {
 	if x != nil {
 		return x.Userid
+	}
+	return ""
+}
+
+func (x *Prepare2FARequest) GetCode() string {
+	if x != nil {
+		return x.Code
 	}
 	return ""
 }
@@ -1899,9 +1907,10 @@ const file_auth_proto_rawDesc = "" +
 	"\x0fSetup2FARequest\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\"*\n" +
 	"\x10Setup2FAResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"+\n" +
+	"\x06status\x18\x01 \x01(\tR\x06status\"?\n" +
 	"\x11Prepare2FARequest\x12\x16\n" +
-	"\x06userid\x18\x01 \x01(\tR\x06userid\"&\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\"&\n" +
 	"\x12Prepare2FAResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"@\n" +
 	"\x12Validate2FARequest\x12\x12\n" +

@@ -40,7 +40,7 @@ message Setup2FAResponse{
 
 message Prepare2FARequest{
   string userid =1;
-  
+  string code = 2;
 }
 message Prepare2FAResponse{
   string url =1;
