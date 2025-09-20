@@ -27,9 +27,11 @@ service Auth{
     rpc RecoveryCheck(RecoveryCheckRequest) returns (RecoveryCheckResponse);
     rpc RecoveryGet(RecoveryGetRequest) returns (RecoveryGetResponse);
 } 
+
 //2FA
 message Setup2FARequest{
   string userid =1;
+  string code = 2;
 }
 
 message Setup2FAResponse{
@@ -38,7 +40,6 @@ message Setup2FAResponse{
 
 message Prepare2FARequest{
   string userid =1;
-  string code = 2;
 }
 message Prepare2FAResponse{
   string url =1;
