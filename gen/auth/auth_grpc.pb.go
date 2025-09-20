@@ -19,22 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_SignUp_FullMethodName              = "/auth.Auth/SignUp"
-	Auth_SignIn_FullMethodName              = "/auth.Auth/SignIn"
-	Auth_OauthGoogleUrl_FullMethodName      = "/auth.Auth/OauthGoogleUrl"
-	Auth_OauthGoogle_FullMethodName         = "/auth.Auth/OauthGoogle"
-	Auth_ValidateToken_FullMethodName       = "/auth.Auth/ValidateToken"
-	Auth_ProfileGet_FullMethodName          = "/auth.Auth/ProfileGet"
-	Auth_ProfileUpdate_FullMethodName       = "/auth.Auth/ProfileUpdate"
-	Auth_PreferencesUpdate_FullMethodName   = "/auth.Auth/PreferencesUpdate"
-	Auth_NotificationUpdate_FullMethodName  = "/auth.Auth/NotificationUpdate"
-	Auth_DiarySettingsUpdate_FullMethodName = "/auth.Auth/DiarySettingsUpdate"
-	Auth_Enable2FA_FullMethodName           = "/auth.Auth/Enable2FA"
-	Auth_Setup2FA_FullMethodName            = "/auth.Auth/Setup2FA"
-	Auth_Validate2FA_FullMethodName         = "/auth.Auth/Validate2FA"
-	Auth_RecoveryGen_FullMethodName         = "/auth.Auth/RecoveryGen"
-	Auth_RecoveryCheck_FullMethodName       = "/auth.Auth/RecoveryCheck"
-	Auth_RecoveryGet_FullMethodName         = "/auth.Auth/RecoveryGet"
+	Auth_SignUp_FullMethodName            = "/auth.Auth/SignUp"
+	Auth_SignIn_FullMethodName            = "/auth.Auth/SignIn"
+	Auth_OauthGoogleUrl_FullMethodName    = "/auth.Auth/OauthGoogleUrl"
+	Auth_OauthGoogle_FullMethodName       = "/auth.Auth/OauthGoogle"
+	Auth_ValidateToken_FullMethodName     = "/auth.Auth/ValidateToken"
+	Auth_ProfileGet_FullMethodName        = "/auth.Auth/ProfileGet"
+	Auth_ProfileUpdate_FullMethodName     = "/auth.Auth/ProfileUpdate"
+	Auth_PreferencesUpdate_FullMethodName = "/auth.Auth/PreferencesUpdate"
+	Auth_Enable2FA_FullMethodName         = "/auth.Auth/Enable2FA"
+	Auth_Setup2FA_FullMethodName          = "/auth.Auth/Setup2FA"
+	Auth_Validate2FA_FullMethodName       = "/auth.Auth/Validate2FA"
+	Auth_RecoveryGen_FullMethodName       = "/auth.Auth/RecoveryGen"
+	Auth_RecoveryCheck_FullMethodName     = "/auth.Auth/RecoveryCheck"
+	Auth_RecoveryGet_FullMethodName       = "/auth.Auth/RecoveryGet"
 )
 
 // AuthClient is the client API for Auth service.
@@ -49,8 +47,6 @@ type AuthClient interface {
 	ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
 	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
-	NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error)
-	DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error)
 	Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
 	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error)
 	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
@@ -147,26 +143,6 @@ func (c *authClient) PreferencesUpdate(ctx context.Context, in *PreferencesUpdat
 	return out, nil
 }
 
-func (c *authClient) NotificationUpdate(ctx context.Context, in *NotificationUpdateRequest, opts ...grpc.CallOption) (*NotificationUpdateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NotificationUpdateResponse)
-	err := c.cc.Invoke(ctx, Auth_NotificationUpdate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authClient) DiarySettingsUpdate(ctx context.Context, in *DiarySettingsUpdateRequest, opts ...grpc.CallOption) (*DiarySettingsUpdateResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DiarySettingsUpdateResponse)
-	err := c.cc.Invoke(ctx, Auth_DiarySettingsUpdate_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *authClient) Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Prepare2FAResponse)
@@ -239,8 +215,6 @@ type AuthServer interface {
 	ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
 	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
-	NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error)
-	DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error)
 	Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
 	Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error)
 	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
@@ -280,12 +254,6 @@ func (UnimplementedAuthServer) ProfileUpdate(context.Context, *ProfileUpdateRequ
 }
 func (UnimplementedAuthServer) PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreferencesUpdate not implemented")
-}
-func (UnimplementedAuthServer) NotificationUpdate(context.Context, *NotificationUpdateRequest) (*NotificationUpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotificationUpdate not implemented")
-}
-func (UnimplementedAuthServer) DiarySettingsUpdate(context.Context, *DiarySettingsUpdateRequest) (*DiarySettingsUpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DiarySettingsUpdate not implemented")
 }
 func (UnimplementedAuthServer) Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Enable2FA not implemented")
@@ -470,42 +438,6 @@ func _Auth_PreferencesUpdate_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_NotificationUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NotificationUpdateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).NotificationUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Auth_NotificationUpdate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).NotificationUpdate(ctx, req.(*NotificationUpdateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Auth_DiarySettingsUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DiarySettingsUpdateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).DiarySettingsUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Auth_DiarySettingsUpdate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).DiarySettingsUpdate(ctx, req.(*DiarySettingsUpdateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Auth_Enable2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Prepare2FARequest)
 	if err := dec(in); err != nil {
@@ -652,14 +584,6 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PreferencesUpdate",
 			Handler:    _Auth_PreferencesUpdate_Handler,
-		},
-		{
-			MethodName: "NotificationUpdate",
-			Handler:    _Auth_NotificationUpdate_Handler,
-		},
-		{
-			MethodName: "DiarySettingsUpdate",
-			Handler:    _Auth_DiarySettingsUpdate_Handler,
 		},
 		{
 			MethodName: "Enable2FA",

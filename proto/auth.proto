@@ -18,8 +18,6 @@ service Auth{
     rpc ProfileGet (ProfileGetRequest) returns (ProfileGetResponse);
     rpc ProfileUpdate (ProfileUpdateRequest) returns (ProfileUpdateResponse);
     rpc PreferencesUpdate (PreferencesUpdateRequest) returns (PreferencesUpdateResponse);
-    rpc NotificationUpdate (NotificationUpdateRequest) returns (NotificationUpdateResponse);
-    rpc DiarySettingsUpdate (DiarySettingsUpdateRequest) returns (DiarySettingsUpdateResponse);
 
     rpc Enable2FA(Prepare2FARequest) returns (Prepare2FAResponse);
     rpc Setup2FA(Setup2FARequest) returns (Setup2FAResponse);
@@ -177,23 +175,6 @@ message PreferencesUpdateResponse{
   string status = 1; 
 }
 
-message NotificationUpdateRequest{
-  string userid = 1;
-  Notifications notifications = 2;
-}
-
-message NotificationUpdateResponse{
-  string status = 1; 
-}
-
-message DiarySettingsUpdateRequest{
-  string userid = 1;
-  DiarySettings diarySettings = 2;
-}
-
-message DiarySettingsUpdateResponse{
-  string status = 1; 
-}
 
 message Profile {
   string userid = 1;
