@@ -43,7 +43,7 @@ message Validate2FARequest{
 }
 
 message Validate2FAResponse{
-  string status =1;
+  bool status =1;
 }
 
 

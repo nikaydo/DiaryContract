@@ -164,7 +164,7 @@ func (x *Validate2FARequest) GetUserUuid() string {
 
 type Validate2FAResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Status        bool                   `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -199,11 +199,11 @@ func (*Validate2FAResponse) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Validate2FAResponse) GetStatus() string {
+func (x *Validate2FAResponse) GetStatus() bool {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return false
 }
 
 type RecoveryGenRequest struct {
@@ -1809,7 +1809,7 @@ const file_auth_proto_rawDesc = "" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1b\n" +
 	"\tuser_uuid\x18\x02 \x01(\tR\buserUuid\"-\n" +
 	"\x13Validate2FAResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\"1\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\"1\n" +
 	"\x12RecoveryGenRequest\x12\x1b\n" +
 	"\tuser_uuid\x18\x01 \x01(\tR\buserUuid\"-\n" +
 	"\x13RecoveryGenResponse\x12\x16\n" +
