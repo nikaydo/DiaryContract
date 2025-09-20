@@ -27,7 +27,7 @@ const (
 	Auth_ProfileGet_FullMethodName        = "/auth.Auth/ProfileGet"
 	Auth_ProfileUpdate_FullMethodName     = "/auth.Auth/ProfileUpdate"
 	Auth_PreferencesUpdate_FullMethodName = "/auth.Auth/PreferencesUpdate"
-	Auth_Enable2FA_FullMethodName         = "/auth.Auth/Enable2FA"
+	Auth_Prepare2FA_FullMethodName        = "/auth.Auth/Prepare2FA"
 	Auth_Setup2FA_FullMethodName          = "/auth.Auth/Setup2FA"
 	Auth_Validate2FA_FullMethodName       = "/auth.Auth/Validate2FA"
 	Auth_RecoveryGen_FullMethodName       = "/auth.Auth/RecoveryGen"
@@ -47,7 +47,7 @@ type AuthClient interface {
 	ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
 	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
-	Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
+	Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
 	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error)
 	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
 	RecoveryGen(ctx context.Context, in *RecoveryGenRequest, opts ...grpc.CallOption) (*RecoveryGenResponse, error)
@@ -143,10 +143,10 @@ func (c *authClient) PreferencesUpdate(ctx context.Context, in *PreferencesUpdat
 	return out, nil
 }
 
-func (c *authClient) Enable2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
+func (c *authClient) Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Prepare2FAResponse)
-	err := c.cc.Invoke(ctx, Auth_Enable2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_Prepare2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -215,7 +215,7 @@ type AuthServer interface {
 	ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
 	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
-	Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
+	Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
 	Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error)
 	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
 	RecoveryGen(context.Context, *RecoveryGenRequest) (*RecoveryGenResponse, error)
@@ -255,8 +255,8 @@ func (UnimplementedAuthServer) ProfileUpdate(context.Context, *ProfileUpdateRequ
 func (UnimplementedAuthServer) PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreferencesUpdate not implemented")
 }
-func (UnimplementedAuthServer) Enable2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Enable2FA not implemented")
+func (UnimplementedAuthServer) Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Prepare2FA not implemented")
 }
 func (UnimplementedAuthServer) Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Setup2FA not implemented")
@@ -438,20 +438,20 @@ func _Auth_PreferencesUpdate_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Enable2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_Prepare2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Prepare2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Enable2FA(ctx, in)
+		return srv.(AuthServer).Prepare2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Enable2FA_FullMethodName,
+		FullMethod: Auth_Prepare2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Enable2FA(ctx, req.(*Prepare2FARequest))
+		return srv.(AuthServer).Prepare2FA(ctx, req.(*Prepare2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -586,8 +586,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_PreferencesUpdate_Handler,
 		},
 		{
-			MethodName: "Enable2FA",
-			Handler:    _Auth_Enable2FA_Handler,
+			MethodName: "Prepare2FA",
+			Handler:    _Auth_Prepare2FA_Handler,
 		},
 		{
 			MethodName: "Setup2FA",

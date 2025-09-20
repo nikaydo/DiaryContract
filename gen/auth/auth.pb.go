@@ -1662,7 +1662,7 @@ const file_auth_proto_rawDesc = "" +
 	"\vPreferences\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x14\n" +
 	"\x05theme\x18\x02 \x01(\tR\x05theme\x12\x1a\n" +
-	"\blanguage\x18\x03 \x01(\tR\blanguage2\xbd\a\n" +
+	"\blanguage\x18\x03 \x01(\tR\blanguage2\xbe\a\n" +
 	"\x04Auth\x123\n" +
 	"\x06SignUp\x12\x13.auth.SignUpRequest\x1a\x14.auth.SignUpResponse\x123\n" +
 	"\x06SignIn\x12\x13.auth.SignInRequest\x1a\x14.auth.SignInResponse\x12K\n" +
@@ -1672,8 +1672,9 @@ const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"ProfileGet\x12\x17.auth.ProfileGetRequest\x1a\x18.auth.ProfileGetResponse\x12H\n" +
 	"\rProfileUpdate\x12\x1a.auth.ProfileUpdateRequest\x1a\x1b.auth.ProfileUpdateResponse\x12T\n" +
-	"\x11PreferencesUpdate\x12\x1e.auth.PreferencesUpdateRequest\x1a\x1f.auth.PreferencesUpdateResponse\x12>\n" +
-	"\tEnable2FA\x12\x17.auth.Prepare2FARequest\x1a\x18.auth.Prepare2FAResponse\x129\n" +
+	"\x11PreferencesUpdate\x12\x1e.auth.PreferencesUpdateRequest\x1a\x1f.auth.PreferencesUpdateResponse\x12?\n" +
+	"\n" +
+	"Prepare2FA\x12\x17.auth.Prepare2FARequest\x1a\x18.auth.Prepare2FAResponse\x129\n" +
 	"\bSetup2FA\x12\x15.auth.Setup2FARequest\x1a\x16.auth.Setup2FAResponse\x12B\n" +
 	"\vValidate2FA\x12\x18.auth.Validate2FARequest\x1a\x19.auth.Validate2FAResponse\x12B\n" +
 	"\vRecoveryGen\x12\x18.auth.RecoveryGenRequest\x1a\x19.auth.RecoveryGenResponse\x12H\n" +
@@ -1743,7 +1744,7 @@ var file_auth_proto_depIdxs = []int32{
 	23, // 12: auth.Auth.ProfileGet:input_type -> auth.ProfileGetRequest
 	25, // 13: auth.Auth.ProfileUpdate:input_type -> auth.ProfileUpdateRequest
 	27, // 14: auth.Auth.PreferencesUpdate:input_type -> auth.PreferencesUpdateRequest
-	2,  // 15: auth.Auth.Enable2FA:input_type -> auth.Prepare2FARequest
+	2,  // 15: auth.Auth.Prepare2FA:input_type -> auth.Prepare2FARequest
 	0,  // 16: auth.Auth.Setup2FA:input_type -> auth.Setup2FARequest
 	4,  // 17: auth.Auth.Validate2FA:input_type -> auth.Validate2FARequest
 	6,  // 18: auth.Auth.RecoveryGen:input_type -> auth.RecoveryGenRequest
@@ -1757,7 +1758,7 @@ var file_auth_proto_depIdxs = []int32{
 	24, // 26: auth.Auth.ProfileGet:output_type -> auth.ProfileGetResponse
 	26, // 27: auth.Auth.ProfileUpdate:output_type -> auth.ProfileUpdateResponse
 	28, // 28: auth.Auth.PreferencesUpdate:output_type -> auth.PreferencesUpdateResponse
-	3,  // 29: auth.Auth.Enable2FA:output_type -> auth.Prepare2FAResponse
+	3,  // 29: auth.Auth.Prepare2FA:output_type -> auth.Prepare2FAResponse
 	1,  // 30: auth.Auth.Setup2FA:output_type -> auth.Setup2FAResponse
 	5,  // 31: auth.Auth.Validate2FA:output_type -> auth.Validate2FAResponse
 	7,  // 32: auth.Auth.RecoveryGen:output_type -> auth.RecoveryGenResponse
