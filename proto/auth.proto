@@ -35,7 +35,7 @@ message Setup2FARequest{
 }
 
 message Setup2FAResponse{
-  string status =1;
+  bool status =1;
 }
 
 message Prepare2FARequest{
