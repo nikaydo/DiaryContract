@@ -52,6 +52,7 @@ message Validate2FARequest{
 
 message Validate2FAResponse{
   bool status =1;
+  string jwtToken = 2;
 }
 //2FA
 //Recovery code

@@ -262,6 +262,7 @@ func (x *Validate2FARequest) GetUserid() string {
 type Validate2FAResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Status        bool                   `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	JwtToken      string                 `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -301,6 +302,13 @@ func (x *Validate2FAResponse) GetStatus() bool {
 		return x.Status
 	}
 	return false
+}
+
+func (x *Validate2FAResponse) GetJwtToken() string {
+	if x != nil {
+		return x.JwtToken
+	}
+	return ""
 }
 
 // 2FA
@@ -1595,9 +1603,10 @@ const file_auth_proto_rawDesc = "" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"@\n" +
 	"\x12Validate2FARequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x16\n" +
-	"\x06userid\x18\x02 \x01(\tR\x06userid\"-\n" +
+	"\x06userid\x18\x02 \x01(\tR\x06userid\"I\n" +
 	"\x13Validate2FAResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\bR\x06status\",\n" +
+	"\x06status\x18\x01 \x01(\bR\x06status\x12\x1a\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\",\n" +
 	"\x12RecoveryGenRequest\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\"-\n" +
 	"\x13RecoveryGenResponse\x12\x16\n" +
