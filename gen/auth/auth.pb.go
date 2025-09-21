@@ -921,6 +921,7 @@ type SignInResponse struct {
 	Userid string `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
 	// jwt token
 	JwtToken      string `protobuf:"bytes,2,opt,name=jwtToken,proto3" json:"jwtToken,omitempty"`
+	ThowFA        bool   `protobuf:"varint,3,opt,name=ThowFA,proto3" json:"ThowFA,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -967,6 +968,13 @@ func (x *SignInResponse) GetJwtToken() string {
 		return x.JwtToken
 	}
 	return ""
+}
+
+func (x *SignInResponse) GetThowFA() bool {
+	if x != nil {
+		return x.ThowFA
+	}
+	return false
 }
 
 type User struct {
@@ -1621,10 +1629,11 @@ const file_auth_proto_rawDesc = "" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"/\n" +
 	"\rSignInRequest\x12\x1e\n" +
 	"\x04user\x18\x01 \x01(\v2\n" +
-	".auth.UserR\x04user\"D\n" +
+	".auth.UserR\x04user\"\\\n" +
 	"\x0eSignInResponse\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x1a\n" +
-	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\"8\n" +
+	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\x12\x16\n" +
+	"\x06ThowFA\x18\x03 \x01(\bR\x06ThowFA\"8\n" +
 	"\x04User\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"F\n" +
