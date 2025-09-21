@@ -48,6 +48,7 @@ message Prepare2FAResponse{
 message Validate2FARequest{
   string code =1;
   string userid =2;
+  string login =3;
 }
 
 message Validate2FAResponse{
