@@ -27,12 +27,12 @@ const (
 	Auth_ProfileGet_FullMethodName        = "/auth.Auth/ProfileGet"
 	Auth_ProfileUpdate_FullMethodName     = "/auth.Auth/ProfileUpdate"
 	Auth_PreferencesUpdate_FullMethodName = "/auth.Auth/PreferencesUpdate"
+	Auth_PasswordReset_FullMethodName     = "/auth.Auth/PasswordReset"
 	Auth_Prepare2FA_FullMethodName        = "/auth.Auth/Prepare2FA"
 	Auth_Setup2FA_FullMethodName          = "/auth.Auth/Setup2FA"
 	Auth_Validate2FA_FullMethodName       = "/auth.Auth/Validate2FA"
 	Auth_RecoveryGen_FullMethodName       = "/auth.Auth/RecoveryGen"
 	Auth_RecoveryCheck_FullMethodName     = "/auth.Auth/RecoveryCheck"
-	Auth_RecoveryGet_FullMethodName       = "/auth.Auth/RecoveryGet"
 )
 
 // AuthClient is the client API for Auth service.
@@ -47,12 +47,12 @@ type AuthClient interface {
 	ProfileGet(ctx context.Context, in *ProfileGetRequest, opts ...grpc.CallOption) (*ProfileGetResponse, error)
 	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
+	PasswordReset(ctx context.Context, in *PasswordResetRequest, opts ...grpc.CallOption) (*PasswordResetResponse, error)
 	Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
 	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error)
 	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
 	RecoveryGen(ctx context.Context, in *RecoveryGenRequest, opts ...grpc.CallOption) (*RecoveryGenResponse, error)
 	RecoveryCheck(ctx context.Context, in *RecoveryCheckRequest, opts ...grpc.CallOption) (*RecoveryCheckResponse, error)
-	RecoveryGet(ctx context.Context, in *RecoveryGetRequest, opts ...grpc.CallOption) (*RecoveryGetResponse, error)
 }
 
 type authClient struct {
@@ -143,6 +143,16 @@ func (c *authClient) PreferencesUpdate(ctx context.Context, in *PreferencesUpdat
 	return out, nil
 }
 
+func (c *authClient) PasswordReset(ctx context.Context, in *PasswordResetRequest, opts ...grpc.CallOption) (*PasswordResetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PasswordResetResponse)
+	err := c.cc.Invoke(ctx, Auth_PasswordReset_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Prepare2FAResponse)
@@ -193,16 +203,6 @@ func (c *authClient) RecoveryCheck(ctx context.Context, in *RecoveryCheckRequest
 	return out, nil
 }
 
-func (c *authClient) RecoveryGet(ctx context.Context, in *RecoveryGetRequest, opts ...grpc.CallOption) (*RecoveryGetResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RecoveryGetResponse)
-	err := c.cc.Invoke(ctx, Auth_RecoveryGet_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AuthServer is the server API for Auth service.
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
@@ -215,12 +215,12 @@ type AuthServer interface {
 	ProfileGet(context.Context, *ProfileGetRequest) (*ProfileGetResponse, error)
 	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
+	PasswordReset(context.Context, *PasswordResetRequest) (*PasswordResetResponse, error)
 	Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
 	Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error)
 	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
 	RecoveryGen(context.Context, *RecoveryGenRequest) (*RecoveryGenResponse, error)
 	RecoveryCheck(context.Context, *RecoveryCheckRequest) (*RecoveryCheckResponse, error)
-	RecoveryGet(context.Context, *RecoveryGetRequest) (*RecoveryGetResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -255,6 +255,9 @@ func (UnimplementedAuthServer) ProfileUpdate(context.Context, *ProfileUpdateRequ
 func (UnimplementedAuthServer) PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreferencesUpdate not implemented")
 }
+func (UnimplementedAuthServer) PasswordReset(context.Context, *PasswordResetRequest) (*PasswordResetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PasswordReset not implemented")
+}
 func (UnimplementedAuthServer) Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Prepare2FA not implemented")
 }
@@ -269,9 +272,6 @@ func (UnimplementedAuthServer) RecoveryGen(context.Context, *RecoveryGenRequest)
 }
 func (UnimplementedAuthServer) RecoveryCheck(context.Context, *RecoveryCheckRequest) (*RecoveryCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RecoveryCheck not implemented")
-}
-func (UnimplementedAuthServer) RecoveryGet(context.Context, *RecoveryGetRequest) (*RecoveryGetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RecoveryGet not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -438,6 +438,24 @@ func _Auth_PreferencesUpdate_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_PasswordReset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PasswordResetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).PasswordReset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_PasswordReset_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).PasswordReset(ctx, req.(*PasswordResetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_Prepare2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Prepare2FARequest)
 	if err := dec(in); err != nil {
@@ -528,24 +546,6 @@ func _Auth_RecoveryCheck_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_RecoveryGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RecoveryGetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).RecoveryGet(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Auth_RecoveryGet_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).RecoveryGet(ctx, req.(*RecoveryGetRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -586,6 +586,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_PreferencesUpdate_Handler,
 		},
 		{
+			MethodName: "PasswordReset",
+			Handler:    _Auth_PasswordReset_Handler,
+		},
+		{
 			MethodName: "Prepare2FA",
 			Handler:    _Auth_Prepare2FA_Handler,
 		},
@@ -604,10 +608,6 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RecoveryCheck",
 			Handler:    _Auth_RecoveryCheck_Handler,
-		},
-		{
-			MethodName: "RecoveryGet",
-			Handler:    _Auth_RecoveryGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

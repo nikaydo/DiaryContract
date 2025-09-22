@@ -19,14 +19,27 @@ service Auth{
     rpc ProfileUpdate (ProfileUpdateRequest) returns (ProfileUpdateResponse);
     rpc PreferencesUpdate (PreferencesUpdateRequest) returns (PreferencesUpdateResponse);
 
+    rpc PasswordReset (PasswordResetRequest) returns (PasswordResetResponse);
+  
+
     rpc Prepare2FA(Prepare2FARequest) returns (Prepare2FAResponse);
     rpc Setup2FA(Setup2FARequest) returns (Setup2FAResponse);
     rpc Validate2FA(Validate2FARequest) returns (Validate2FAResponse);
     
     rpc RecoveryGen(RecoveryGenRequest) returns (RecoveryGenResponse);
     rpc RecoveryCheck(RecoveryCheckRequest) returns (RecoveryCheckResponse);
-    rpc RecoveryGet(RecoveryGetRequest) returns (RecoveryGetResponse);
 } 
+
+
+message PasswordResetRequest{
+  string NewPassword =1;
+  string OldPassword =2;
+  string code = 3;
+}
+
+message PasswordResetResponse{
+  bool status =1;
+}
 
 //2FA
 message Setup2FARequest{
@@ -59,16 +72,14 @@ message Validate2FAResponse{
 //Recovery code
 message RecoveryGenRequest{
   string userid =1;
-  
 }
 
 message RecoveryGenResponse{
-  string status =1;
+  repeated string words =1;
 }
 
-
 message RecoveryCheckRequest{
-  string code =1;
+  repeated string words =1;
   
 }
 
@@ -76,14 +87,6 @@ message RecoveryCheckResponse{
   string status =1;
 }
 
-message RecoveryGetRequest{
-  string userid =1;
-  
-}
-
-message RecoveryGetResponse{
-  repeated string code =1;
-}
 //Recovery code
 //Oauth2
 message OauthGoogleRequest{
@@ -180,7 +183,6 @@ message PreferencesUpdateResponse{
   string status = 1; 
 }
 
-
 message Profile {
   string userid = 1;
   string username = 3;
@@ -188,6 +190,8 @@ message Profile {
   string avatar = 5;
   Preferences preferences = 6;
   google.protobuf.Timestamp createdAt = 7;
+  bool twoFactorEnable =8;
+  bool oauth2Google =9;
 }
 
 message Preferences {
