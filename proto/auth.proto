@@ -75,16 +75,23 @@ message RecoveryGenRequest{
 }
 
 message RecoveryGenResponse{
-  repeated string words =1;
+  RecoveryWords words =1;
 }
-
 message RecoveryCheckRequest{
-  repeated string words =1;
+  RecoveryWords words =1;
   
 }
 
 message RecoveryCheckResponse{
   string status =1;
+}
+
+message RecoveryWords {
+  string one =1;
+  string two =2;
+  string three =3;
+  string four =4;
+  string five =5;
 }
 
 //Recovery code
