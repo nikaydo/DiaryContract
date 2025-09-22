@@ -78,7 +78,8 @@ message RecoveryGenResponse{
   RecoveryWords words =1;
 }
 message RecoveryCheckRequest{
-  RecoveryWords words =1;
+  string userid =1;
+  RecoveryWords words =2;
   
 }
 

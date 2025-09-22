@@ -515,7 +515,8 @@ func (x *RecoveryGenResponse) GetWords() *RecoveryWords {
 
 type RecoveryCheckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Words         *RecoveryWords         `protobuf:"bytes,1,opt,name=words,proto3" json:"words,omitempty"`
+	Userid        string                 `protobuf:"bytes,1,opt,name=userid,proto3" json:"userid,omitempty"`
+	Words         *RecoveryWords         `protobuf:"bytes,2,opt,name=words,proto3" json:"words,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -548,6 +549,13 @@ func (x *RecoveryCheckRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RecoveryCheckRequest.ProtoReflect.Descriptor instead.
 func (*RecoveryCheckRequest) Descriptor() ([]byte, []int) {
 	return file_auth_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *RecoveryCheckRequest) GetUserid() string {
+	if x != nil {
+		return x.Userid
+	}
+	return ""
 }
 
 func (x *RecoveryCheckRequest) GetWords() *RecoveryWords {
@@ -1741,9 +1749,10 @@ const file_auth_proto_rawDesc = "" +
 	"\x12RecoveryGenRequest\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\"@\n" +
 	"\x13RecoveryGenResponse\x12)\n" +
-	"\x05words\x18\x01 \x01(\v2\x13.auth.RecoveryWordsR\x05words\"A\n" +
-	"\x14RecoveryCheckRequest\x12)\n" +
-	"\x05words\x18\x01 \x01(\v2\x13.auth.RecoveryWordsR\x05words\"/\n" +
+	"\x05words\x18\x01 \x01(\v2\x13.auth.RecoveryWordsR\x05words\"Y\n" +
+	"\x14RecoveryCheckRequest\x12\x16\n" +
+	"\x06userid\x18\x01 \x01(\tR\x06userid\x12)\n" +
+	"\x05words\x18\x02 \x01(\v2\x13.auth.RecoveryWordsR\x05words\"/\n" +
 	"\x15RecoveryCheckResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\"q\n" +
 	"\rRecoveryWords\x12\x10\n" +
