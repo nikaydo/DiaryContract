@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package media;   
+
+option go_package = "github.com/nikaydo/DiaryMedia;media";
+
+service Diary{
+  rpc GetMedia (GetMediaRequest) returns (GetMediaResponse);
+
+} 
+message GetMediaRequest{
+
+}
+message GetMediaResponse{
+
+}

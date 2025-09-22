@@ -90,6 +90,7 @@ message OauthGoogleRequest{
   string code =1;
   string state =2;
   string url = 3;
+  string uuid = 4;
 }
 
 message OauthGoogleResponse{

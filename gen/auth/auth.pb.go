@@ -592,6 +592,7 @@ type OauthGoogleRequest struct {
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	State         string                 `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	Url           string                 `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
+	Uuid          string                 `protobuf:"bytes,4,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -643,6 +644,13 @@ func (x *OauthGoogleRequest) GetState() string {
 func (x *OauthGoogleRequest) GetUrl() string {
 	if x != nil {
 		return x.Url
+	}
+	return ""
+}
+
+func (x *OauthGoogleRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
 	}
 	return ""
 }
@@ -1627,11 +1635,12 @@ const file_auth_proto_rawDesc = "" +
 	"\x12RecoveryGetRequest\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\")\n" +
 	"\x13RecoveryGetResponse\x12\x12\n" +
-	"\x04code\x18\x01 \x03(\tR\x04code\"P\n" +
+	"\x04code\x18\x01 \x03(\tR\x04code\"d\n" +
 	"\x12OauthGoogleRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\tR\x05state\x12\x10\n" +
-	"\x03url\x18\x03 \x01(\tR\x03url\"I\n" +
+	"\x03url\x18\x03 \x01(\tR\x03url\x12\x12\n" +
+	"\x04uuid\x18\x04 \x01(\tR\x04uuid\"I\n" +
 	"\x13OauthGoogleResponse\x12\x16\n" +
 	"\x06userid\x18\x01 \x01(\tR\x06userid\x12\x1a\n" +
 	"\bjwtToken\x18\x02 \x01(\tR\bjwtToken\")\n" +
