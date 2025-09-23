@@ -27,6 +27,7 @@ type PasswordResetRequest struct {
 	NewPassword   string                 `protobuf:"bytes,1,opt,name=NewPassword,proto3" json:"NewPassword,omitempty"`
 	OldPassword   string                 `protobuf:"bytes,2,opt,name=OldPassword,proto3" json:"OldPassword,omitempty"`
 	Code          string                 `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
+	Login         string                 `protobuf:"bytes,4,opt,name=login,proto3" json:"login,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -78,6 +79,13 @@ func (x *PasswordResetRequest) GetOldPassword() string {
 func (x *PasswordResetRequest) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *PasswordResetRequest) GetLogin() string {
+	if x != nil {
+		return x.Login
 	}
 	return ""
 }
@@ -1723,11 +1731,12 @@ var File_auth_proto protoreflect.FileDescriptor
 const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\"n\n" +
+	"auth.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\"\x84\x01\n" +
 	"\x14PasswordResetRequest\x12 \n" +
 	"\vNewPassword\x18\x01 \x01(\tR\vNewPassword\x12 \n" +
 	"\vOldPassword\x18\x02 \x01(\tR\vOldPassword\x12\x12\n" +
-	"\x04code\x18\x03 \x01(\tR\x04code\"/\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\x12\x14\n" +
+	"\x05login\x18\x04 \x01(\tR\x05login\"/\n" +
 	"\x15PasswordResetResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\bR\x06status\"=\n" +
 	"\x0fSetup2FARequest\x12\x16\n" +

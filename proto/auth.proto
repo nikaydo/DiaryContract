@@ -21,7 +21,6 @@ service Auth{
 
     rpc PasswordReset (PasswordResetRequest) returns (PasswordResetResponse);
   
-
     rpc Prepare2FA(Prepare2FARequest) returns (Prepare2FAResponse);
     rpc Setup2FA(Setup2FARequest) returns (Setup2FAResponse);
     rpc Validate2FA(Validate2FARequest) returns (Validate2FAResponse);
@@ -32,9 +31,10 @@ service Auth{
 
 
 message PasswordResetRequest{
-  string NewPassword =1;
-  string OldPassword =2;
+  string NewPassword = 1;
+  string OldPassword = 2;
   string code = 3;
+  string login = 4;
 }
 
 message PasswordResetResponse{
