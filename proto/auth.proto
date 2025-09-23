@@ -20,6 +20,7 @@ service Auth{
     rpc PreferencesUpdate (PreferencesUpdateRequest) returns (PreferencesUpdateResponse);
 
     rpc PasswordReset (PasswordResetRequest) returns (PasswordResetResponse);
+    rpc LoginSet (LoginSetRequest) returns (LoginSetResponse);
   
     rpc Prepare2FA(Prepare2FARequest) returns (Prepare2FAResponse);
     rpc Setup2FA(Setup2FARequest) returns (Setup2FAResponse);
@@ -29,12 +30,21 @@ service Auth{
     rpc RecoveryCheck(RecoveryCheckRequest) returns (RecoveryCheckResponse);
 } 
 
+message LoginSetRequest{
+  string userid = 1;
+  string password = 2;
+  string newLogin = 3;
+}
+
+message LoginSetResponse{
+  bool status =1;
+}
 
 message PasswordResetRequest{
-  string NewPassword = 1;
-  string OldPassword = 2;
+  string newPassword = 1;
+  string oldPassword = 2;
   string code = 3;
-  string login = 4;
+  string userid = 4;
 }
 
 message PasswordResetResponse{
@@ -145,11 +155,12 @@ message SignInResponse {
 message User {
   string login = 1;
   string password = 2;
+  string userid =3;
 }
 
 message ValidateTokenRequest {
   //uuid user
-  string uuid = 1;
+  string userid = 1;
   //jwt token
   string jwtToken = 2;
 }
@@ -198,8 +209,10 @@ message Profile {
   string avatar = 5;
   Preferences preferences = 6;
   google.protobuf.Timestamp createdAt = 7;
-  bool twoFactorEnable =8;
-  bool oauth2Google =9;
+  bool twoFactorEnable = 8;
+  bool oauth2Google = 9;
+  bool passExist = 10;
+  bool loginExist = 11;
 }
 
 message Preferences {

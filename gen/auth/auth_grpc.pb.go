@@ -28,6 +28,7 @@ const (
 	Auth_ProfileUpdate_FullMethodName     = "/auth.Auth/ProfileUpdate"
 	Auth_PreferencesUpdate_FullMethodName = "/auth.Auth/PreferencesUpdate"
 	Auth_PasswordReset_FullMethodName     = "/auth.Auth/PasswordReset"
+	Auth_LoginSet_FullMethodName          = "/auth.Auth/LoginSet"
 	Auth_Prepare2FA_FullMethodName        = "/auth.Auth/Prepare2FA"
 	Auth_Setup2FA_FullMethodName          = "/auth.Auth/Setup2FA"
 	Auth_Validate2FA_FullMethodName       = "/auth.Auth/Validate2FA"
@@ -48,6 +49,7 @@ type AuthClient interface {
 	ProfileUpdate(ctx context.Context, in *ProfileUpdateRequest, opts ...grpc.CallOption) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(ctx context.Context, in *PreferencesUpdateRequest, opts ...grpc.CallOption) (*PreferencesUpdateResponse, error)
 	PasswordReset(ctx context.Context, in *PasswordResetRequest, opts ...grpc.CallOption) (*PasswordResetResponse, error)
+	LoginSet(ctx context.Context, in *LoginSetRequest, opts ...grpc.CallOption) (*LoginSetResponse, error)
 	Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error)
 	Setup2FA(ctx context.Context, in *Setup2FARequest, opts ...grpc.CallOption) (*Setup2FAResponse, error)
 	Validate2FA(ctx context.Context, in *Validate2FARequest, opts ...grpc.CallOption) (*Validate2FAResponse, error)
@@ -153,6 +155,16 @@ func (c *authClient) PasswordReset(ctx context.Context, in *PasswordResetRequest
 	return out, nil
 }
 
+func (c *authClient) LoginSet(ctx context.Context, in *LoginSetRequest, opts ...grpc.CallOption) (*LoginSetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginSetResponse)
+	err := c.cc.Invoke(ctx, Auth_LoginSet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) Prepare2FA(ctx context.Context, in *Prepare2FARequest, opts ...grpc.CallOption) (*Prepare2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Prepare2FAResponse)
@@ -216,6 +228,7 @@ type AuthServer interface {
 	ProfileUpdate(context.Context, *ProfileUpdateRequest) (*ProfileUpdateResponse, error)
 	PreferencesUpdate(context.Context, *PreferencesUpdateRequest) (*PreferencesUpdateResponse, error)
 	PasswordReset(context.Context, *PasswordResetRequest) (*PasswordResetResponse, error)
+	LoginSet(context.Context, *LoginSetRequest) (*LoginSetResponse, error)
 	Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error)
 	Setup2FA(context.Context, *Setup2FARequest) (*Setup2FAResponse, error)
 	Validate2FA(context.Context, *Validate2FARequest) (*Validate2FAResponse, error)
@@ -257,6 +270,9 @@ func (UnimplementedAuthServer) PreferencesUpdate(context.Context, *PreferencesUp
 }
 func (UnimplementedAuthServer) PasswordReset(context.Context, *PasswordResetRequest) (*PasswordResetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PasswordReset not implemented")
+}
+func (UnimplementedAuthServer) LoginSet(context.Context, *LoginSetRequest) (*LoginSetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginSet not implemented")
 }
 func (UnimplementedAuthServer) Prepare2FA(context.Context, *Prepare2FARequest) (*Prepare2FAResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Prepare2FA not implemented")
@@ -456,6 +472,24 @@ func _Auth_PasswordReset_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_LoginSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginSetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).LoginSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_LoginSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).LoginSet(ctx, req.(*LoginSetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_Prepare2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Prepare2FARequest)
 	if err := dec(in); err != nil {
@@ -588,6 +622,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PasswordReset",
 			Handler:    _Auth_PasswordReset_Handler,
+		},
+		{
+			MethodName: "LoginSet",
+			Handler:    _Auth_LoginSet_Handler,
 		},
 		{
 			MethodName: "Prepare2FA",
