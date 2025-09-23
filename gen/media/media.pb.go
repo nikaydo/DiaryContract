@@ -201,7 +201,7 @@ const file_media_proto_rawDesc = "" +
 	"\x16GetStickersListRequest\"5\n" +
 	"\x17GetStickersListResponse\x12\x1a\n" +
 	"\bstickers\x18\x01 \x03(\tR\bstickers2\x9c\x01\n" +
-	"\x05Diary\x12P\n" +
+	"\x05Media\x12P\n" +
 	"\x0fGetStickersList\x12\x1d.media.GetStickersListRequest\x1a\x1e.media.GetStickersListResponse\x12A\n" +
 	"\n" +
 	"GetSticker\x12\x18.media.GetStickerRequest\x1a\x19.media.GetStickerResponseB%Z#github.com/nikaydo/DiaryMedia;mediab\x06proto3"
@@ -226,10 +226,10 @@ var file_media_proto_goTypes = []any{
 	(*GetStickersListResponse)(nil), // 3: media.GetStickersListResponse
 }
 var file_media_proto_depIdxs = []int32{
-	2, // 0: media.Diary.GetStickersList:input_type -> media.GetStickersListRequest
-	0, // 1: media.Diary.GetSticker:input_type -> media.GetStickerRequest
-	3, // 2: media.Diary.GetStickersList:output_type -> media.GetStickersListResponse
-	1, // 3: media.Diary.GetSticker:output_type -> media.GetStickerResponse
+	2, // 0: media.Media.GetStickersList:input_type -> media.GetStickersListRequest
+	0, // 1: media.Media.GetSticker:input_type -> media.GetStickerRequest
+	3, // 2: media.Media.GetStickersList:output_type -> media.GetStickersListResponse
+	1, // 3: media.Media.GetSticker:output_type -> media.GetStickerResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

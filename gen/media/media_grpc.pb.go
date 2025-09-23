@@ -19,139 +19,139 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Diary_GetStickersList_FullMethodName = "/media.Diary/GetStickersList"
-	Diary_GetSticker_FullMethodName      = "/media.Diary/GetSticker"
+	Media_GetStickersList_FullMethodName = "/media.Media/GetStickersList"
+	Media_GetSticker_FullMethodName      = "/media.Media/GetSticker"
 )
 
-// DiaryClient is the client API for Diary service.
+// MediaClient is the client API for Media service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DiaryClient interface {
+type MediaClient interface {
 	GetStickersList(ctx context.Context, in *GetStickersListRequest, opts ...grpc.CallOption) (*GetStickersListResponse, error)
 	GetSticker(ctx context.Context, in *GetStickerRequest, opts ...grpc.CallOption) (*GetStickerResponse, error)
 }
 
-type diaryClient struct {
+type mediaClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDiaryClient(cc grpc.ClientConnInterface) DiaryClient {
-	return &diaryClient{cc}
+func NewMediaClient(cc grpc.ClientConnInterface) MediaClient {
+	return &mediaClient{cc}
 }
 
-func (c *diaryClient) GetStickersList(ctx context.Context, in *GetStickersListRequest, opts ...grpc.CallOption) (*GetStickersListResponse, error) {
+func (c *mediaClient) GetStickersList(ctx context.Context, in *GetStickersListRequest, opts ...grpc.CallOption) (*GetStickersListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetStickersListResponse)
-	err := c.cc.Invoke(ctx, Diary_GetStickersList_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Media_GetStickersList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *diaryClient) GetSticker(ctx context.Context, in *GetStickerRequest, opts ...grpc.CallOption) (*GetStickerResponse, error) {
+func (c *mediaClient) GetSticker(ctx context.Context, in *GetStickerRequest, opts ...grpc.CallOption) (*GetStickerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetStickerResponse)
-	err := c.cc.Invoke(ctx, Diary_GetSticker_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Media_GetSticker_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DiaryServer is the server API for Diary service.
-// All implementations must embed UnimplementedDiaryServer
+// MediaServer is the server API for Media service.
+// All implementations must embed UnimplementedMediaServer
 // for forward compatibility.
-type DiaryServer interface {
+type MediaServer interface {
 	GetStickersList(context.Context, *GetStickersListRequest) (*GetStickersListResponse, error)
 	GetSticker(context.Context, *GetStickerRequest) (*GetStickerResponse, error)
-	mustEmbedUnimplementedDiaryServer()
+	mustEmbedUnimplementedMediaServer()
 }
 
-// UnimplementedDiaryServer must be embedded to have
+// UnimplementedMediaServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedDiaryServer struct{}
+type UnimplementedMediaServer struct{}
 
-func (UnimplementedDiaryServer) GetStickersList(context.Context, *GetStickersListRequest) (*GetStickersListResponse, error) {
+func (UnimplementedMediaServer) GetStickersList(context.Context, *GetStickersListRequest) (*GetStickersListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStickersList not implemented")
 }
-func (UnimplementedDiaryServer) GetSticker(context.Context, *GetStickerRequest) (*GetStickerResponse, error) {
+func (UnimplementedMediaServer) GetSticker(context.Context, *GetStickerRequest) (*GetStickerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSticker not implemented")
 }
-func (UnimplementedDiaryServer) mustEmbedUnimplementedDiaryServer() {}
-func (UnimplementedDiaryServer) testEmbeddedByValue()               {}
+func (UnimplementedMediaServer) mustEmbedUnimplementedMediaServer() {}
+func (UnimplementedMediaServer) testEmbeddedByValue()               {}
 
-// UnsafeDiaryServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DiaryServer will
+// UnsafeMediaServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MediaServer will
 // result in compilation errors.
-type UnsafeDiaryServer interface {
-	mustEmbedUnimplementedDiaryServer()
+type UnsafeMediaServer interface {
+	mustEmbedUnimplementedMediaServer()
 }
 
-func RegisterDiaryServer(s grpc.ServiceRegistrar, srv DiaryServer) {
-	// If the following call pancis, it indicates UnimplementedDiaryServer was
+func RegisterMediaServer(s grpc.ServiceRegistrar, srv MediaServer) {
+	// If the following call pancis, it indicates UnimplementedMediaServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Diary_ServiceDesc, srv)
+	s.RegisterService(&Media_ServiceDesc, srv)
 }
 
-func _Diary_GetStickersList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Media_GetStickersList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStickersListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DiaryServer).GetStickersList(ctx, in)
+		return srv.(MediaServer).GetStickersList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Diary_GetStickersList_FullMethodName,
+		FullMethod: Media_GetStickersList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DiaryServer).GetStickersList(ctx, req.(*GetStickersListRequest))
+		return srv.(MediaServer).GetStickersList(ctx, req.(*GetStickersListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Diary_GetSticker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Media_GetSticker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStickerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DiaryServer).GetSticker(ctx, in)
+		return srv.(MediaServer).GetSticker(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Diary_GetSticker_FullMethodName,
+		FullMethod: Media_GetSticker_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DiaryServer).GetSticker(ctx, req.(*GetStickerRequest))
+		return srv.(MediaServer).GetSticker(ctx, req.(*GetStickerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Diary_ServiceDesc is the grpc.ServiceDesc for Diary service.
+// Media_ServiceDesc is the grpc.ServiceDesc for Media service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Diary_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "media.Diary",
-	HandlerType: (*DiaryServer)(nil),
+var Media_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "media.Media",
+	HandlerType: (*MediaServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetStickersList",
-			Handler:    _Diary_GetStickersList_Handler,
+			Handler:    _Media_GetStickersList_Handler,
 		},
 		{
 			MethodName: "GetSticker",
-			Handler:    _Diary_GetSticker_Handler,
+			Handler:    _Media_GetSticker_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

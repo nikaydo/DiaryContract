@@ -4,7 +4,7 @@ package media;
 
 option go_package = "github.com/nikaydo/DiaryMedia;media";
 
-service Diary{
+service Media{
   rpc GetStickersList (GetStickersListRequest) returns (GetStickersListResponse);
 
   rpc GetSticker (GetStickerRequest) returns (GetStickerResponse);
