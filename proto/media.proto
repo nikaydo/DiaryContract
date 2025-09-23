@@ -1,18 +1,28 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package media;   
 
 option go_package = "github.com/nikaydo/DiaryMedia;media";
 
 service Diary{
-  rpc GetMedia (GetMediaRequest) returns (GetMediaResponse);
+  rpc GetStickersList (GetStickersListRequest) returns (GetStickersListResponse);
+
+  rpc GetSticker (GetStickerRequest) returns (GetStickerResponse);
 
 } 
-message GetMediaRequest{
+
+message GetStickerRequest{
+  string sticker =1;
+}
+
+message GetStickerResponse{
+  bytes data =1;
+}
+
+message GetStickersListRequest{
 
 }
-message GetMediaResponse{
-
+message GetStickersListResponse{
+  repeated string stickers = 1;
 }
+
