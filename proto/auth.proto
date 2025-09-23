@@ -209,12 +209,15 @@ message Profile {
   string avatar = 5;
   Preferences preferences = 6;
   google.protobuf.Timestamp createdAt = 7;
-  bool twoFactorEnable = 8;
-  bool oauth2Google = 9;
-  bool passExist = 10;
-  bool loginExist = 11;
+  Exist Exist = 8;
 }
 
+message Exist {
+  bool twoFactorEnable = 1;
+  bool oauth2Google = 2;
+  bool passExist = 3;
+  bool loginExist = 4;
+}
 message Preferences {
   string userid = 1;
   string theme = 2;
